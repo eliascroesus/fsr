@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /*
+   * shadcn/ui token layer.
+   *
+   * The source page renders its footer with `bg-background`,
+   * `text-muted-foreground` and `hover:text-primary`, and the rest of the page
+   * on `bg-black`. The live stylesheet was not reachable from this environment,
+   * so the token values below are set to a dark root that matches the black
+   * page and maps `--primary` onto the brand teal (#38a3b8). Swap the block for
+   * the commented light values if the original footer is meant to render white.
+   */
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+
+    --card: 197 46% 5%;
+    --card-foreground: 0 0% 98%;
+
+    --muted: 197 30% 12%;
+    --muted-foreground: 0 0% 63%;
+
+    --accent: 197 30% 15%;
+    --accent-foreground: 0 0% 98%;
+
+    --secondary: 197 30% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* #38a3b8 */
+    --primary: 192 53% 47%;
+    --primary-foreground: 0 0% 4%;
+
+    /* #2a6b85 */
+    --border: 198 52% 34%;
+    --input: 198 52% 34%;
+    --ring: 192 53% 47%;
+
+    --radius: 0.5rem;
+  }
+
+  /* Light footer variant — uncomment to render the footer on white.
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --primary: 240 5.9% 10%;
+  }
+  */
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/*
+ * react-phone-input-2 overrides.
+ *
+ * The library ships its own stylesheet; these rules re-skin it to the dark
+ * brand palette so the rendered markup matches the source
+ * (`.react-tel-input`, `.flag-dropdown`, `.selected-flag`, `.special-label`).
+ */
+.phone-input-container .react-tel-input {
+  position: relative;
+  font-family: inherit;
+}
+
+.phone-input-container .react-tel-input .special-label {
+  display: none;
+}
+
+/*
+ * react-phone-input-2 ships `.react-tel-input .form-control` with a white
+ * background and a fixed 300px width. That selector outspecifies the Tailwind
+ * utilities passed via inputClass, so the field is restated here to match the
+ * source markup's classes exactly.
+ */
+.phone-input-container .react-tel-input .form-control {
+  width: 100%;
+  height: auto;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  border-radius: 0.375rem;
+  border: 1px solid #2a6b85;
+  background-color: #0b0f10;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.phone-input-container .react-tel-input .form-control::placeholder {
+  color: #6b7280;
+  opacity: 1;
+}
+
+.phone-input-container .react-tel-input .form-control:focus {
+  outline: none;
+  border-color: #38a3b8;
+  box-shadow: 0 0 0 2px #38a3b8;
+}
+
+.phone-input-container .react-tel-input .flag-dropdown {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  border-radius: 0.375rem 0 0 0.375rem;
+  background-color: #0b0f10;
+  border: 1px solid #2a6b85;
+  border-right: 0;
+}
+
+.phone-input-container .react-tel-input .flag-dropdown.open,
+.phone-input-container .react-tel-input .flag-dropdown:hover,
+.phone-input-container .react-tel-input .flag-dropdown:focus {
+  background-color: #12313c;
+}
+
+.phone-input-container .react-tel-input .selected-flag {
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 100%;
+  padding: 0 0 0 11px;
+  border-radius: 0.375rem 0 0 0.375rem;
+  outline: none;
+}
+
+.phone-input-container .react-tel-input .selected-flag .arrow {
+  border-top-color: #9fe4f0;
+}
+
+.phone-input-container .react-tel-input .selected-flag .arrow.up {
+  border-bottom-color: #9fe4f0;
+}
+
+.phone-input-container .react-tel-input .country-list {
+  margin-top: 4px;
+  background-color: #071013;
+  border: 1px solid rgba(42, 107, 133, 0.7);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-align: left;
+}
+
+.phone-input-container .react-tel-input .country-list .country:hover,
+.phone-input-container .react-tel-input .country-list .country.highlight {
+  background-color: #12313c;
+}
+
+.phone-input-container .react-tel-input .country-list .country .dial-code {
+  color: #9fe4f0;
+}
+
+.phone-input-container .react-tel-input .country-list .search {
+  background-color: #071013;
+  padding: 10px;
+}
+
+.phone-input-container .react-tel-input .country-list .search-box {
+  width: 100%;
+  margin: 0;
+  padding: 6px 10px;
+  color: #fff;
+  background-color: #0b0f10;
+  border: 1px solid #2a6b85;
+  border-radius: 0.375rem;
+}
