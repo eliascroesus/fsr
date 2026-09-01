@@ -19,8 +19,13 @@ Regenerate it after changing the app with:
 
 ```bash
 npm run build      # needed once, the preview lifts Inter from .next
-npm run preview
+npm run preview             # -> preview/workshop-v-test.html (open from disk)
+npm run preview -- --artifact   # -> preview/workshop-v-test.artifact.html
 ```
+
+The `--artifact` variant is the same page shaped for publishing as a Claude
+Artifact (no doctype/head/body wrapper, plus a "preview build" badge so a
+shared link is never mistaken for the live site).
 
 ## What's here
 

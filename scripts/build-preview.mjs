@@ -14,6 +14,13 @@ import { SUCCESS_WIN_SLUGS } from './success-win-slugs.mjs';
 
 const execFileAsync = promisify(execFile);
 
+/**
+ * `--artifact` emits the Artifact-shaped variant: no doctype/html/head/body
+ * wrapper (the host supplies those), plus a badge marking the page as a
+ * preview build so a shared link can't be mistaken for the live site.
+ */
+const ARTIFACT = process.argv.includes('--artifact');
+
 const ROOT = path.resolve(import.meta.dirname, '..');
 const PUBLIC = path.join(ROOT, 'public');
 
@@ -62,6 +69,12 @@ const countdownBlock = (prefix) => `
         .join('')}
     </div>
   </div>`;
+
+const PREVIEW_BADGE = `
+<div style="position:fixed;left:12px;bottom:12px;z-index:60;display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:9999px;border:1px solid rgba(159,228,240,.35);background:rgba(7,16,19,.92);backdrop-filter:blur(6px);font:600 11px/1.2 Inter,system-ui,sans-serif;color:#9fe4f0;letter-spacing:.04em;">
+  <span style="width:7px;height:7px;border-radius:9999px;background:#38a3b8;flex:none;"></span>
+  PREVIEW BUILD — NOT THE LIVE SITE
+</div>`;
 
 const PRIVACY = `<p class="text-center text-sm text-gray-500">🔒 We respect your privacy. No spam, ever.</p>`;
 
@@ -134,16 +147,20 @@ async function main() {
     </button>`,
   ).join('');
 
-  const html = `<!doctype html>
+  const head = ARTIFACT
+    ? `<title>AI Acquisition Workshop</title>`
+    : `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Acquisition — Workshop (local preview)</title>
+<title>AI Acquisition — Workshop (local preview)</title>`;
+
+  const html = `${head}
 <style>/*__TAILWIND__*/</style>
 <style>/*__FONT__*/</style>
 <style>
-  body { background:#000; font-family:Inter,ui-sans-serif,system-ui,sans-serif; margin:0; }
+  body { background:#000; color:#fff; font-family:Inter,ui-sans-serif,system-ui,sans-serif; margin:0; -webkit-font-smoothing:antialiased; }
   .gridsq { animation: sqfade var(--dur) ease-in-out var(--delay) infinite alternate; }
   @keyframes sqfade { from { opacity:0 } to { opacity:.05 } }
   .tier { border-color: rgba(42,107,133,.4); background:#0b0f10; }
@@ -155,8 +172,7 @@ async function main() {
   input[type=checkbox]{ appearance:none;-webkit-appearance:none; }
   input[type=checkbox]:checked{ background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%2338a3b8' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e"); background-size:100% 100%; background-repeat:no-repeat; }
 </style>
-</head>
-<body class="min-h-screen font-sans antialiased">
+${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 <div class="flex min-h-screen flex-col relative overflow-hidden">
   <main class="flex-1">
     <div class="min-h-screen flex flex-col bg-black">
@@ -395,10 +411,10 @@ async function main() {
   render();
 })();
 </script>
-</body>
-</html>`;
+${ARTIFACT ? PREVIEW_BADGE : ''}
+${ARTIFACT ? '' : '</body>\n</html>'}`;
 
-  const out = path.join(ROOT, 'preview', 'workshop-v-test.html');
+  const out = path.join(ROOT, 'preview', ARTIFACT ? 'workshop-v-test.artifact.html' : 'workshop-v-test.html');
   await writeFile(out, html);
 
   // Compile only the utilities this file actually uses, then inline them, so
