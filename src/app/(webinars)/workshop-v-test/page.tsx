@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { AnimatedGridPattern } from '@/components/magicui/animated-grid-pattern';
 import { ScrollToOptInButton } from '@/components/workshop/scroll-to-opt-in-button';
 import { TestimonialWall } from '@/components/workshop/testimonial-wall';
+import { VideoPlaceholder } from '@/components/workshop/video-placeholder';
 import { WorkshopOptIn } from '@/components/workshop/workshop-opt-in';
 
 const SOCIAL_PROOF_AVATARS = [
@@ -62,14 +63,12 @@ export default function WorkshopVTestPage() {
             </p>
           </div>
 
-          <p className="mb-4 max-w-4xl text-center text-base font-medium leading-snug text-gray-300 sm:text-xl md:text-2xl">
-            100% FREE EVENT SHOWS…
-          </p>
-
           <h1 className="mb-4 text-balance text-center text-xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">
             How Beginners Are Making $18,105 Per Month In Recurring Income (on average) Using AI In
             2026
           </h1>
+
+          <VideoPlaceholder />
 
           <div className="mb-10 mx-auto grid w-fit grid-cols-[auto_auto] justify-items-start gap-x-5 gap-y-2 sm:mx-0 sm:flex sm:w-auto sm:flex-wrap sm:justify-center sm:gap-x-6">
             {BENEFITS.map((benefit) => (

@@ -111,6 +111,7 @@ async function main() {
     ),
   );
   const badge = await dataUri('images/aia-assets/charity-badge.avif', 'image/avif');
+  const playIcon = await dataUri('images/aia-assets/play-icon.svg', 'image/svg+xml');
   const logo = await dataUri('images/new-logo.png', 'image/png');
   const wins = await Promise.all(
     SUCCESS_WIN_SLUGS.map((slug) => dataUri(`images/success-wins/${slug}.png`, 'image/png')),
@@ -163,6 +164,14 @@ async function main() {
   body { background:#000; color:#fff; font-family:Inter,ui-sans-serif,system-ui,sans-serif; margin:0; -webkit-font-smoothing:antialiased; }
   .gridsq { animation: sqfade var(--dur) ease-in-out var(--delay) infinite alternate; }
   @keyframes sqfade { from { opacity:0 } to { opacity:.05 } }
+  /* Smart-autoplay overlay: 1920x1080 stage coordinates expressed as
+     percentages, with cqw carrying the type and radius proportions. */
+  @keyframes vsl-pulse { 0%{transform:scale(1)} 50%{transform:scale(1.05)} 100%{transform:scale(1)} }
+  .vsl-frame { container-type: inline-size; }
+  .vsl-pulse { animation: vsl-pulse 1.3333333333333333s infinite; }
+  .vsl-card { border-radius:1.6667cqw; border-width:0.0781cqw; }
+  .vsl-label { font-size:2.7778cqw; }
+  @media (prefers-reduced-motion: reduce) { .vsl-pulse { animation:none } }
   .tier { border-color: rgba(42,107,133,.4); background:#0b0f10; }
   .tier:hover { border-color:#2a6b85; }
   .tier[aria-pressed="true"] { border-color:#38a3b8; background:rgba(18,49,60,.85); box-shadow:0 0 28px rgba(56,163,184,.25); }
@@ -190,8 +199,22 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
           <p class="text-left text-xs font-bold text-[#9fe4f0] sm:text-sm">3,478 beginners registered this week</p>
         </div>
 
-        <p class="mb-4 max-w-4xl text-center text-base font-medium leading-snug text-gray-300 sm:text-xl md:text-2xl">100% FREE EVENT SHOWS…</p>
         <h1 class="mb-4 text-balance text-center text-xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">How Beginners Are Making $18,105 Per Month In Recurring Income (on average) Using AI In 2026</h1>
+
+        <div class="mb-8 w-full max-w-3xl">
+          <div class="vsl-frame relative aspect-video w-full overflow-hidden rounded-2xl border border-[#2a6b85]/70 bg-[#071013] shadow-[0_0_40px_rgba(56,163,184,0.18)]">
+            <div id="vslEmpty" class="absolute inset-0 hidden place-items-center">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/25 sm:text-xs">Video placeholder</p>
+            </div>
+            <button type="button" id="vslOverlay" aria-label="Click to listen" class="absolute inset-0 h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38a3b8]">
+              <span class="vsl-pulse absolute inset-0 block">
+                <span class="vsl-card absolute block border-solid border-white bg-[rgba(16,136,188,0.75)]" style="left:32.361%;top:19.506%;width:35.278%;height:60.988%"></span>
+                <span class="absolute block" style="left:39.931%;top:27.407%;width:20.139%;height:35.802%"><img alt="" class="h-full w-full" src="${playIcon}"></span>
+                <span class="vsl-label absolute block text-center font-bold leading-tight text-white" style="left:32.361%;top:70.617%;width:35.278%">Click to listen</span>
+              </span>
+            </button>
+          </div>
+        </div>
 
         <div class="mb-10 mx-auto grid w-fit grid-cols-[auto_auto] justify-items-start gap-x-5 gap-y-2 sm:mx-0 sm:flex sm:w-auto sm:flex-wrap sm:justify-center sm:gap-x-6">
           ${BENEFITS.map((b) => `<span class="flex items-start gap-1.5 text-sm font-semibold text-white sm:items-center sm:text-base">${CHECK_ICON}${b}</span>`).join('')}
@@ -402,6 +425,13 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
         '<dd class="break-all text-xs font-semibold text-white sm:text-sm">' + r[1] + '</dd></div>';
     }).join('');
     goto(3);
+  });
+
+  var vsl = document.getElementById('vslOverlay');
+  if (vsl) vsl.addEventListener('click', function(){
+    vsl.remove();
+    var empty = document.getElementById('vslEmpty');
+    if (empty) { empty.classList.remove('hidden'); empty.classList.add('grid'); }
   });
 
   document.getElementById('bottomCta').addEventListener('click', function(){
