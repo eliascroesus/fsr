@@ -10,6 +10,18 @@ npm run assets:placeholders   # only needed if public/images is empty
 npm run dev                   # http://localhost:3000/workshop-v-test
 ```
 
+### Just want to look at it?
+
+`preview/workshop-v-test.html` is a single self-contained file — open it in any
+browser, no server, no network. All three funnel steps, the live countdown and
+the animated backdrop work; images, CSS and the Inter font are inlined.
+Regenerate it after changing the app with:
+
+```bash
+npm run build      # needed once, the preview lifts Inter from .next
+npm run preview
+```
+
 ## What's here
 
 | Piece | File |
