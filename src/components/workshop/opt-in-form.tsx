@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { Mail } from 'lucide-react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
@@ -108,22 +107,9 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
 
           <CtaButton
             type="submit"
-            primaryLabel="BOOK MY CALL"
-            secondaryLabel="WORKSHOP STARTING 8PM EST TONIGHT"
+            primaryLabel="BOOK A CALL"
+            secondaryLabel="GET FREE ACCESS TO OUR 1 HOUR COURSE"
           />
-
-          <div className="pt-2 text-center">
-            <p className="mx-auto max-w-md text-[10px] font-normal leading-relaxed sm:max-w-none sm:whitespace-nowrap sm:text-[11px] text-white/80">
-              When you attend the event, we will ❤️ donate a meal to someone in need in your name.
-            </p>
-            <Image
-              src="/images/aia-assets/charity-badge.avif"
-              alt="Meal donation badge"
-              width={220}
-              height={110}
-              className="mx-auto mt-2 h-auto w-28 sm:w-36"
-            />
-          </div>
 
           <p className="text-center text-sm text-gray-500">
             🔒 We respect your privacy. No spam, ever.

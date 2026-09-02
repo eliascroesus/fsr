@@ -54,8 +54,8 @@ const CTA_GRADIENT =
 const ctaButton = (id, extra = '') =>
   `<button type="${id === 'submitBtn' ? 'submit' : 'button'}" id="${id}" class="w-full ${extra} py-3.5 px-4 rounded-xl text-white font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(56,163,184,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
     <span class="flex flex-col items-center leading-tight">
-      <span class="text-base sm:text-lg md:text-xl tracking-wide">${id === 'bottomCta' ? 'START THE TEST' : 'BOOK MY CALL'}</span>
-      <span class="text-xs sm:text-sm font-semibold opacity-90">WORKSHOP STARTING 8PM EST TONIGHT</span>
+      <span class="text-base sm:text-lg md:text-xl tracking-wide">${id === 'bottomCta' ? 'START THE TEST' : 'BOOK A CALL'}</span>
+      <span class="text-xs sm:text-sm font-semibold opacity-90">${id === 'bottomCta' ? 'WORKSHOP STARTING 8PM EST TONIGHT' : 'GET FREE ACCESS TO OUR 1 HOUR COURSE'}</span>
     </span>${CHEVRON}
   </button>`;
 
@@ -109,11 +109,10 @@ const QUIZ = [
     title: 'Which of the following describes you best?',
     description: 'The reason we are asking is so we can best help you accomplish your goals.',
     options: [
-      ['A', "I'm a corporate executive, director or manager"],
-      ['B', 'I work in a corporate but in a non-managerial role'],
-      ['C', "I work a 9-5 job, but it's not corporate"],
-      ['D', "I'm a business owner"],
-      ['E', "I'm unemployed"],
+      ['A', 'I work at a 9-5 job'],
+      ['B', "I'm a business owner"],
+      ['C', "I'm a student"],
+      ['D', "I'm unemployed"],
     ],
   },
   {
@@ -160,7 +159,6 @@ async function main() {
       dataUri(`images/${f}`, 'image/avif'),
     ),
   );
-  const badge = await dataUri('images/aia-assets/charity-badge.avif', 'image/avif');
   const playIcon = await dataUri('images/aia-assets/play-icon.svg', 'image/svg+xml');
   const logo = await dataUri('images/new-logo.png', 'image/png');
   const wins = await Promise.all(
@@ -294,10 +292,6 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
                 </div>
                 <p class="text-[9px] sm:text-[10px] text-gray-500 text-center leading-tight">By providing your phone number, you consent to receive SMS messages about joining the webinar. You may reply STOP at any time to unsubscribe.</p>
                 ${ctaButton('submitBtn')}
-                <div class="pt-2 text-center">
-                  <p class="mx-auto max-w-md text-[10px] font-normal leading-relaxed sm:max-w-none sm:whitespace-nowrap sm:text-[11px] text-white/80">When you attend the event, we will ❤️ donate a meal to someone in need in your name.</p>
-                  <img alt="Meal donation badge" width="220" height="110" class="mx-auto mt-2 h-auto w-28 sm:w-36" src="${badge}">
-                </div>
                 ${PRIVACY}
               </form>
             </div>

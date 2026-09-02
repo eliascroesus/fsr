@@ -12,11 +12,10 @@ export const QUIZ_QUESTIONS: readonly QuizQuestion[] = [
     title: 'Which of the following describes you best?',
     description: 'The reason we are asking is so we can best help you accomplish your goals.',
     options: [
-      { key: 'A', value: 'corporate-leadership', label: "I'm a corporate executive, director or manager" },
-      { key: 'B', value: 'corporate-ic', label: 'I work in a corporate but in a non-managerial role' },
-      { key: 'C', value: 'non-corporate-job', label: "I work a 9-5 job, but it's not corporate" },
-      { key: 'D', value: 'business-owner', label: "I'm a business owner" },
-      { key: 'E', value: 'unemployed', label: "I'm unemployed" },
+      { key: 'A', value: 'job-9-5', label: 'I work at a 9-5 job' },
+      { key: 'B', value: 'business-owner', label: "I'm a business owner" },
+      { key: 'C', value: 'student', label: "I'm a student" },
+      { key: 'D', value: 'unemployed', label: "I'm unemployed" },
     ],
   },
   {
