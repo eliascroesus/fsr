@@ -50,7 +50,7 @@ const CTA_GRADIENT =
 const ctaButton = (id, extra = '') =>
   `<button type="${id === 'submitBtn' ? 'submit' : 'button'}" id="${id}" class="w-full ${extra} py-3.5 px-4 rounded-xl text-white font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(56,163,184,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
     <span class="flex flex-col items-center leading-tight">
-      <span class="text-base sm:text-lg md:text-xl tracking-wide">GO TO TICKET SELECTION</span>
+      <span class="text-base sm:text-lg md:text-xl tracking-wide">${id === 'bottomCta' ? 'START THE TEST' : 'BOOK MY CALL'}</span>
       <span class="text-xs sm:text-sm font-semibold opacity-90">WORKSHOP STARTING 8PM EST TONIGHT</span>
     </span>${CHEVRON}
   </button>`;
@@ -78,28 +78,53 @@ const PREVIEW_BADGE = `
 
 const PRIVACY = `<p class="text-center text-sm text-gray-500">🔒 We respect your privacy. No spam, ever.</p>`;
 
-const TIERS = [
+const QUIZ = [
   {
-    id: 'general',
-    name: 'General Admission',
-    price: 'FREE',
-    note: 'No card required',
-    tagline: 'Watch the live workshop with everyone else.',
-    perks: ['Live access to the full workshop', 'Live Q&A with the room', 'Email reminder before we go live'],
+    id: 'occupation',
+    title: 'Which of the following describes you best?',
+    description: 'The reason we are asking is so we can best help you accomplish your goals.',
+    options: [
+      ['A', "I'm a corporate executive, director or manager"],
+      ['B', 'I work in a corporate but in a non-managerial role'],
+      ['C', "I work a 9-5 job, but it's not corporate"],
+      ['D', "I'm a business owner"],
+      ['E', "I'm unemployed"],
+    ],
   },
   {
-    id: 'vip',
-    name: 'VIP Experience',
-    price: '$27',
-    note: 'One-time — usually $197',
-    tagline: 'Everything in General, plus the assets we build on the call.',
-    badge: 'MOST POPULAR',
-    perks: [
-      'Everything in General Admission',
-      'Lifetime replay of the workshop',
-      'The AI Acquisition prompt &amp; template pack',
-      'Priority Q&amp;A — your questions answered first',
-      'Private VIP-only implementation session',
+    id: 'current-income',
+    title: 'How much are you currently earning per month?',
+    description: 'This tells us which starting point of the system actually applies to you.',
+    options: [
+      ['A', 'Less than $2,000'],
+      ['B', '$2,000 – $5,000'],
+      ['C', '$5,000 – $10,000'],
+      ['D', '$10,000 – $25,000'],
+      ['E', '$25,000+'],
+    ],
+  },
+  {
+    id: 'goal',
+    title: 'What are you looking to achieve in the next 12 months?',
+    description: 'So we can show you the path that fits the outcome you actually want.',
+    options: [
+      ['A', 'A first $1,000 – $5,000 per month on the side'],
+      ['B', 'Replace my full-time income'],
+      ['C', 'Scale past $10,000 per month'],
+      ['D', 'Build a business I could sell'],
+      ['E', 'Complete financial freedom'],
+    ],
+  },
+  {
+    id: 'investment',
+    title: 'How much do you have available to invest in yourself and the tools to make it happen?',
+    description: 'Covers AI tools, software and coaching — we only recommend what fits your range.',
+    options: [
+      ['A', 'Under $500'],
+      ['B', '$500 – $1,000'],
+      ['C', '$1,000 – $3,000'],
+      ['D', '$3,000 – $5,000'],
+      ['E', '$5,000+'],
     ],
   },
 ];
@@ -117,7 +142,7 @@ async function main() {
     SUCCESS_WIN_SLUGS.map((slug) => dataUri(`images/success-wins/${slug}.png`, 'image/png')),
   );
 
-  const stepper = ['Your Details', 'Choose Ticket', 'Confirmation']
+  const stepper = ['Test', 'Your Details', 'Book a call']
     .map(
       (label, i) => `
       <div data-step-cell="${i + 1}" class="relative flex min-h-16 flex-col items-center justify-center border-r border-[#2a6b85]/40 px-1.5 py-2 text-center last:border-r-0 sm:min-h-24 sm:px-4 sm:py-3">
@@ -127,26 +152,6 @@ async function main() {
     )
     .join('');
 
-  const tierCards = TIERS.map(
-    (t) => `
-    <button type="button" data-tier="${t.id}" class="tier relative w-full rounded-2xl border-2 p-4 text-left transition-all duration-200 sm:p-5">
-      ${t.badge ? `<span class="absolute -top-2.5 right-4 rounded-full bg-[#38a3b8] px-2.5 py-0.5 text-[9px] font-black uppercase tracking-wide text-black sm:text-[10px]">${t.badge}</span>` : ''}
-      <div class="flex items-start gap-3">
-        <span data-radio class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2"></span>
-        <div class="min-w-0 flex-1">
-          <div class="flex flex-wrap items-baseline justify-between gap-x-3">
-            <span class="text-base font-extrabold text-white sm:text-lg">${t.name}</span>
-            <span class="text-lg font-extrabold text-[#9fe4f0] sm:text-xl">${t.price}</span>
-          </div>
-          <p class="mt-0.5 text-xs text-white/55 sm:text-sm">${t.tagline}</p>
-          <p class="text-[10px] uppercase tracking-wide text-white/40 sm:text-[11px]">${t.note}</p>
-          <ul class="mt-3 flex flex-col gap-1.5">
-            ${t.perks.map((p) => `<li class="flex items-start gap-1.5 text-xs font-medium text-white/85 sm:text-sm">${TICK}${p}</li>`).join('')}
-          </ul>
-        </div>
-      </div>
-    </button>`,
-  ).join('');
 
   const head = ARTIFACT
     ? `<title>AI Acquisition Workshop</title>`
@@ -225,8 +230,30 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
             <div class="grid w-full grid-cols-3 overflow-hidden rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/95">${stepper}</div>
           </div>
 
-          <!-- STEP 1 -->
+          <!-- STEP 1 - test -->
           <section data-panel="1" class="w-full max-w-2xl mx-auto">
+            <div class="w-full overflow-hidden rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 shadow-md">
+              <div class="h-1 w-full bg-white/10"><div id="quizBar" class="h-full bg-[#38a3b8] transition-[width] duration-300 ease-out" style="width:0%"></div></div>
+              <div class="p-6 sm:p-8">
+                <div class="mb-4 flex items-center gap-2">
+                  <span id="quizNum" class="flex h-6 w-6 items-center justify-center rounded-md bg-[#38a3b8] text-xs font-black text-black">1</span>
+                  <span id="quizCount" class="text-[10px] font-black uppercase tracking-[0.18em] text-white/40 sm:text-xs"></span>
+                </div>
+                <h2 id="quizTitle" class="text-balance text-lg font-extrabold leading-snug text-white sm:text-2xl"></h2>
+                <p id="quizDesc" class="mt-2 text-xs leading-relaxed text-white/55 sm:text-sm"></p>
+                <div id="quizOptions" role="radiogroup" class="mt-5 flex flex-col gap-2.5"></div>
+                <div class="mt-5 flex items-center gap-3">
+                  <button type="button" id="quizOk" disabled class="rounded-lg px-6 py-2.5 text-sm font-extrabold tracking-wide text-white shadow-[0_0_20px_rgba(56,163,184,0.3)] transition-all duration-200 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none sm:text-base" style="background:${CTA_GRADIENT}">OK</button>
+                  <span class="text-[10px] text-white/35 sm:text-xs">press <span class="font-bold text-white/55">Enter &#8629;</span></span>
+                  <button type="button" id="quizBack" class="ml-auto hidden text-xs font-medium text-white/45 underline-offset-4 transition-colors hover:text-white/80 hover:underline sm:text-sm">Back</button>
+                </div>
+                <div class="mt-6">${countdownBlock('s1')}</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- STEP 2 - your details -->
+          <section data-panel="2" class="w-full max-w-2xl mx-auto hidden">
             <div class="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
               <h2 class="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">CLAIM YOUR FREE SPOT NOW</h2>
               <form id="optin" class="flex w-full flex-col gap-3">
@@ -254,27 +281,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
             </div>
           </section>
 
-          <!-- STEP 2 -->
-          <section data-panel="2" class="w-full max-w-2xl mx-auto hidden">
-            <div class="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
-              <h2 class="mb-2 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">CHOOSE YOUR TICKET</h2>
-              <p class="mb-6 text-center text-xs text-white/60 sm:text-sm"><span id="greet">Almost done.</span> Your spot is held for the next 10 minutes.</p>
-              <div class="flex flex-col gap-3">${tierCards}</div>
-              <div class="mt-4 flex flex-col gap-3">
-                <button type="button" id="confirmBtn" class="w-full py-3.5 px-4 rounded-xl text-white font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(56,163,184,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
-                  <span class="flex flex-col items-center leading-tight">
-                    <span class="text-base sm:text-lg md:text-xl tracking-wide">CONFIRM MY SPOT</span>
-                    <span class="text-xs sm:text-sm font-semibold opacity-90">WORKSHOP STARTING 8PM EST TONIGHT</span>
-                  </span>${CHEVRON}
-                </button>
-                <button type="button" id="backBtn" class="mx-auto text-xs font-medium text-white/50 underline-offset-4 transition-colors hover:text-white/80 hover:underline sm:text-sm">Back to your details</button>
-                ${countdownBlock('s2')}
-                ${PRIVACY}
-              </div>
-            </div>
-          </section>
-
-          <!-- STEP 3 -->
+          <!-- STEP 3 - book a call -->
           <section data-panel="3" class="w-full max-w-2xl mx-auto hidden">
             <div class="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
               <div class="mb-5 flex justify-center">
@@ -282,12 +289,22 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
                   <svg viewBox="0 0 20 20" fill="currentColor" class="h-7 w-7 text-black"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                 </span>
               </div>
-              <h2 class="mb-2 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">YOU'RE REGISTERED</h2>
-              <p class="mb-6 text-center text-xs text-white/60 sm:text-sm" id="confirmLine">Your seat is confirmed.</p>
+              <h2 class="mb-2 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">PICK YOUR CALL TIME</h2>
+              <p class="mb-6 text-center text-xs text-white/60 sm:text-sm" id="callLine"></p>
+              <div class="mb-5 overflow-hidden rounded-2xl border border-[#2a6b85]/60 bg-black/30">
+                <div class="grid min-h-[260px] place-items-center px-4 py-10 text-center sm:min-h-[320px]">
+                  <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-3 h-9 w-9 text-[#38a3b8]"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/30 sm:text-xs">Booking calendar</p>
+                    <p class="mx-auto mt-2 max-w-xs text-[11px] leading-relaxed text-white/40 sm:text-xs">Drop your Calendly or Cal.com embed in here &mdash; it takes the full width of this panel.</p>
+                  </div>
+                </div>
+              </div>
               <dl class="mb-5 grid gap-2 rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-4 py-4 text-left" id="summary"></dl>
               ${countdownBlock('s3')}
               <div class="mt-3">${PRIVACY}</div>
             </div>
+          </section>
           </section>
         </div>
 
@@ -360,7 +377,10 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
   tick(); setInterval(tick, 1000);
 
   // ---- funnel -------------------------------------------------------------
-  var state = { step:1, tier:'vip', lead:null };
+  // QUIZ is a build-time constant, so it has to be serialised into the page
+  // for the browser to read.
+  var QUIZ = ${JSON.stringify(QUIZ)};
+  var state = { step:1, qi:0, answers:{}, lead:null };
   var panels = document.querySelectorAll('[data-panel]');
   var cells  = document.querySelectorAll('[data-step-cell]');
 
@@ -374,9 +394,6 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
         (on ? 'border-[#9fe4f0] bg-[#38a3b8] text-black' : 'border-white/25 text-white/45');
       lab.className = 'text-[9px] font-black uppercase leading-tight tracking-wide sm:text-sm ' + (on ? 'text-white' : 'text-white/40');
     });
-    document.querySelectorAll('.tier').forEach(function(t){
-      t.setAttribute('aria-pressed', String(t.dataset.tier === state.tier));
-    });
   }
 
   function goto(step){
@@ -384,6 +401,65 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     document.getElementById('workshop-opt-in').scrollIntoView({ behavior:'smooth', block:'start' });
   }
 
+  // ---- step 1: the test ---------------------------------------------------
+  var okBtn = document.getElementById('quizOk');
+  var backBtn = document.getElementById('quizBack');
+
+  function renderQuestion(){
+    var q = QUIZ[state.qi], chosen = state.answers[q.id];
+    document.getElementById('quizNum').textContent = state.qi + 1;
+    document.getElementById('quizCount').textContent = 'Question ' + (state.qi + 1) + ' of ' + QUIZ.length;
+    document.getElementById('quizTitle').innerHTML =
+      q.title + '<span class="ml-1 text-[#38a3b8]" aria-label="This question is required.">*</span>';
+    document.getElementById('quizDesc').textContent = q.description;
+    document.getElementById('quizBar').style.width =
+      (((state.qi + (chosen ? 1 : 0)) / QUIZ.length) * 100) + '%';
+
+    document.getElementById('quizOptions').innerHTML = q.options.map(function(o){
+      var on = chosen === o[0];
+      return '<button type="button" role="radio" aria-checked="' + on + '" data-key="' + o[0] + '" ' +
+        'class="flex w-full items-center gap-3 rounded-xl border-2 px-3 py-3 text-left transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38a3b8] ' +
+        (on ? 'border-[#38a3b8] bg-[#12313c]/85 shadow-[0_0_20px_rgba(56,163,184,0.2)]' : 'border-[#2a6b85]/40 bg-[#0b0f10] hover:border-[#2a6b85]') + '">' +
+        '<span aria-hidden="true" class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border text-xs font-black ' +
+        (on ? 'border-[#9fe4f0] bg-[#38a3b8] text-black' : 'border-white/20 text-white/50') + '">' + o[0] + '</span>' +
+        '<span class="text-sm font-semibold text-white sm:text-base">' + o[1] + '</span></button>';
+    }).join('');
+
+    Array.prototype.forEach.call(document.getElementById('quizOptions').children, function(btn){
+      btn.addEventListener('click', function(){
+        state.answers[QUIZ[state.qi].id] = btn.dataset.key;
+        renderQuestion();
+      });
+    });
+
+    okBtn.disabled = !chosen;
+    okBtn.textContent = state.qi === QUIZ.length - 1 ? 'FINISH' : 'OK';
+    backBtn.classList.toggle('hidden', state.qi === 0);
+  }
+
+  function advance(){
+    if (!state.answers[QUIZ[state.qi].id]) return;
+    if (state.qi === QUIZ.length - 1) { goto(2); return; }
+    state.qi++; renderQuestion();
+  }
+
+  okBtn.addEventListener('click', advance);
+  backBtn.addEventListener('click', function(){ if (state.qi > 0) { state.qi--; renderQuestion(); } });
+
+  // Letter keys pick an option; Enter moves on.
+  window.addEventListener('keydown', function(e){
+    if (state.step !== 1) return;
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '')) return;
+    if (e.key === 'Enter') { e.preventDefault(); advance(); return; }
+    var hit = QUIZ[state.qi].options.filter(function(o){
+      return o[0].toLowerCase() === e.key.toLowerCase();
+    })[0];
+    if (hit) { e.preventDefault(); state.answers[QUIZ[state.qi].id] = hit[0]; renderQuestion(); }
+  });
+
+  renderQuestion();
+
+  // ---- step 2: details ----------------------------------------------------
   document.getElementById('receiveGiftTop').addEventListener('change', function(e){
     var phone = document.getElementById('phone');
     phone.required = !e.target.checked;
@@ -400,30 +476,26 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       phone: declined ? '' : document.getElementById('phone').value,
       declined: declined
     };
+
+    // ---- step 3: book a call ----
     var first = state.lead.fullName.split(' ')[0];
-    document.getElementById('greet').textContent = first ? 'Almost done, ' + first + '.' : 'Almost done.';
-    goto(2);
-  });
+    var goalQ = QUIZ.filter(function(q){ return q.id === 'goal'; })[0];
+    var goal = goalQ.options.filter(function(o){ return o[0] === state.answers['goal']; })[0];
+    document.getElementById('callLine').textContent =
+      (first ? "You're in, " + first + '. ' : "You're in. ") +
+      "Pick a slot below and we'll map out your first 90 days.";
 
-  document.querySelectorAll('.tier').forEach(function(t){
-    t.addEventListener('click', function(){ state.tier = t.dataset.tier; render(); });
-  });
-
-  document.getElementById('backBtn').addEventListener('click', function(){ goto(1); });
-
-  document.getElementById('confirmBtn').addEventListener('click', function(){
-    var tier = state.tier === 'vip' ? 'VIP Experience — $27' : 'General Admission — FREE';
-    var first = state.lead.fullName.split(' ')[0];
-    document.getElementById('confirmLine').textContent =
-      (first ? 'See you tonight, ' + first + '. ' : 'See you tonight. ') + 'Your seat is confirmed.';
-    var rows = [['Ticket', tier], ['Email', state.lead.email]];
+    var rows = [];
+    if (goal) rows.push(['Goal', goal[1]]);
+    rows.push(['Email', state.lead.email]);
     if (!state.lead.declined) rows.push(['Phone', state.lead.phone]);
-    rows.push(['Starts', '8:00 PM EST tonight']);
+    rows.push(['Workshop', '8:00 PM EST tonight']);
     document.getElementById('summary').innerHTML = rows.map(function(r){
       return '<div class="flex items-start justify-between gap-3">' +
         '<dt class="text-[10px] font-black uppercase tracking-[0.18em] text-[#9fe4f0] sm:text-xs">' + r[0] + '</dt>' +
         '<dd class="break-all text-xs font-semibold text-white sm:text-sm">' + r[1] + '</dd></div>';
     }).join('');
+
     goto(3);
   });
 

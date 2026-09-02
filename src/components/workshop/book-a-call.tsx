@@ -3,40 +3,26 @@
 import { Calendar, Check, Mail, MessageSquare } from 'lucide-react';
 
 import { CountdownTimer } from './countdown-timer';
-import { TICKET_OPTIONS } from './ticket-selection';
-import type { LeadDetails, TicketTier } from './types';
+import { QUIZ_QUESTIONS } from './quiz-questions';
+import type { LeadDetails, QuizAnswers } from './types';
 
-/**
- * NOTE: like step 2, the confirmation screen is rendered client-side after
- * submit on the source page, so its exact copy was not in the captured markup.
- * This reproduces the standard structure in the page's design language.
- */
-interface ConfirmationProps {
+interface BookACallProps {
   lead: LeadDetails;
-  tier: TicketTier;
+  answers: QuizAnswers;
+  /** A real scheduler embed (Calendly, Cal.com, …) renders in place of the placeholder. */
+  children?: React.ReactNode;
 }
 
-/** Builds a Google Calendar link for tonight's 8PM EST session. */
-function calendarUrl(): string {
-  const start = new Date();
-  start.setUTCHours(start.getUTCHours() + 1, 0, 0, 0);
-  const end = new Date(start.getTime() + 90 * 60 * 1000);
-
-  const stamp = (d: Date) => d.toISOString().replace(/[-:]|\.\d{3}/g, '');
-
-  const params = new URLSearchParams({
-    action: 'TEMPLATE',
-    text: 'AI Acquisition — Live Workshop',
-    dates: `${stamp(start)}/${stamp(end)}`,
-    details: 'Your seat is confirmed. Join a few minutes early — we start on time.',
-  });
-
-  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+/** Reads back the option the visitor picked, by label rather than by value. */
+function answerLabel(questionId: string, answers: QuizAnswers): string | null {
+  const question = QUIZ_QUESTIONS.find((q) => q.id === questionId);
+  const option = question?.options.find((o) => o.value === answers[questionId]);
+  return option?.label ?? null;
 }
 
-export function Confirmation({ lead, tier }: ConfirmationProps) {
-  const ticket = TICKET_OPTIONS.find((option) => option.id === tier) ?? TICKET_OPTIONS[0];
+export function BookACall({ lead, answers, children }: BookACallProps) {
   const firstName = lead.fullName.split(' ')[0];
+  const goal = answerLabel('goal', answers);
 
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -48,22 +34,44 @@ export function Confirmation({ lead, tier }: ConfirmationProps) {
         </div>
 
         <h2 className="mb-2 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">
-          YOU&apos;RE REGISTERED
+          PICK YOUR CALL TIME
         </h2>
         <p className="mb-6 text-center text-xs text-white/60 sm:text-sm">
-          {firstName ? `See you tonight, ${firstName}. ` : 'See you tonight. '}
-          Your {ticket.name} seat is confirmed.
+          {firstName ? `You're in, ${firstName}. ` : "You're in. "}
+          Pick a slot below and we&apos;ll map out your first 90 days.
         </p>
 
+        {/* Scheduler slot — pass children to mount the real booking embed. */}
+        <div className="mb-5 overflow-hidden rounded-2xl border border-[#2a6b85]/60 bg-black/30">
+          {children ?? (
+            <div className="grid min-h-[260px] place-items-center px-4 py-10 text-center sm:min-h-[320px]">
+              <div>
+                <Calendar
+                  className="mx-auto mb-3 h-9 w-9 text-[#38a3b8]"
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/30 sm:text-xs">
+                  Booking calendar
+                </p>
+                <p className="mx-auto mt-2 max-w-xs text-[11px] leading-relaxed text-white/40 sm:text-xs">
+                  Drop your Calendly or Cal.com embed in here — it takes the full width of this
+                  panel.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+
         <dl className="mb-5 grid gap-2 rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-4 py-4 text-left">
-          <div className="flex items-start justify-between gap-3">
-            <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#9fe4f0] sm:text-xs">
-              Ticket
-            </dt>
-            <dd className="text-xs font-semibold text-white sm:text-sm">
-              {ticket.name} — {ticket.price}
-            </dd>
-          </div>
+          {goal ? (
+            <div className="flex items-start justify-between gap-3">
+              <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#9fe4f0] sm:text-xs">
+                Goal
+              </dt>
+              <dd className="text-right text-xs font-semibold text-white sm:text-sm">{goal}</dd>
+            </div>
+          ) : null}
           <div className="flex items-start justify-between gap-3">
             <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#9fe4f0] sm:text-xs">
               Email
@@ -80,7 +88,7 @@ export function Confirmation({ lead, tier }: ConfirmationProps) {
           )}
           <div className="flex items-start justify-between gap-3">
             <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#9fe4f0] sm:text-xs">
-              Starts
+              Workshop
             </dt>
             <dd className="text-xs font-semibold text-white sm:text-sm">8:00 PM EST tonight</dd>
           </div>
@@ -98,23 +106,9 @@ export function Confirmation({ lead, tier }: ConfirmationProps) {
               We&apos;ll text you a reminder before we go live. Reply STOP to opt out any time.
             </li>
           )}
-          <li className="flex items-start gap-2.5 text-xs font-medium text-white/85 sm:text-sm">
-            <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-[#38a3b8]" aria-hidden="true" />
-            Block the time now so nothing else takes the slot.
-          </li>
         </ul>
 
-        <a
-          href={calendarUrl()}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-[#2a6b85] bg-[#0b0f10] px-4 py-3.5 text-sm font-extrabold tracking-wide text-white transition-all duration-200 hover:border-[#38a3b8] hover:opacity-90 sm:text-base"
-        >
-          <Calendar className="h-5 w-5 shrink-0" aria-hidden="true" />
-          ADD TO CALENDAR
-        </a>
-
-        <div className="mt-3 flex flex-col gap-3">
+        <div className="flex flex-col gap-3">
           <CountdownTimer />
           <p className="text-center text-sm text-gray-500">
             🔒 We respect your privacy. No spam, ever.

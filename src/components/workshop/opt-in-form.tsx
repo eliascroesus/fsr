@@ -110,7 +110,7 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
 
           <CtaButton
             type="submit"
-            primaryLabel="GO TO TICKET SELECTION"
+            primaryLabel="BOOK MY CALL"
             secondaryLabel="WORKSHOP STARTING 8PM EST TONIGHT"
           />
 

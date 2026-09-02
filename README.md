@@ -50,8 +50,12 @@ colours in `tailwind.config.ts`.
 
 - **Animated grid backdrop** — 40×40 tiled pattern, `maxOpacity` 0.05, squares
   that re-roll position after each fade cycle, radial mask, fixed at `-z-10`.
-- **3-step funnel** — Your Details → Choose Ticket → Confirmation, with the
-  stepper reflecting state and the card scrolling back into view on each step.
+- **3-step funnel** — Test → Your Details → Book a call, with the stepper
+  reflecting state and the card scrolling back into view on each step.
+- **The test** — four qualifying questions asked one screen at a time
+  (occupation, current income, 12-month goal, budget). Options carry letter
+  keys, so a question can be answered with the keyboard and Enter moves on.
+  Questions live in `src/components/workshop/quiz-questions.ts`.
 - **Phone field** — `react-phone-input-2`, US default, `+1` seeded. The
   "I don't want to share my phone" checkbox is an inverted opt-out: ticking it
   drops the `required` constraint on the phone field.
@@ -83,12 +87,11 @@ byte-for-byte copy.
    - `public/images/new-logo.png`, `public/favicon.ico`
    - `public/images/success-wins/win-001-…` through `win-060-…` (`.png`)
 
-2. **Steps 2 and 3 are reconstructions.** The source only ships step 1 in its
-   server-rendered markup; the ticket and confirmation screens are built
-   client-side after submit, so their copy could not be captured. The structure
-   (free General Admission vs. paid VIP) and design language match, but the
-   tier names, prices and perks in `ticket-selection.tsx` are placeholders —
-   replace them with production copy.
+2. **Question and booking copy is placeholder.** Question 1's options came from
+   the reference form; questions 2-4 were written to brief and live in
+   `quiz-questions.ts` — swap in production copy there. The booking step renders
+   an empty calendar panel: `<BookACall>` takes children, so a Calendly or
+   Cal.com embed drops straight into it.
 
 3. **Fonts.** The original loads two `next/font` families through
    `--font-sans` / a second variable; the specific families were not
@@ -101,9 +104,9 @@ byte-for-byte copy.
    black page, with `--primary` mapped to the brand teal. A commented light
    variant sits directly below it if the original footer renders white.
 
-5. **Form submission is not wired to a backend.** `onSubmit` advances the step
-   and fires the `Lead` / `CompleteRegistration` pixel events; point it at the
-   real CRM/webhook endpoint.
+5. **Nothing is wired to a backend.** Submitting advances the step and fires the
+   `Lead` pixel event; quiz answers are held in component state only. Point both
+   at the real CRM/webhook endpoint.
 
 Tracking tags are disabled in development so local work doesn't pollute the real
 analytics properties. Set `NEXT_PUBLIC_ENABLE_TRACKING=true` to force them on.

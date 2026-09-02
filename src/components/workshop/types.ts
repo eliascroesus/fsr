@@ -5,14 +5,19 @@ export interface LeadDetails {
   declinedPhone: boolean;
 }
 
-export type TicketTier = 'general' | 'vip';
-
-export interface TicketOption {
-  id: TicketTier;
-  name: string;
-  price: string;
-  priceNote: string;
-  tagline: string;
-  perks: string[];
-  badge?: string;
+export interface QuizOption {
+  /** Keyboard shortcut shown in the option's key badge. */
+  key: string;
+  value: string;
+  label: string;
 }
+
+export interface QuizQuestion {
+  id: string;
+  title: string;
+  description?: string;
+  options: readonly QuizOption[];
+}
+
+/** Question id -> chosen option value. */
+export type QuizAnswers = Record<string, string>;
