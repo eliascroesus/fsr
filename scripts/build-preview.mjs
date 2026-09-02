@@ -44,6 +44,10 @@ const TICK = `<svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-3.5 w
 
 const US_FLAG = `<svg viewBox="0 0 24 16" class="h-4 w-6 rounded-[2px]"><rect width="24" height="16" fill="#b22234"/><g fill="#fff"><rect y="1.23" width="24" height="1.23"/><rect y="3.69" width="24" height="1.23"/><rect y="6.15" width="24" height="1.23"/><rect y="8.62" width="24" height="1.23"/><rect y="11.08" width="24" height="1.23"/><rect y="13.54" width="24" height="1.23"/></g><rect width="10" height="8.62" fill="#3c3b6e"/></svg>`;
 
+/** Google Calendar appointment schedule embedded on the booking step. */
+const BOOKING_URL =
+  'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1ghy5mwfxSxcxe-jbhtkhxSiL_AWeu26VMG8rIAXrHLi-k2ZHdMI3zW8SsUfWD4lBhtD4Kvdjc?gv=true';
+
 const CTA_GRADIENT =
   'linear-gradient(to right, rgb(30, 74, 95) 0%, rgb(42, 107, 133) 50%, rgb(56, 163, 184) 100%)';
 
@@ -288,14 +292,11 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
               </div>
               <h2 class="mb-2 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">PICK YOUR CALL TIME</h2>
               <p class="mb-6 text-center text-xs text-white/60 sm:text-sm" id="callLine"></p>
-              <div class="mb-5 overflow-hidden rounded-2xl border border-[#2a6b85]/60 bg-black/30">
-                <div class="grid min-h-[260px] place-items-center px-4 py-10 text-center sm:min-h-[320px]">
-                  <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-3 h-9 w-9 text-[#38a3b8]"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
-                    <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/30 sm:text-xs">Booking calendar</p>
-                    <p class="mx-auto mt-2 max-w-xs text-[11px] leading-relaxed text-white/40 sm:text-xs">Drop your Calendly or Cal.com embed in here &mdash; it takes the full width of this panel.</p>
-                  </div>
+              <div class="mb-3">
+                <div class="overflow-hidden rounded-2xl border border-[#2a6b85]/60 bg-white shadow-[0_0_36px_rgba(56,163,184,0.18)]">
+                  <iframe src="${BOOKING_URL}" title="Book your call" loading="lazy" class="block h-[680px] w-full border-0 sm:h-[600px]"></iframe>
                 </div>
+                <p class="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">Calendar not loading? <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#9fe4f0] underline-offset-4 transition-colors hover:text-[#38a3b8] hover:underline">Open the booking page &#8599;</a></p>
               </div>
               <dl class="mb-5 grid gap-2 rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-4 py-4 text-left" id="summary"></dl>
               <div class="mt-3">${PRIVACY}</div>

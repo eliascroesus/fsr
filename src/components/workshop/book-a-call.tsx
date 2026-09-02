@@ -1,14 +1,22 @@
 'use client';
 
-import { Calendar, Check, Mail, MessageSquare } from 'lucide-react';
+import { Check, ExternalLink, Mail, MessageSquare } from 'lucide-react';
 
 import { QUIZ_QUESTIONS } from './quiz-questions';
 import type { LeadDetails, QuizAnswers } from './types';
 
+/**
+ * Google Calendar appointment schedule. Overridable so staging and production
+ * can point at different calendars without a code change.
+ */
+export const BOOKING_URL =
+  process.env.NEXT_PUBLIC_BOOKING_URL ??
+  'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1ghy5mwfxSxcxe-jbhtkhxSiL_AWeu26VMG8rIAXrHLi-k2ZHdMI3zW8SsUfWD4lBhtD4Kvdjc?gv=true';
+
 interface BookACallProps {
   lead: LeadDetails;
   answers: QuizAnswers;
-  /** A real scheduler embed (Calendly, Cal.com, …) renders in place of the placeholder. */
+  /** Replaces the Google Calendar embed, if the booking tool ever changes. */
   children?: React.ReactNode;
 }
 
@@ -39,26 +47,33 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
           Pick a slot below and we&apos;ll map out your first 90 days.
         </p>
 
-        {/* Scheduler slot — pass children to mount the real booking embed. */}
-        <div className="mb-5 overflow-hidden rounded-2xl border border-[#2a6b85]/60 bg-black/30">
-          {children ?? (
-            <div className="grid min-h-[260px] place-items-center px-4 py-10 text-center sm:min-h-[320px]">
-              <div>
-                <Calendar
-                  className="mx-auto mb-3 h-9 w-9 text-[#38a3b8]"
-                  strokeWidth={1.5}
-                  aria-hidden="true"
-                />
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/30 sm:text-xs">
-                  Booking calendar
-                </p>
-                <p className="mx-auto mt-2 max-w-xs text-[11px] leading-relaxed text-white/40 sm:text-xs">
-                  Drop your Calendly or Cal.com embed in here — it takes the full width of this
-                  panel.
-                </p>
-              </div>
-            </div>
-          )}
+        {/* Scheduler. `children` overrides it if the booking tool ever changes. */}
+        <div className="mb-3">
+          <div className="overflow-hidden rounded-2xl border border-[#2a6b85]/60 bg-white shadow-[0_0_36px_rgba(56,163,184,0.18)]">
+            {children ?? (
+              <iframe
+                src={BOOKING_URL}
+                title="Book your call"
+                loading="lazy"
+                className="block h-[680px] w-full border-0 sm:h-[600px]"
+              />
+            )}
+          </div>
+
+          {/* Some browsers and extensions block third-party frames outright,
+              so there is always a direct way through. */}
+          <p className="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">
+            Calendar not loading?{' '}
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-semibold text-[#9fe4f0] underline-offset-4 transition-colors hover:text-[#38a3b8] hover:underline"
+            >
+              Open the booking page
+              <ExternalLink className="h-3 w-3" aria-hidden="true" />
+            </a>
+          </p>
         </div>
 
         <dl className="mb-5 grid gap-2 rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-4 py-4 text-left">

@@ -87,11 +87,12 @@ byte-for-byte copy.
    - `public/images/new-logo.png`, `public/favicon.ico`
    - `public/images/success-wins/win-001-…` through `win-060-…` (`.png`)
 
-2. **Question and booking copy is placeholder.** Question 1's options came from
-   the reference form; questions 2-4 were written to brief and live in
-   `quiz-questions.ts` — swap in production copy there. The booking step renders
-   an empty calendar panel: `<BookACall>` takes children, so a Calendly or
-   Cal.com embed drops straight into it.
+2. **Question copy is placeholder.** Question 1's options came from the
+   reference form; questions 2-4 were written to brief and live in
+   `quiz-questions.ts` — swap in production copy there. The booking step embeds
+   the real Google Calendar appointment schedule (`NEXT_PUBLIC_BOOKING_URL`
+   overrides it); `<BookACall>` still takes children if the booking tool ever
+   changes.
 
 3. **Fonts.** The original loads two `next/font` families through
    `--font-sans` / a second variable; the specific families were not
