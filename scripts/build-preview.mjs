@@ -80,6 +80,27 @@ const PREVIEW_BADGE = `
   PREVIEW BUILD — NOT THE LIVE SITE
 </div>`;
 
+const SCHEDULER_FRAME = `
+  <div class="overflow-hidden rounded-2xl border border-[#2a6b85]/60 bg-white shadow-[0_0_36px_rgba(56,163,184,0.18)]">
+    <iframe src="${BOOKING_URL}" title="Book your call" loading="lazy" class="block h-[680px] w-full border-0 sm:h-[600px]"></iframe>
+  </div>
+  <p class="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">Calendar not loading? <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#9fe4f0] underline-offset-4 transition-colors hover:text-[#38a3b8] hover:underline">Open the booking page &#8599;</a></p>`;
+
+/**
+ * The Artifact viewer's CSP admits no third-party frames, so the embed would
+ * render as a dead white box there. The published preview links out instead,
+ * and says why.
+ */
+const SCHEDULER_LINK = `
+  <div class="rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-5 py-9 text-center shadow-[0_0_36px_rgba(56,163,184,0.12)]">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-3 h-10 w-10 text-[#38a3b8]"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+    <p class="text-sm font-extrabold tracking-wide text-white sm:text-base">Google Calendar booking</p>
+    <p class="mx-auto mt-1.5 max-w-sm text-[11px] leading-relaxed text-white/45 sm:text-xs">The live scheduler is embedded here on the site. This preview links out instead, because the viewer blocks embedded frames.</p>
+    <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-1.5 rounded-xl px-5 py-3 text-sm font-extrabold tracking-wide text-white shadow-[0_0_28px_rgba(56,163,184,0.35)] transition-all duration-200 hover:opacity-90 sm:text-base" style="background:${CTA_GRADIENT}">Open the booking page &#8599;</a>
+  </div>`;
+
+const SCHEDULER_BLOCK = ARTIFACT ? SCHEDULER_LINK : SCHEDULER_FRAME;
+
 const PRIVACY = `<p class="text-center text-sm text-gray-500">🔒 We respect your privacy. No spam, ever.</p>`;
 
 const QUIZ = [
@@ -292,12 +313,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
               </div>
               <h2 class="mb-2 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">PICK YOUR CALL TIME</h2>
               <p class="mb-6 text-center text-xs text-white/60 sm:text-sm" id="callLine"></p>
-              <div class="mb-3">
-                <div class="overflow-hidden rounded-2xl border border-[#2a6b85]/60 bg-white shadow-[0_0_36px_rgba(56,163,184,0.18)]">
-                  <iframe src="${BOOKING_URL}" title="Book your call" loading="lazy" class="block h-[680px] w-full border-0 sm:h-[600px]"></iframe>
-                </div>
-                <p class="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">Calendar not loading? <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#9fe4f0] underline-offset-4 transition-colors hover:text-[#38a3b8] hover:underline">Open the booking page &#8599;</a></p>
-              </div>
+              <div class="mb-3">${SCHEDULER_BLOCK}</div>
               <dl class="mb-5 grid gap-2 rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-4 py-4 text-left" id="summary"></dl>
               <div class="mt-3">${PRIVACY}</div>
             </div>
