@@ -2,7 +2,6 @@
 
 import { Calendar, Check, Mail, MessageSquare } from 'lucide-react';
 
-import { CountdownTimer } from './countdown-timer';
 import { QUIZ_QUESTIONS } from './quiz-questions';
 import type { LeadDetails, QuizAnswers } from './types';
 
@@ -25,8 +24,7 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
   const goal = answerLabel('goal', answers);
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <div className="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
+    <div className="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
         <div className="mb-5 flex justify-center">
           <span className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#9fe4f0] bg-[#38a3b8] shadow-[0_0_28px_rgba(56,163,184,0.35)]">
             <Check className="h-7 w-7 text-black" strokeWidth={3.5} aria-hidden="true" />
@@ -108,13 +106,9 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
           )}
         </ul>
 
-        <div className="flex flex-col gap-3">
-          <CountdownTimer />
-          <p className="text-center text-sm text-gray-500">
-            🔒 We respect your privacy. No spam, ever.
-          </p>
-        </div>
-      </div>
+      <p className="text-center text-sm text-gray-500">
+        🔒 We respect your privacy. No spam, ever.
+      </p>
     </div>
   );
 }

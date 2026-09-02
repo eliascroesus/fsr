@@ -6,7 +6,6 @@ import { Mail } from 'lucide-react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
-import { CountdownTimer } from './countdown-timer';
 import { CtaButton } from './cta-button';
 import type { LeadDetails } from './types';
 
@@ -33,8 +32,7 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <div className="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
+    <div className="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
         <h2 className="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">
           CLAIM YOUR FREE SPOT NOW
         </h2>
@@ -127,13 +125,10 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
             />
           </div>
 
-          <CountdownTimer />
-
           <p className="text-center text-sm text-gray-500">
             🔒 We respect your privacy. No spam, ever.
           </p>
-        </form>
-      </div>
+      </form>
     </div>
   );
 }

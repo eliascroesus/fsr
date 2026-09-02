@@ -230,8 +230,9 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
             <div class="grid w-full grid-cols-3 overflow-hidden rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/95">${stepper}</div>
           </div>
 
+          <div class="mx-auto flex w-full max-w-2xl flex-col gap-4">
           <!-- STEP 1 - test -->
-          <section data-panel="1" class="w-full max-w-2xl mx-auto">
+          <section data-panel="1" class="w-full">
             <div class="w-full overflow-hidden rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 shadow-md">
               <div class="h-1 w-full bg-white/10"><div id="quizBar" class="h-full bg-[#38a3b8] transition-[width] duration-300 ease-out" style="width:0%"></div></div>
               <div class="p-6 sm:p-8">
@@ -242,18 +243,15 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
                 <h2 id="quizTitle" class="text-balance text-lg font-extrabold leading-snug text-white sm:text-2xl"></h2>
                 <p id="quizDesc" class="mt-2 text-xs leading-relaxed text-white/55 sm:text-sm"></p>
                 <div id="quizOptions" role="radiogroup" class="mt-5 flex flex-col gap-2.5"></div>
-                <div class="mt-5 flex items-center gap-3">
-                  <button type="button" id="quizOk" disabled class="rounded-lg px-6 py-2.5 text-sm font-extrabold tracking-wide text-white shadow-[0_0_20px_rgba(56,163,184,0.3)] transition-all duration-200 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none sm:text-base" style="background:${CTA_GRADIENT}">OK</button>
-                  <span class="text-[10px] text-white/35 sm:text-xs">press <span class="font-bold text-white/55">Enter &#8629;</span></span>
-                  <button type="button" id="quizBack" class="ml-auto hidden text-xs font-medium text-white/45 underline-offset-4 transition-colors hover:text-white/80 hover:underline sm:text-sm">Back</button>
+                <div class="mt-5">
+                  <button type="button" id="quizBack" class="hidden text-xs font-medium text-white/45 underline-offset-4 transition-colors hover:text-white/80 hover:underline sm:text-sm">Back</button>
                 </div>
-                <div class="mt-6">${countdownBlock('s1')}</div>
               </div>
             </div>
           </section>
 
           <!-- STEP 2 - your details -->
-          <section data-panel="2" class="w-full max-w-2xl mx-auto hidden">
+          <section data-panel="2" class="w-full hidden">
             <div class="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
               <h2 class="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">CLAIM YOUR FREE SPOT NOW</h2>
               <form id="optin" class="flex w-full flex-col gap-3">
@@ -275,14 +273,13 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
                   <p class="mx-auto max-w-md text-[10px] font-normal leading-relaxed sm:max-w-none sm:whitespace-nowrap sm:text-[11px] text-white/80">When you attend the event, we will ❤️ donate a meal to someone in need in your name.</p>
                   <img alt="Meal donation badge" width="220" height="110" class="mx-auto mt-2 h-auto w-28 sm:w-36" src="${badge}">
                 </div>
-                ${countdownBlock('s1')}
                 ${PRIVACY}
               </form>
             </div>
           </section>
 
           <!-- STEP 3 - book a call -->
-          <section data-panel="3" class="w-full max-w-2xl mx-auto hidden">
+          <section data-panel="3" class="w-full hidden">
             <div class="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
               <div class="mb-5 flex justify-center">
                 <span class="flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#9fe4f0] bg-[#38a3b8] shadow-[0_0_28px_rgba(56,163,184,0.35)]">
@@ -301,11 +298,13 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
                 </div>
               </div>
               <dl class="mb-5 grid gap-2 rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-4 py-4 text-left" id="summary"></dl>
-              ${countdownBlock('s3')}
               <div class="mt-3">${PRIVACY}</div>
             </div>
           </section>
           </section>
+
+            ${countdownBlock('cd')}
+          </div>
         </div>
 
         <div class="w-full mt-16">
@@ -380,7 +379,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
   // QUIZ is a build-time constant, so it has to be serialised into the page
   // for the browser to read.
   var QUIZ = ${JSON.stringify(QUIZ)};
-  var state = { step:1, qi:0, answers:{}, lead:null };
+  var state = { step:1, qi:0, answers:{}, lead:null, advancing:false };
   var panels = document.querySelectorAll('[data-panel]');
   var cells  = document.querySelectorAll('[data-step-cell]');
 
@@ -402,8 +401,8 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
   }
 
   // ---- step 1: the test ---------------------------------------------------
-  var okBtn = document.getElementById('quizOk');
   var backBtn = document.getElementById('quizBack');
+  var ADVANCE_DELAY_MS = 280;
 
   function renderQuestion(){
     var q = QUIZ[state.qi], chosen = state.answers[q.id];
@@ -419,42 +418,44 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       var on = chosen === o[0];
       return '<button type="button" role="radio" aria-checked="' + on + '" data-key="' + o[0] + '" ' +
         'class="flex w-full items-center gap-3 rounded-xl border-2 px-3 py-3 text-left transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38a3b8] ' +
-        (on ? 'border-[#38a3b8] bg-[#12313c]/85 shadow-[0_0_20px_rgba(56,163,184,0.2)]' : 'border-[#2a6b85]/40 bg-[#0b0f10] hover:border-[#2a6b85]') + '">' +
+        (on ? 'border-[#38a3b8] bg-[#12313c]/85 shadow-[0_0_20px_rgba(56,163,184,0.2)]' : 'border-[#2a6b85]/40 bg-[#111c21] hover:border-[#2a6b85] hover:bg-[#16242a]') + '">' +
         '<span aria-hidden="true" class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border text-xs font-black ' +
         (on ? 'border-[#9fe4f0] bg-[#38a3b8] text-black' : 'border-white/20 text-white/50') + '">' + o[0] + '</span>' +
         '<span class="text-sm font-semibold text-white sm:text-base">' + o[1] + '</span></button>';
     }).join('');
 
     Array.prototype.forEach.call(document.getElementById('quizOptions').children, function(btn){
-      btn.addEventListener('click', function(){
-        state.answers[QUIZ[state.qi].id] = btn.dataset.key;
-        renderQuestion();
-      });
+      btn.addEventListener('click', function(){ choose(btn.dataset.key); });
     });
 
-    okBtn.disabled = !chosen;
-    okBtn.textContent = state.qi === QUIZ.length - 1 ? 'FINISH' : 'OK';
     backBtn.classList.toggle('hidden', state.qi === 0);
   }
 
-  function advance(){
-    if (!state.answers[QUIZ[state.qi].id]) return;
-    if (state.qi === QUIZ.length - 1) { goto(2); return; }
-    state.qi++; renderQuestion();
+  // Picking an option moves straight on; the short delay lets the selected
+  // state paint first, and state.advancing blocks double-taps.
+  function choose(key){
+    if (state.advancing) return;
+    state.advancing = true;
+    state.answers[QUIZ[state.qi].id] = key;
+    renderQuestion();
+
+    setTimeout(function(){
+      state.advancing = false;
+      if (state.qi === QUIZ.length - 1) { goto(2); return; }
+      state.qi++; renderQuestion();
+    }, ADVANCE_DELAY_MS);
   }
 
-  okBtn.addEventListener('click', advance);
   backBtn.addEventListener('click', function(){ if (state.qi > 0) { state.qi--; renderQuestion(); } });
 
-  // Letter keys pick an option; Enter moves on.
+  // Letter keys pick an option, and so advance too.
   window.addEventListener('keydown', function(e){
     if (state.step !== 1) return;
     if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '')) return;
-    if (e.key === 'Enter') { e.preventDefault(); advance(); return; }
     var hit = QUIZ[state.qi].options.filter(function(o){
       return o[0].toLowerCase() === e.key.toLowerCase();
     })[0];
-    if (hit) { e.preventDefault(); state.answers[QUIZ[state.qi].id] = hit[0]; renderQuestion(); }
+    if (hit) { e.preventDefault(); choose(hit[0]); }
   });
 
   renderQuestion();

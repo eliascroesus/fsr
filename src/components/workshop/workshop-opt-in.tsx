@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import { BookACall } from './book-a-call';
+import { CountdownTimer } from './countdown-timer';
 import { OptInForm } from './opt-in-form';
 import { Quiz } from './quiz';
 import { StepIndicator } from './step-indicator';
@@ -39,13 +40,19 @@ export function WorkshopOptIn() {
     <div id="workshop-opt-in" className="w-full scroll-mt-4">
       <StepIndicator currentStep={step} />
 
-      {step === 1 || !answers ? (
-        <Quiz onComplete={handleQuiz} />
-      ) : step === 2 || !lead ? (
-        <OptInForm onSubmit={handleDetails} />
-      ) : (
-        <BookACall lead={lead} answers={answers} />
-      )}
+      {/* One countdown for the whole funnel, parked below whichever card is
+          showing, so it holds its place as the steps swap. */}
+      <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
+        {step === 1 || !answers ? (
+          <Quiz onComplete={handleQuiz} />
+        ) : step === 2 || !lead ? (
+          <OptInForm onSubmit={handleDetails} />
+        ) : (
+          <BookACall lead={lead} answers={answers} />
+        )}
+
+        <CountdownTimer />
+      </div>
     </div>
   );
 }
