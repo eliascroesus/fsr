@@ -59,15 +59,23 @@ const ctaButton = (id, extra = '') =>
     </span>${CHEVRON}
   </button>`;
 
+// The key drives the data-cd lookup in tick(); only the label is translated.
+// Keeping them separate is what stops a translation from breaking the timer.
+const COUNTDOWN_UNITS = [
+  ['hours', 'timer'],
+  ['minutes', 'minutter'],
+  ['seconds', 'sekunder'],
+];
+
 const countdownBlock = (prefix) => `
   <div class="w-full rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-3 py-4 sm:px-5 text-center">
-    <p class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#9fe4f0] sm:text-sm">Næste live-træning starter om</p>
+    <p class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#9fe4f0] sm:text-sm">Pladserne lukker om</p>
     <div class="flex justify-center gap-3 sm:gap-4">
-      ${['timer', 'minutter', 'sekunder']
+      ${COUNTDOWN_UNITS
         .map(
-          (unit) => `<div class="flex w-[92px] flex-col items-center bg-gray-100 rounded-lg px-4 py-2 sm:w-[116px] sm:px-6 sm:py-3">
-        <span class="tabular-nums text-3xl sm:text-4xl font-bold text-black" data-cd="${prefix}-${unit}">00</span>
-        <span class="mt-1 text-[10px] sm:text-xs uppercase text-gray-600">${unit}</span>
+          ([key, label]) => `<div class="flex w-[92px] flex-col items-center bg-gray-100 rounded-lg px-4 py-2 sm:w-[116px] sm:px-6 sm:py-3">
+        <span class="tabular-nums text-3xl sm:text-4xl font-bold text-black" data-cd="${prefix}-${key}">00</span>
+        <span class="mt-1 text-[10px] sm:text-xs uppercase text-gray-600">${label}</span>
       </div>`,
         )
         .join('')}

@@ -98,7 +98,7 @@ export function CountdownTimer() {
   return (
     <div className="w-full rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-3 py-4 sm:px-5 text-center">
       <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#9fe4f0] sm:text-sm">
-        Næste live-træning starter om
+        Pladserne lukker om
       </p>
       <div className="flex justify-center gap-3 sm:gap-4">
         <TimeCell value={remaining.hours} label="timer" />
