@@ -10,7 +10,7 @@ export function TestimonialWall() {
   return (
     <>
       <h2 className="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8 drop-shadow-lg">
-        What People Are Saying
+        Hvad folk siger
       </h2>
 
       <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">

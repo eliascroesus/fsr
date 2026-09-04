@@ -71,5 +71,5 @@ export const SUCCESS_WIN_SLUGS: readonly string[] = [
 export const SUCCESS_WINS = SUCCESS_WIN_SLUGS.map((slug, i) => ({
   slug,
   src: `/images/success-wins/${slug}.png`,
-  alt: `Client result ${i + 1}`,
+  alt: `Kunderesultat ${i + 1}`,
 }));

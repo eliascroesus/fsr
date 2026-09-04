@@ -82,19 +82,19 @@ export function Quiz({ onComplete }: { onComplete: (answers: QuizAnswers) => voi
       <div className="p-6 sm:p-8">
         <div className="mb-4 flex items-center gap-2">
           <span
-            aria-label={`Question ${index + 1} of ${QUIZ_QUESTIONS.length}`}
+            aria-label={`Spørgsmål ${index + 1} af ${QUIZ_QUESTIONS.length}`}
             className="flex h-6 w-6 items-center justify-center rounded-md bg-[#38a3b8] text-xs font-black text-black"
           >
             {index + 1}
           </span>
           <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40 sm:text-xs">
-            Question {index + 1} of {QUIZ_QUESTIONS.length}
+            Spørgsmål {index + 1} af {QUIZ_QUESTIONS.length}
           </span>
         </div>
 
         <h2 className="text-balance text-lg font-extrabold leading-snug text-white sm:text-2xl">
           {question.title}
-          <span aria-label="This question is required." className="ml-1 text-[#38a3b8]">
+          <span aria-label="Dette spørgsmål er obligatorisk." className="ml-1 text-[#38a3b8]">
             *
           </span>
         </h2>
@@ -150,7 +150,7 @@ export function Quiz({ onComplete }: { onComplete: (answers: QuizAnswers) => voi
               onClick={() => setIndex((i) => i - 1)}
               className="text-xs font-medium text-white/45 underline-offset-4 transition-colors hover:text-white/80 hover:underline sm:text-sm"
             >
-              Back
+              Tilbage
             </button>
           </div>
         ) : null}

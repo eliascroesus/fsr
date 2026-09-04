@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
 const FOOTER_LINKS = [
-  { label: 'Privacy Policy', href: 'https://www.aiacquisition.com/privacy-policy' },
-  { label: 'Terms of Service', href: 'https://www.aiacquisition.com/terms-of-service' },
-  { label: 'Contact Us', href: 'mailto:support@aiarbitrageagency.com' },
+  { label: 'Privatlivspolitik', href: 'https://www.aiacquisition.com/privacy-policy' },
+  { label: 'Handelsbetingelser', href: 'https://www.aiacquisition.com/terms-of-service' },
+  { label: 'Kontakt os', href: 'mailto:support@aiarbitrageagency.com' },
 ];
 
 export function SiteFooter() {
@@ -13,7 +13,7 @@ export function SiteFooter() {
         <div className="flex justify-center">
           <Image
             src="/images/new-logo.png"
-            alt="AI Acquisition LLC Logo"
+            alt="AI Acquisition LLC-logo"
             width={48}
             height={48}
             className="opacity-50"
@@ -21,32 +21,33 @@ export function SiteFooter() {
         </div>
 
         <p className="text-muted-foreground">
-          AI Acquisition and all individuals affiliated with this organization assumes no
-          responsibility for the outcome, result, or success of the services, and does not guarantee
-          specific results or outcome. Success depends in part on the time you devote, and your
-          implementation of the guidance, strategies and support received. The strategies, content,
-          articles and all other features are for educational purposes only.
+          AI Acquisition og alle personer tilknyttet denne organisation påtager sig intet ansvar
+          for udfaldet, resultatet eller succesen af ydelserne og garanterer ikke bestemte
+          resultater eller udfald. Succes afhænger blandt andet af den tid, du lægger i det, og af
+          din anvendelse af den vejledning, de strategier og den støtte, du modtager. Strategierne,
+          indholdet, artiklerne og alle øvrige funktioner er udelukkende til undervisningsbrug.
         </p>
 
         <p className="text-muted-foreground">
-          Though our services and products are tailored for our clients, we cannot give any
-          guarantees or warranties (either express or implied), about results or earning money with
-          the ideas, information, tools and strategies set out in the services. Any testimonials
-          provided are of real-life individuals and businesses and their own personal and individual
-          experiences. These must not be taken as &quot;typical&quot; results and will not be
-          specific to your particular circumstances or actions you choose to take following receipt
-          of the services and products.
+          Selvom vores ydelser og produkter er tilpasset vores kunder, kan vi ikke give nogen
+          garantier eller indeståelser (hverken udtrykkelige eller underforståede) for resultater
+          eller for at tjene penge med de idéer, oplysninger, værktøjer og strategier, der indgår i
+          ydelserne. Eventuelle udtalelser stammer fra virkelige personer og virksomheder og deres
+          egne personlige og individuelle oplevelser. De må ikke opfattes som
+          &quot;typiske&quot; resultater og vil ikke være specifikke for netop dine forhold eller de
+          handlinger, du vælger at foretage efter modtagelsen af ydelserne og produkterne.
         </p>
 
         <p className="text-muted-foreground">
-          In a survey of over 660 businesses with over 100 responding, business owners averaged
-          $18,105 in monthly revenue after implementing our system.
+          I en undersøgelse blandt over 660 virksomheder, hvoraf over 100 svarede, havde
+          virksomhedsejerne i gennemsnit $18.105 i månedlig omsætning efter at have implementeret
+          vores system.
         </p>
 
         <p className="text-muted-foreground">
-          Also NOT GOOGLE or FACEBOOK: This site is not a part of the Google website, Google Inc,
-          Facebook/Meta website, or Meta, Inc. Additionally, This site is NOT endorsed by Google or
-          Meta in any way.
+          Desuden IKKE GOOGLE eller FACEBOOK: Denne side er ikke en del af Googles hjemmeside,
+          Google Inc, Facebook/Metas hjemmeside eller Meta, Inc. Denne side er heller IKKE på nogen
+          måde godkendt af Google eller Meta.
         </p>
 
         <div className="flex justify-center space-x-8">
@@ -62,7 +63,7 @@ export function SiteFooter() {
         </div>
 
         <p className="text-muted-foreground">
-          © {new Date().getFullYear()} AI Acquisition LLC. All rights reserved.
+          © {new Date().getFullYear()} AI Acquisition LLC. Alle rettigheder forbeholdes.
         </p>
       </div>
     </section>

@@ -26,7 +26,7 @@ export function VideoPlaceholder({ children }: { children?: React.ReactNode }) {
           (showOverlay ? null : (
             <div className="absolute inset-0 grid place-items-center">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/25 sm:text-xs">
-                Video placeholder
+                Video-pladsholder
               </p>
             </div>
           ))}
@@ -35,7 +35,7 @@ export function VideoPlaceholder({ children }: { children?: React.ReactNode }) {
           <button
             type="button"
             onClick={() => setShowOverlay(false)}
-            aria-label="Click to listen"
+            aria-label="Klik for at høre lyd"
             className="absolute inset-0 h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38a3b8] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             <span className="vsl-pulse absolute inset-0 block">
@@ -63,7 +63,7 @@ export function VideoPlaceholder({ children }: { children?: React.ReactNode }) {
                 className="vsl-label absolute block text-center font-bold leading-tight text-white"
                 style={{ left: '32.361%', top: '70.617%', width: '35.278%' }}
               >
-                Click to listen
+                Klik for at høre lyd
               </span>
             </span>
           </button>

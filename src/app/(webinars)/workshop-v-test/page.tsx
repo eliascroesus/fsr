@@ -13,10 +13,10 @@ const SOCIAL_PROOF_AVATARS = [
 ];
 
 const BENEFITS = [
-  'No inventory',
-  'No techy stuff',
-  '100% Work from home',
-  '8-10 Hours per week',
+  'Intet varelager',
+  'Intet teknisk',
+  '100% hjemmefra',
+  '8-10 timer om ugen',
 ];
 
 /** Heroicons solid `check`, inlined exactly as the source renders it. */
@@ -59,13 +59,13 @@ export default function WorkshopVTestPage() {
               ))}
             </div>
             <p className="text-left text-xs font-bold text-[#9fe4f0] sm:text-sm">
-              3,478 beginners registered this week
+              3.478 begyndere tilmeldte sig i denne uge
             </p>
           </div>
 
           <h1 className="mb-4 text-balance text-center text-xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">
-            How Beginners Are Making $18,105 Per Month In Recurring Income (on average) Using AI In
-            2026
+            Sådan Tjener Begyndere $18.105 Om Måneden I Tilbagevendende Indtægt (i gennemsnit) Med
+            AI I 2026
           </h1>
 
           <VideoPlaceholder />
