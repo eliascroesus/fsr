@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Roboto_Mono } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import './globals.css';
@@ -30,13 +30,13 @@ import { META_PIXEL_PRIMARY } from '@/lib/tracking-config';
 
 // Two next/font families, matching the two `__variable_*` classes the source
 // page puts on <body>. `font-sans` resolves to --font-sans in tailwind.config.
-const fontSans = Inter({
+const fontSans = Geist({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans',
 });
 
-const fontMono = Roboto_Mono({
+const fontMono = Geist_Mono({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-mono',

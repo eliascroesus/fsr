@@ -19,7 +19,7 @@ export function VideoPlaceholder({ children }: { children?: React.ReactNode }) {
 
   return (
     <div className="mb-8 w-full max-w-3xl">
-      <div className="vsl-frame relative aspect-video w-full overflow-hidden rounded-2xl border border-[#2f343a]/70 bg-[#0f1113] shadow-[0_0_40px_rgba(163,230,53,0.18)]">
+      <div className="vsl-frame relative aspect-video w-full overflow-hidden rounded-2xl border border-[#2f343a]/70 bg-[#0f1113] shadow-[0_0_40px_rgba(152,221,41,0.18)]">
         {/* The overlay card is translucent, so the empty-state label only
             appears once the card is out of the way. */}
         {children ??
@@ -36,7 +36,7 @@ export function VideoPlaceholder({ children }: { children?: React.ReactNode }) {
             type="button"
             onClick={() => setShowOverlay(false)}
             aria-label="Klicka för att lyssna"
-            className="absolute inset-0 h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a3e635] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            className="absolute inset-0 h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#98dd29] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             <span className="vsl-pulse absolute inset-0 block">
               {/* card */}

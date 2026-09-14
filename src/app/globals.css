@@ -10,7 +10,7 @@
    * `text-muted-foreground` and `hover:text-primary`, and the rest of the page
    * on `bg-black`. The live stylesheet was not reachable from this environment,
    * so the token values below are set to a dark root that matches the black
-   * page and maps `--primary` onto the brand teal (#a3e635). Swap the block for
+   * page and maps `--primary` onto the brand teal (#98dd29). Swap the block for
    * the commented light values if the original footer is meant to render white.
    */
   :root {
@@ -29,7 +29,7 @@
     --secondary: 210 10% 12%;
     --secondary-foreground: 0 0% 98%;
 
-    /* #a3e635 */
+    /* #98dd29 */
     --primary: 82 78% 55%;
     --primary-foreground: 0 0% 4%;
 
@@ -102,8 +102,8 @@
 
 .phone-input-container .react-tel-input .form-control:focus {
   outline: none;
-  border-color: #a3e635;
-  box-shadow: 0 0 0 2px #a3e635;
+  border-color: #98dd29;
+  box-shadow: 0 0 0 2px #98dd29;
 }
 
 .phone-input-container .react-tel-input .flag-dropdown {
@@ -135,11 +135,11 @@
 }
 
 .phone-input-container .react-tel-input .selected-flag .arrow {
-  border-top-color: #c9f776;
+  border-top-color: #ceff62;
 }
 
 .phone-input-container .react-tel-input .selected-flag .arrow.up {
-  border-bottom-color: #c9f776;
+  border-bottom-color: #ceff62;
 }
 
 .phone-input-container .react-tel-input .country-list {
@@ -158,7 +158,7 @@
 }
 
 .phone-input-container .react-tel-input .country-list .country .dial-code {
-  color: #c9f776;
+  color: #ceff62;
 }
 
 .phone-input-container .react-tel-input .country-list .search {
@@ -218,8 +218,8 @@
 /* Soft halo behind the wordmark, so it reads as a mark rather than as text. */
 .brand-wordmark {
   text-shadow:
-    0 0 18px rgba(163, 230, 53, 0.45),
-    0 0 44px rgba(163, 230, 53, 0.2);
+    0 0 18px rgba(152, 221, 41, 0.45),
+    0 0 44px rgba(152, 221, 41, 0.2);
 }
 
 /* Live indicator on the status pill. */
@@ -244,11 +244,35 @@
  * gradient rather than a border so it survives line wrapping and sits clear of
  * descenders.
  */
+/*
+ * Headline metrics taken from the reference: 44.5px leading on 42px type
+ * (≈1.06) and no tracking. Size is fluid so it never needs a breakpoint.
+ */
+.hero-headline {
+  font-size: clamp(1.6rem, 0.95rem + 3.1vw, 3.5rem);
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+
+.hero-sub {
+  font-size: clamp(0.8125rem, 0.73rem + 0.4vw, 1.0625rem);
+  line-height: 1.5;
+}
+
+/* Vertical gradient on the emphasised phrase, light at the top. */
+.headline-accent {
+  background-image: linear-gradient(180deg, #ceff62 0%, #98dd29 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 .headline-mark {
   text-decoration-line: underline;
-  text-decoration-color: #a3e635;
-  text-decoration-thickness: 0.075em;
-  text-underline-offset: 0.14em;
+  text-decoration-color: #98dd29;
+  text-decoration-thickness: 0.072em;
+  text-underline-offset: 0.16em;
 }
 
 @media (prefers-reduced-motion: reduce) {

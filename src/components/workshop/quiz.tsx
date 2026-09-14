@@ -74,7 +74,7 @@ export function Quiz({ onComplete }: { onComplete: (answers: QuizAnswers) => voi
     <div className="w-full overflow-hidden rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 shadow-md">
       <div className="h-1 w-full bg-white/10">
         <div
-          className="h-full bg-[#a3e635] transition-[width] duration-300 ease-out"
+          className="h-full bg-[#98dd29] transition-[width] duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -83,7 +83,7 @@ export function Quiz({ onComplete }: { onComplete: (answers: QuizAnswers) => voi
         <div className="mb-4 flex items-center gap-2">
           <span
             aria-label={`Fråga ${index + 1} av ${QUIZ_QUESTIONS.length}`}
-            className="flex h-6 w-6 items-center justify-center rounded-md bg-[#a3e635] text-xs font-black text-black"
+            className="flex h-6 w-6 items-center justify-center rounded-md bg-[#98dd29] text-xs font-black text-black"
           >
             {index + 1}
           </span>
@@ -94,7 +94,7 @@ export function Quiz({ onComplete }: { onComplete: (answers: QuizAnswers) => voi
 
         <h2 className="text-balance text-lg font-extrabold leading-snug text-white sm:text-2xl">
           {question.title}
-          <span aria-label="Den här frågan är obligatorisk." className="ml-1 text-[#a3e635]">
+          <span aria-label="Den här frågan är obligatorisk." className="ml-1 text-[#98dd29]">
             *
           </span>
         </h2>
@@ -118,9 +118,9 @@ export function Quiz({ onComplete }: { onComplete: (answers: QuizAnswers) => voi
                 onClick={() => choose(option.value)}
                 className={cn(
                   'flex w-full items-center gap-3 rounded-xl border-2 px-3 py-3 text-left transition-all duration-150',
-                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a3e635]',
+                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#98dd29]',
                   isChosen
-                    ? 'border-[#a3e635] bg-[#1e2a12]/85 shadow-[0_0_20px_rgba(163,230,53,0.2)]'
+                    ? 'border-[#98dd29] bg-[#1e2a12]/85 shadow-[0_0_20px_rgba(152,221,41,0.2)]'
                     : 'border-[#2f343a]/40 bg-[#15181c] hover:border-[#2f343a] hover:bg-[#1b1f24]',
                 )}
               >
@@ -129,7 +129,7 @@ export function Quiz({ onComplete }: { onComplete: (answers: QuizAnswers) => voi
                   className={cn(
                     'flex h-7 w-7 shrink-0 items-center justify-center rounded-md border text-xs font-black',
                     isChosen
-                      ? 'border-[#c9f776] bg-[#a3e635] text-black'
+                      ? 'border-[#ceff62] bg-[#98dd29] text-black'
                       : 'border-white/20 text-white/50',
                   )}
                 >
