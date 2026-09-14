@@ -268,8 +268,8 @@
   color: transparent;
   /* drop-shadow, not text-shadow: the glyphs are transparent and painted by
      the clipped gradient, so the filter has to act on the rendered result. */
-  filter: drop-shadow(0 0 7px rgba(152, 221, 41, 0.2))
-    drop-shadow(0 0 20px rgba(152, 221, 41, 0.11));
+  filter: drop-shadow(0 0 8px rgba(152, 221, 41, 0.32))
+    drop-shadow(0 0 24px rgba(152, 221, 41, 0.18));
 }
 
 .headline-mark {
