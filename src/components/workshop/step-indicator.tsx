@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 
-export const WORKSHOP_STEPS = ['Test', 'Dine oplysninger', 'Book et opkald'] as const;
+export const WORKSHOP_STEPS = ['Test', 'Dina uppgifter', 'Boka samtal'] as const;
 
 export function StepIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   return (

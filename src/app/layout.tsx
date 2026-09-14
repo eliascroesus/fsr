@@ -44,7 +44,7 @@ const fontMono = Roboto_Mono({
 
 export const metadata: Metadata = {
   title: 'AI Acquisition',
-  description: 'Officiel hjemmeside for AI Acquisition',
+  description: 'Officiell webbplats för AI Acquisition',
   icons: {
     icon: [{ url: '/favicon.ico', type: 'image/x-icon', sizes: '16x16' }],
   },
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="da" suppressHydrationWarning>
+    <html lang="sv" suppressHydrationWarning>
       <head>
         <FunnelyticsTag />
         <MetaPixelPrimary />

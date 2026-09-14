@@ -16,7 +16,7 @@ const INPUT_CLASS =
 export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void }) {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('+45');
+  const [phone, setPhone] = useState('+46');
   // Inverted opt-out: checking it means "don't share my phone".
   const [declinePhone, setDeclinePhone] = useState(false);
 
@@ -33,14 +33,14 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
   return (
     <div className="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
         <h2 className="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">
-          SIKR DIG DIN GRATIS PLADS NU
+          SÄKRA DIN GRATISPLATS NU
         </h2>
 
         <form id={`${CHECKBOX_ID}-form`} onSubmit={handleSubmit} className="flex w-full flex-col gap-3">
           <input
             type="text"
             required
-            placeholder="Dit fulde navn her..."
+            placeholder="Ditt fullständiga namn här..."
             className={INPUT_CLASS}
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
@@ -51,7 +51,7 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
               type="email"
               required
               data-whop-tracked="email"
-              placeholder="Din e-mailadresse her...*"
+              placeholder="Din e-postadress här...*"
               className="w-full py-3 pl-3 pr-11 rounded-xl border-2 border-[#2a6b85]/30 bg-[#0b0f10] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -64,7 +64,7 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
 
           <div className="phone-input-container">
             <PhoneInput
-              country="dk"
+              country="se"
               value={phone}
               onChange={setPhone}
               specialLabel="Telefon"
@@ -95,24 +95,24 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
               htmlFor={CHECKBOX_ID}
               className="cursor-pointer text-xs font-medium leading-snug text-white/75 sm:text-sm"
             >
-              🎁 Jeg vil ikke dele mit telefonnummer og går glip af chancen for at vinde en
-              MacBook, iPhone eller $1.000
+              🎁 Jag vill inte dela mitt telefonnummer och missar chansen att vinna en MacBook,
+              iPhone eller 1 000 $
             </label>
           </div>
 
           <p className="text-[9px] sm:text-[10px] text-gray-500 text-center leading-tight">
-            Ved at oplyse dit telefonnummer accepterer du at modtage SMS-beskeder om deltagelse i
-            webinaret. Du kan altid svare STOP for at afmelde.
+            Genom att ange ditt telefonnummer godkänner du att vi skickar sms om ditt deltagande i
+            webbinariet. Svara STOP när som helst för att avsluta.
           </p>
 
           <CtaButton
             type="submit"
-            primaryLabel="BOOK ET OPKALD"
-            secondaryLabel="FÅ GRATIS ADGANG TIL VORES 1-TIMES KURSUS"
+            primaryLabel="BOKA ETT SAMTAL"
+            secondaryLabel="FÅ GRATIS TILLGÅNG TILL VÅR 1-TIMMESKURS"
           />
 
           <p className="text-center text-sm text-gray-500">
-            🔒 Vi respekterer dit privatliv. Aldrig spam.
+            🔒 Vi värnar om din integritet. Aldrig spam.
           </p>
       </form>
     </div>

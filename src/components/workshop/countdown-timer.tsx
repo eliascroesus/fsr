@@ -98,11 +98,11 @@ export function CountdownTimer() {
   return (
     <div className="w-full rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-3 py-4 sm:px-5 text-center">
       <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#9fe4f0] sm:text-sm">
-        Pladserne lukker om
+        Platserna stänger om
       </p>
       <div className="flex justify-center gap-3 sm:gap-4">
-        <TimeCell value={remaining.hours} label="timer" />
-        <TimeCell value={remaining.minutes} label="minutter" />
+        <TimeCell value={remaining.hours} label="timmar" />
+        <TimeCell value={remaining.minutes} label="minuter" />
         <TimeCell value={remaining.seconds} label="sekunder" />
       </div>
     </div>

@@ -40,11 +40,11 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
         </div>
 
         <h2 className="mb-2 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">
-          VÆLG TIDSPUNKT FOR DIT OPKALD
+          VÄLJ TID FÖR DITT SAMTAL
         </h2>
         <p className="mb-6 text-center text-xs text-white/60 sm:text-sm">
-          {firstName ? `Du er med, ${firstName}. ` : 'Du er med. '}
-          Vælg et tidspunkt nedenfor, så lægger vi en plan for dine første 90 dage.
+          {firstName ? `Du är med, ${firstName}. ` : 'Du är med. '}
+          Välj en tid nedan så lägger vi upp en plan för dina första 90 dagar.
         </p>
 
         {/* Scheduler. `children` overrides it if the booking tool ever changes. */}
@@ -53,7 +53,7 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
             {children ?? (
               <iframe
                 src={BOOKING_URL}
-                title="Book dit opkald"
+                title="Boka ditt samtal"
                 loading="lazy"
                 className="block h-[680px] w-full border-0 sm:h-[600px]"
               />
@@ -63,14 +63,14 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
           {/* Some browsers and extensions block third-party frames outright,
               so there is always a direct way through. */}
           <p className="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">
-            Kan kalenderen ikke indlæses?{' '}
+            Laddar kalendern inte?{' '}
             <a
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 font-semibold text-[#9fe4f0] underline-offset-4 transition-colors hover:text-[#38a3b8] hover:underline"
             >
-              Åbn bookingsiden
+              Öppna bokningssidan
               <ExternalLink className="h-3 w-3" aria-hidden="true" />
             </a>
           </p>
@@ -87,7 +87,7 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
           ) : null}
           <div className="flex items-start justify-between gap-3">
             <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#9fe4f0] sm:text-xs">
-              E-mail
+              E-post
             </dt>
             <dd className="break-all text-xs font-semibold text-white sm:text-sm">{lead.email}</dd>
           </div>
@@ -103,27 +103,27 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
             <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#9fe4f0] sm:text-xs">
               Workshop
             </dt>
-            <dd className="text-xs font-semibold text-white sm:text-sm">Kl. 20.00 EST i aften</dd>
+            <dd className="text-xs font-semibold text-white sm:text-sm">Kl. 20.00 EST i kväll</dd>
           </div>
         </dl>
 
         <ul className="mb-5 flex flex-col gap-2.5">
           <li className="flex items-start gap-2.5 text-xs font-medium text-white/85 sm:text-sm">
             <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#38a3b8]" aria-hidden="true" />
-            Dit link er på vej til {lead.email} — tjek spam, hvis det ikke er kommet om et par
-            minutter.
+            Din länk är på väg till {lead.email} — kolla skräpposten om den inte dykt upp om ett
+            par minuter.
           </li>
           {lead.declinedPhone ? null : (
             <li className="flex items-start gap-2.5 text-xs font-medium text-white/85 sm:text-sm">
               <MessageSquare className="mt-0.5 h-4 w-4 shrink-0 text-[#38a3b8]" aria-hidden="true" />
-              Vi sender dig en SMS-påmindelse, før vi går live. Svar STOP for at afmelde når som
-              helst.
+              Vi skickar en påminnelse via sms innan vi kör igång. Svara STOP när som helst för
+              att avsluta.
             </li>
           )}
         </ul>
 
       <p className="text-center text-sm text-gray-500">
-        🔒 Vi respekterer dit privatliv. Aldrig spam.
+        🔒 Vi värnar om din integritet. Aldrig spam.
       </p>
     </div>
   );

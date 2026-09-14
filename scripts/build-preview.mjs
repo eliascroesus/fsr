@@ -32,7 +32,7 @@ async function dataUri(rel, mime) {
   return `data:${mime};base64,${buf.toString('base64')}`;
 }
 
-const BENEFITS = ['Intet varelager', 'Intet teknisk', '100% hjemmefra', '8-10 timer om ugen'];
+const BENEFITS = ['Inget lager', 'Inget tekniskt krångel', '100% hemifrån', '8–10 timmar i veckan'];
 
 const CHECK_ICON = `<svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 shrink-0 text-[#38a3b8]"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>`;
 
@@ -42,7 +42,7 @@ const MAIL_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24
 
 const TICK = `<svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#38a3b8]"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>`;
 
-const DK_FLAG = `<svg viewBox="0 0 24 16" class="h-4 w-6 rounded-[2px]"><rect width="24" height="16" fill="#c8102e"/><rect y="6.5" width="24" height="3" fill="#fff"/><rect x="7" width="3" height="16" fill="#fff"/></svg>`;
+const SE_FLAG = `<svg viewBox="0 0 24 16" class="h-4 w-6 rounded-[2px]"><rect width="24" height="16" fill="#006aa7"/><rect y="6.5" width="24" height="3" fill="#fecc02"/><rect x="7" width="3" height="16" fill="#fecc02"/></svg>`;
 
 /** Google Calendar appointment schedule embedded on the booking step. */
 const BOOKING_URL =
@@ -54,22 +54,22 @@ const CTA_GRADIENT =
 const ctaButton = (id, extra = '') =>
   `<button type="${id === 'submitBtn' ? 'submit' : 'button'}" id="${id}" class="w-full ${extra} py-3.5 px-4 rounded-xl text-white font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(56,163,184,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
     <span class="flex flex-col items-center leading-tight">
-      <span class="text-base sm:text-lg md:text-xl tracking-wide">${id === 'bottomCta' ? 'START TESTEN' : 'BOOK ET OPKALD'}</span>
-      <span class="text-xs sm:text-sm font-semibold opacity-90">${id === 'bottomCta' ? 'WORKSHOP STARTER KL. 20 EST I AFTEN' : 'FÅ GRATIS ADGANG TIL VORES 1-TIMES KURSUS'}</span>
+      <span class="text-base sm:text-lg md:text-xl tracking-wide">${id === 'bottomCta' ? 'STARTA TESTET' : 'BOKA ETT SAMTAL'}</span>
+      <span class="text-xs sm:text-sm font-semibold opacity-90">${id === 'bottomCta' ? 'WORKSHOPPEN BÖRJAR KL. 20 EST I KVÄLL' : 'FÅ GRATIS TILLGÅNG TILL VÅR 1-TIMMESKURS'}</span>
     </span>${CHEVRON}
   </button>`;
 
 // The key drives the data-cd lookup in tick(); only the label is translated.
 // Keeping them separate is what stops a translation from breaking the timer.
 const COUNTDOWN_UNITS = [
-  ['hours', 'timer'],
-  ['minutes', 'minutter'],
+  ['hours', 'timmar'],
+  ['minutes', 'minuter'],
   ['seconds', 'sekunder'],
 ];
 
 const countdownBlock = (prefix) => `
   <div class="w-full rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-3 py-4 sm:px-5 text-center">
-    <p class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#9fe4f0] sm:text-sm">Pladserne lukker om</p>
+    <p class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#9fe4f0] sm:text-sm">Platserna stänger om</p>
     <div class="flex justify-center gap-3 sm:gap-4">
       ${COUNTDOWN_UNITS
         .map(
@@ -85,14 +85,14 @@ const countdownBlock = (prefix) => `
 const PREVIEW_BADGE = `
 <div style="position:fixed;left:12px;bottom:12px;z-index:60;display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:9999px;border:1px solid rgba(159,228,240,.35);background:rgba(7,16,19,.92);backdrop-filter:blur(6px);font:600 11px/1.2 Inter,system-ui,sans-serif;color:#9fe4f0;letter-spacing:.04em;">
   <span style="width:7px;height:7px;border-radius:9999px;background:#38a3b8;flex:none;"></span>
-  FORHÅNDSVISNING — IKKE DEN RIGTIGE SIDE
+  FÖRHANDSVISNING — INTE DEN RIKTIGA SIDAN
 </div>`;
 
 const SCHEDULER_FRAME = `
   <div class="overflow-hidden rounded-2xl border border-[#2a6b85]/60 bg-white shadow-[0_0_36px_rgba(56,163,184,0.18)]">
-    <iframe src="${BOOKING_URL}" title="Book dit opkald" loading="lazy" class="block h-[680px] w-full border-0 sm:h-[600px]"></iframe>
+    <iframe src="${BOOKING_URL}" title="Boka ditt samtal" loading="lazy" class="block h-[680px] w-full border-0 sm:h-[600px]"></iframe>
   </div>
-  <p class="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">Kan kalenderen ikke indlæses? <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#9fe4f0] underline-offset-4 transition-colors hover:text-[#38a3b8] hover:underline">Åbn bookingsiden &#8599;</a></p>`;
+  <p class="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">Laddar kalendern inte? <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#9fe4f0] underline-offset-4 transition-colors hover:text-[#38a3b8] hover:underline">Öppna bokningssidan &#8599;</a></p>`;
 
 /**
  * The Artifact viewer's CSP admits no third-party frames, so the embed would
@@ -102,61 +102,61 @@ const SCHEDULER_FRAME = `
 const SCHEDULER_LINK = `
   <div class="rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-5 py-9 text-center shadow-[0_0_36px_rgba(56,163,184,0.12)]">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-3 h-10 w-10 text-[#38a3b8]"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
-    <p class="text-sm font-extrabold tracking-wide text-white sm:text-base">Booking via Google Kalender</p>
-    <p class="mx-auto mt-1.5 max-w-sm text-[11px] leading-relaxed text-white/45 sm:text-xs">Den rigtige kalender er indlejret her på siden. Denne forhåndsvisning linker i stedet videre, fordi visningen blokerer indlejrede rammer.</p>
-    <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-1.5 rounded-xl px-5 py-3 text-sm font-extrabold tracking-wide text-white shadow-[0_0_28px_rgba(56,163,184,0.35)] transition-all duration-200 hover:opacity-90 sm:text-base" style="background:${CTA_GRADIENT}">Åbn bookingsiden &#8599;</a>
+    <p class="text-sm font-extrabold tracking-wide text-white sm:text-base">Bokning via Google Kalender</p>
+    <p class="mx-auto mt-1.5 max-w-sm text-[11px] leading-relaxed text-white/45 sm:text-xs">Den riktiga kalendern är inbäddad här på sidan. Den här förhandsvisningen länkar vidare i stället, eftersom visningen blockerar inbäddade ramar.</p>
+    <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-1.5 rounded-xl px-5 py-3 text-sm font-extrabold tracking-wide text-white shadow-[0_0_28px_rgba(56,163,184,0.35)] transition-all duration-200 hover:opacity-90 sm:text-base" style="background:${CTA_GRADIENT}">Öppna bokningssidan &#8599;</a>
   </div>`;
 
 const SCHEDULER_BLOCK = ARTIFACT ? SCHEDULER_LINK : SCHEDULER_FRAME;
 
-const PRIVACY = `<p class="text-center text-sm text-gray-500">🔒 Vi respekterer dit privatliv. Aldrig spam.</p>`;
+const PRIVACY = `<p class="text-center text-sm text-gray-500">🔒 Vi värnar om din integritet. Aldrig spam.</p>`;
 
 const QUIZ = [
   {
     id: 'occupation',
-    title: 'Hvad beskriver dig bedst?',
-    description: 'Vi spørger, så vi bedst muligt kan hjælpe dig med at nå dine mål.',
+    title: 'Vad beskriver dig bäst?',
+    description: 'Vi frågar för att kunna hjälpa dig att nå dina mål på bästa sätt.',
     options: [
-      ['A', 'Jeg har et 8-16 job'],
-      ['B', 'Jeg er selvstændig'],
-      ['C', 'Jeg er studerende'],
-      ['D', 'Jeg er arbejdsløs'],
+      ['A', 'Jag har ett 8–17-jobb'],
+      ['B', 'Jag driver eget företag'],
+      ['C', 'Jag är student'],
+      ['D', 'Jag är arbetslös'],
     ],
   },
   {
     id: 'current-income',
-    title: 'Hvor meget tjener du om måneden lige nu?',
-    description: 'Det fortæller os, hvilket udgangspunkt i systemet der passer til dig.',
+    title: 'Hur mycket tjänar du i månaden just nu?',
+    description: 'Det visar oss vilken startpunkt i systemet som passar dig.',
     options: [
-      ['A', 'Under $2.000'],
-      ['B', '$2.000 – $5.000'],
-      ['C', '$5.000 – $10.000'],
-      ['D', '$10.000 – $25.000'],
-      ['E', '$25.000+'],
+      ['A', 'Under 2 000 $'],
+      ['B', '2 000–5 000 $'],
+      ['C', '5 000–10 000 $'],
+      ['D', '10 000–25 000 $'],
+      ['E', 'Över 25 000 $'],
     ],
   },
   {
     id: 'goal',
-    title: 'Hvad vil du gerne opnå de næste 12 måneder?',
-    description: 'Så vi kan vise dig vejen, der passer til det resultat, du rent faktisk vil have.',
+    title: 'Vad vill du uppnå de kommande 12 månaderna?',
+    description: 'Så att vi kan visa dig vägen som passar det resultat du faktiskt vill ha.',
     options: [
-      ['A', 'De første $1.000 – $5.000 om måneden ved siden af'],
-      ['B', 'Erstatte min fuldtidsindkomst'],
-      ['C', 'Skalere forbi $10.000 om måneden'],
-      ['D', 'Bygge en virksomhed, jeg kan sælge'],
-      ['E', 'Fuldstændig økonomisk frihed'],
+      ['A', 'De första 1 000–5 000 $ i månaden vid sidan av'],
+      ['B', 'Ersätta min heltidsinkomst'],
+      ['C', 'Skala förbi 10 000 $ i månaden'],
+      ['D', 'Bygga ett företag jag kan sälja'],
+      ['E', 'Full ekonomisk frihet'],
     ],
   },
   {
     id: 'investment',
-    title: 'Hvor meget kan du investere i dig selv og de værktøjer, der skal til?',
-    description: 'Dækker AI-værktøjer, software og coaching — vi anbefaler kun noget, der passer til dit niveau.',
+    title: 'Hur mycket kan du investera i dig själv och de verktyg som krävs?',
+    description: 'Gäller AI-verktyg, mjukvara och coachning — vi rekommenderar bara sådant som passar din nivå.',
     options: [
-      ['A', 'Under $500'],
-      ['B', '$500 – $1.000'],
-      ['C', '$1.000 – $3.000'],
-      ['D', '$3.000 – $5.000'],
-      ['E', '$5.000+'],
+      ['A', 'Under 500 $'],
+      ['B', '500–1 000 $'],
+      ['C', '1 000–3 000 $'],
+      ['D', '3 000–5 000 $'],
+      ['E', 'Över 5 000 $'],
     ],
   },
 ];
@@ -173,7 +173,7 @@ async function main() {
     SUCCESS_WIN_SLUGS.map((slug) => dataUri(`images/success-wins/${slug}.png`, 'image/png')),
   );
 
-  const stepper = ['Test', 'Dine oplysninger', 'Book et opkald']
+  const stepper = ['Test', 'Dina uppgifter', 'Boka samtal']
     .map(
       (label, i) => `
       <div data-step-cell="${i + 1}" class="relative flex min-h-16 flex-col items-center justify-center border-r border-[#2a6b85]/40 px-1.5 py-2 text-center last:border-r-0 sm:min-h-24 sm:px-4 sm:py-3">
@@ -187,7 +187,7 @@ async function main() {
   const head = ARTIFACT
     ? `<title>AI Acquisition Workshop</title>`
     : `<!doctype html>
-<html lang="da">
+<html lang="sv">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -232,21 +232,21 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
           <div class="flex shrink-0 -space-x-1.5">
             ${avatars.map((src, i) => `<div class="relative h-7 w-7 overflow-hidden rounded-full ring-2 ring-black sm:h-8 sm:w-8" style="z-index:${3 - i}"><img alt="" width="32" height="32" class="h-full w-full object-cover" src="${src}"></div>`).join('')}
           </div>
-          <p class="text-left text-xs font-bold text-[#9fe4f0] sm:text-sm">3.478 begyndere tilmeldte sig i denne uge</p>
+          <p class="text-left text-xs font-bold text-[#9fe4f0] sm:text-sm">3 478 nybörjare anmälde sig den här veckan</p>
         </div>
 
-        <h1 class="mb-4 text-balance text-center text-xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">Sådan Tjener Begyndere $18.105 Om Måneden I Tilbagevendende Indtægt (i gennemsnit) Med AI I 2026</h1>
+        <h1 class="mb-4 text-balance text-center text-xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">Så Här Tjänar Nybörjare 18 105 $ Per Månad I Återkommande Intäkter (i snitt) Med AI 2026</h1>
 
         <div class="mb-8 w-full max-w-3xl">
           <div class="vsl-frame relative aspect-video w-full overflow-hidden rounded-2xl border border-[#2a6b85]/70 bg-[#071013] shadow-[0_0_40px_rgba(56,163,184,0.18)]">
             <div id="vslEmpty" class="absolute inset-0 hidden place-items-center">
-              <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/25 sm:text-xs">Video-pladsholder</p>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/25 sm:text-xs">Platshållare för video</p>
             </div>
-            <button type="button" id="vslOverlay" aria-label="Klik for at høre lyd" class="absolute inset-0 h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38a3b8]">
+            <button type="button" id="vslOverlay" aria-label="Klicka för att lyssna" class="absolute inset-0 h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38a3b8]">
               <span class="vsl-pulse absolute inset-0 block">
                 <span class="vsl-card absolute block border-solid border-white bg-[rgba(16,136,188,0.75)]" style="left:32.361%;top:19.506%;width:35.278%;height:60.988%"></span>
                 <span class="absolute block" style="left:39.931%;top:27.407%;width:20.139%;height:35.802%"><img alt="" class="h-full w-full" src="${playIcon}"></span>
-                <span class="vsl-label absolute block text-center font-bold leading-tight text-white" style="left:32.361%;top:70.617%;width:35.278%">Klik for at høre lyd</span>
+                <span class="vsl-label absolute block text-center font-bold leading-tight text-white" style="left:32.361%;top:70.617%;width:35.278%">Klicka för att lyssna</span>
               </span>
             </button>
           </div>
@@ -275,7 +275,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
                 <p id="quizDesc" class="mt-2 text-xs leading-relaxed text-white/55 sm:text-sm"></p>
                 <div id="quizOptions" role="radiogroup" class="mt-5 flex flex-col gap-2.5"></div>
                 <div class="mt-5">
-                  <button type="button" id="quizBack" class="hidden text-xs font-medium text-white/45 underline-offset-4 transition-colors hover:text-white/80 hover:underline sm:text-sm">Tilbage</button>
+                  <button type="button" id="quizBack" class="hidden text-xs font-medium text-white/45 underline-offset-4 transition-colors hover:text-white/80 hover:underline sm:text-sm">Tillbaka</button>
                 </div>
               </div>
             </div>
@@ -284,21 +284,21 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
           <!-- STEP 2 - your details -->
           <section data-panel="2" class="w-full hidden">
             <div class="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
-              <h2 class="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">SIKR DIG DIN GRATIS PLADS NU</h2>
+              <h2 class="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">SÄKRA DIN GRATISPLATS NU</h2>
               <form id="optin" class="flex w-full flex-col gap-3">
-                <input id="fullName" required type="text" placeholder="Dit fulde navn her..." class="w-full px-3 py-3 rounded-xl border-2 border-[#2a6b85]/30 bg-[#0b0f10] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]">
+                <input id="fullName" required type="text" placeholder="Ditt fullständiga namn här..." class="w-full px-3 py-3 rounded-xl border-2 border-[#2a6b85]/30 bg-[#0b0f10] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]">
                 <div class="relative">
-                  <input id="email" required type="email" placeholder="Din e-mailadresse her...*" class="w-full py-3 pl-3 pr-11 rounded-xl border-2 border-[#2a6b85]/30 bg-[#0b0f10] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]">${MAIL_ICON}
+                  <input id="email" required type="email" placeholder="Din e-postadress här...*" class="w-full py-3 pl-3 pr-11 rounded-xl border-2 border-[#2a6b85]/30 bg-[#0b0f10] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]">${MAIL_ICON}
                 </div>
                 <div class="relative">
-                  <span class="pointer-events-none absolute left-0 top-0 bottom-0 flex w-10 items-center justify-center rounded-l-md border border-r-0 border-[#2a6b85] bg-[#0b0f10]">${DK_FLAG}</span>
-                  <input id="phone" required type="tel" value="+45" placeholder="Telefonnummer" class="w-full px-4 py-3 pl-12 rounded-md border border-[#2a6b85] bg-[#0b0f10] text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]">
+                  <span class="pointer-events-none absolute left-0 top-0 bottom-0 flex w-10 items-center justify-center rounded-l-md border border-r-0 border-[#2a6b85] bg-[#0b0f10]">${SE_FLAG}</span>
+                  <input id="phone" required type="tel" value="+46" placeholder="Telefonnummer" class="w-full px-4 py-3 pl-12 rounded-md border border-[#2a6b85] bg-[#0b0f10] text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]">
                 </div>
                 <div class="flex items-start gap-3 py-1">
                   <input id="receiveGiftTop" type="checkbox" class="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#38a3b8] bg-[#0b0f10] focus:ring-[#38a3b8] focus:ring-2">
-                  <label for="receiveGiftTop" class="cursor-pointer text-xs font-medium leading-snug text-white/75 sm:text-sm">🎁 Jeg vil ikke dele mit telefonnummer og går glip af chancen for at vinde en MacBook, iPhone eller $1.000</label>
+                  <label for="receiveGiftTop" class="cursor-pointer text-xs font-medium leading-snug text-white/75 sm:text-sm">🎁 Jag vill inte dela mitt telefonnummer och missar chansen att vinna en MacBook, iPhone eller 1 000 $</label>
                 </div>
-                <p class="text-[9px] sm:text-[10px] text-gray-500 text-center leading-tight">Ved at oplyse dit telefonnummer accepterer du at modtage SMS-beskeder om deltagelse i webinaret. Du kan altid svare STOP for at afmelde.</p>
+                <p class="text-[9px] sm:text-[10px] text-gray-500 text-center leading-tight">Genom att ange ditt telefonnummer godkänner du att vi skickar sms om ditt deltagande i webbinariet. Svara STOP när som helst för att avsluta.</p>
                 ${ctaButton('submitBtn')}
                 ${PRIVACY}
               </form>
@@ -313,7 +313,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
                   <svg viewBox="0 0 20 20" fill="currentColor" class="h-7 w-7 text-black"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                 </span>
               </div>
-              <h2 class="mb-2 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">VÆLG TIDSPUNKT FOR DIT OPKALD</h2>
+              <h2 class="mb-2 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">VÄLJ TID FÖR DITT SAMTAL</h2>
               <p class="mb-6 text-center text-xs text-white/60 sm:text-sm" id="callLine"></p>
               <div class="mb-3">${SCHEDULER_BLOCK}</div>
               <dl class="mb-5 grid gap-2 rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-4 py-4 text-left" id="summary"></dl>
@@ -327,9 +327,9 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
         </div>
 
         <div class="w-full mt-16">
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8 drop-shadow-lg">Hvad folk siger</h2>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8 drop-shadow-lg">Vad folk säger</h2>
           <div class="columns-1 sm:columns-2 lg:columns-3 gap-4">
-            ${wins.map((src, i) => `<div class="break-inside-avoid mb-4"><img alt="Kunderesultat ${i + 1}" width="400" height="300" loading="lazy" class="w-full rounded-lg shadow-md" src="${src}"></div>`).join('')}
+            ${wins.map((src, i) => `<div class="break-inside-avoid mb-4"><img alt="Kundresultat ${i + 1}" width="400" height="300" loading="lazy" class="w-full rounded-lg shadow-md" src="${src}"></div>`).join('')}
           </div>
           <div class="flex justify-center mt-8">${ctaButton('bottomCta', 'max-w-2xl')}</div>
         </div>
@@ -339,17 +339,17 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 
   <section id="footer" class="bg-black text-center px-4 py-8 text-xs">
     <div class="container mx-auto max-w-4xl space-y-6">
-      <div class="flex justify-center"><img alt="AI Acquisition LLC-logo" width="48" height="48" class="opacity-50" src="${logo}"></div>
+      <div class="flex justify-center"><img alt="AI Acquisition LLC-logga" width="48" height="48" class="opacity-50" src="${logo}"></div>
       <p class="text-neutral-400">AI Acquisition and all individuals affiliated with this organization assumes no responsibility for the outcome, result, or success of the services, and does not guarantee specific results or outcome. Success depends in part on the time you devote, and your implementation of the guidance, strategies and support received. The strategies, content, articles and all other features are for educational purposes only.</p>
       <p class="text-neutral-400">Though our services and products are tailored for our clients, we cannot give any guarantees or warranties (either express or implied), about results or earning money with the ideas, information, tools and strategies set out in the services. Any testimonials provided are of real-life individuals and businesses and their own personal and individual experiences. These must not be taken as "typical" results and will not be specific to your particular circumstances or actions you choose to take following receipt of the services and products.</p>
       <p class="text-neutral-400">In a survey of over 660 businesses with over 100 responding, business owners averaged $18,105 in monthly revenue after implementing our system.</p>
       <p class="text-neutral-400">Also NOT GOOGLE or FACEBOOK: This site is not a part of the Google website, Google Inc, Facebook/Meta website, or Meta, Inc. Additionally, This site is NOT endorsed by Google or Meta in any way.</p>
       <div class="flex justify-center space-x-8">
-        <a class="text-neutral-400 hover:text-[#38a3b8] transition-colors" href="https://www.aiacquisition.com/privacy-policy">Privatlivspolitik</a>
-        <a class="text-neutral-400 hover:text-[#38a3b8] transition-colors" href="https://www.aiacquisition.com/terms-of-service">Handelsbetingelser</a>
-        <a class="text-neutral-400 hover:text-[#38a3b8] transition-colors" href="mailto:support@aiarbitrageagency.com">Kontakt os</a>
+        <a class="text-neutral-400 hover:text-[#38a3b8] transition-colors" href="https://www.aiacquisition.com/privacy-policy">Integritetspolicy</a>
+        <a class="text-neutral-400 hover:text-[#38a3b8] transition-colors" href="https://www.aiacquisition.com/terms-of-service">Användarvillkor</a>
+        <a class="text-neutral-400 hover:text-[#38a3b8] transition-colors" href="mailto:support@aiarbitrageagency.com">Kontakta oss</a>
       </div>
-      <p class="text-neutral-400">© <span id="year"></span> AI Acquisition LLC. Alle rettigheder forbeholdes.</p>
+      <p class="text-neutral-400">© <span id="year"></span> AI Acquisition LLC. Med ensamrätt.</p>
     </div>
   </section>
 </div>
@@ -426,9 +426,9 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
   function renderQuestion(){
     var q = QUIZ[state.qi], chosen = state.answers[q.id];
     document.getElementById('quizNum').textContent = state.qi + 1;
-    document.getElementById('quizCount').textContent = 'Spørgsmål ' + (state.qi + 1) + ' af ' + QUIZ.length;
+    document.getElementById('quizCount').textContent = 'Fråga ' + (state.qi + 1) + ' av ' + QUIZ.length;
     document.getElementById('quizTitle').innerHTML =
-      q.title + '<span class="ml-1 text-[#38a3b8]" aria-label="Dette spørgsmål er obligatorisk.">*</span>';
+      q.title + '<span class="ml-1 text-[#38a3b8]" aria-label="Den här frågan är obligatorisk.">*</span>';
     document.getElementById('quizDesc').textContent = q.description;
     document.getElementById('quizBar').style.width =
       (((state.qi + (chosen ? 1 : 0)) / QUIZ.length) * 100) + '%';
@@ -502,14 +502,14 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     var goalQ = QUIZ.filter(function(q){ return q.id === 'goal'; })[0];
     var goal = goalQ.options.filter(function(o){ return o[0] === state.answers['goal']; })[0];
     document.getElementById('callLine').textContent =
-      (first ? 'Du er med, ' + first + '. ' : 'Du er med. ') +
-      'Vælg et tidspunkt nedenfor, så lægger vi en plan for dine første 90 dage.';
+      (first ? 'Du är med, ' + first + '. ' : 'Du är med. ') +
+      'Välj en tid nedan så lägger vi upp en plan för dina första 90 dagar.';
 
     var rows = [];
     if (goal) rows.push(['Mål', goal[1]]);
-    rows.push(['E-mail', state.lead.email]);
+    rows.push(['E-post', state.lead.email]);
     if (!state.lead.declined) rows.push(['Telefon', state.lead.phone]);
-    rows.push(['Workshop', 'Kl. 20.00 EST i aften']);
+    rows.push(['Workshop', 'Kl. 20.00 EST i kväll']);
     document.getElementById('summary').innerHTML = rows.map(function(r){
       return '<div class="flex items-start justify-between gap-3">' +
         '<dt class="text-[10px] font-black uppercase tracking-[0.18em] text-[#9fe4f0] sm:text-xs">' + r[0] + '</dt>' +

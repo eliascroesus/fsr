@@ -7,8 +7,8 @@ export function ScrollToOptInButton() {
   return (
     <CtaButton
       className="max-w-2xl"
-      primaryLabel="START TESTEN"
-      secondaryLabel="WORKSHOP STARTER KL. 20 EST I AFTEN"
+      primaryLabel="STARTA TESTET"
+      secondaryLabel="WORKSHOPPEN BÖRJAR KL. 20 EST I KVÄLL"
       onClick={() =>
         document
           .getElementById('workshop-opt-in')

@@ -13,10 +13,10 @@ const SOCIAL_PROOF_AVATARS = [
 ];
 
 const BENEFITS = [
-  'Intet varelager',
-  'Intet teknisk',
-  '100% hjemmefra',
-  '8-10 timer om ugen',
+  'Inget lager',
+  'Inget tekniskt krångel',
+  '100% hemifrån',
+  '8–10 timmar i veckan',
 ];
 
 /** Heroicons solid `check`, inlined exactly as the source renders it. */
@@ -59,13 +59,13 @@ export default function WorkshopVTestPage() {
               ))}
             </div>
             <p className="text-left text-xs font-bold text-[#9fe4f0] sm:text-sm">
-              3.478 begyndere tilmeldte sig i denne uge
+              3 478 nybörjare anmälde sig den här veckan
             </p>
           </div>
 
           <h1 className="mb-4 text-balance text-center text-xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">
-            Sådan Tjener Begyndere $18.105 Om Måneden I Tilbagevendende Indtægt (i gennemsnit) Med
-            AI I 2026
+            Så Här Tjänar Nybörjare 18 105 $ Per Månad I Återkommande Intäkter (i snitt) Med AI
+            2026
           </h1>
 
           <VideoPlaceholder />
