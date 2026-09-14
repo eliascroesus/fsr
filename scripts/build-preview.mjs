@@ -32,9 +32,8 @@ async function dataUri(rel, mime) {
   return `data:${mime};base64,${buf.toString('base64')}`;
 }
 
-const BENEFITS = ['Inget lager', 'Inget tekniskt krångel', '100% hemifrån', '8–10 timmar i veckan'];
+const DISQUALIFIERS = ['Inget lager.', 'Inget tekniskt krångel.', '100% hemifrån.'];
 
-const CHECK_ICON = `<svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 shrink-0 text-[#38a3b8]"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>`;
 
 const CHEVRON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 shrink-0 ml-1"><path d="m9 18 6-6-6-6"/></svg>`;
 
@@ -208,6 +207,17 @@ async function main() {
   .vsl-card { border-radius:1.6667cqw; border-width:0.0781cqw; }
   .vsl-label { font-size:2.7778cqw; }
   @media (prefers-reduced-motion: reduce) { .vsl-pulse { animation:none } }
+  /* Hero top — mirrors the same rules in globals.css. */
+  .brand-wordmark { text-shadow: 0 0 18px rgba(56,163,184,.45), 0 0 44px rgba(56,163,184,.2); }
+  @keyframes status-pulse { 0%,100% { opacity:1; transform:scale(1) } 50% { opacity:.45; transform:scale(.82) } }
+  .status-dot { animation: status-pulse 2s ease-in-out infinite; }
+  .headline-mark {
+    text-decoration-line: underline;
+    text-decoration-color: #38a3b8;
+    text-decoration-thickness: 0.075em;
+    text-underline-offset: 0.14em;
+  }
+  @media (prefers-reduced-motion: reduce) { .status-dot { animation:none } }
   .tier { border-color: rgba(42,107,133,.4); background:#0b0f10; }
   .tier:hover { border-color:#2a6b85; }
   .tier[aria-pressed="true"] { border-color:#38a3b8; background:rgba(18,49,60,.85); box-shadow:0 0 28px rgba(56,163,184,.25); }
@@ -228,14 +238,36 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       </svg>
 
       <div class="mx-auto flex w-full max-w-5xl flex-col items-center px-4 sm:px-8 sm:py-16 lg:px-12 py-10">
-        <div class="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2a6b85]/70 bg-[#071013]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">
+        <div class="mb-5 flex w-full flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-10">
+          <span class="brand-wordmark select-none text-lg font-black italic tracking-tight sm:text-2xl"><span class="text-white">AI</span><span class="text-[#9fe4f0]">ACQUISITION</span></span>
+          <div class="flex items-center gap-2.5">
+            <span class="rounded-full bg-gradient-to-tr from-[#38a3b8] via-[#9fe4f0] to-[#2a6b85] p-[2px]">
+              <span class="block overflow-hidden rounded-full ring-2 ring-black"><img alt="" width="48" height="48" class="h-10 w-10 object-cover sm:h-12 sm:w-12" src="${avatars[0]}"></span>
+            </span>
+            <div class="text-left leading-tight">
+              <p class="flex items-center gap-1 text-sm font-black text-white sm:text-base">@aiacquisition
+                <svg viewBox="0 0 20 20" aria-hidden="true" class="h-4 w-4 shrink-0 text-[#38a3b8]"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M6 10.2l2.6 2.6L14 7.4" fill="none" stroke="#04191f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </p>
+              <p class="text-xs font-medium text-white/45 sm:text-sm">AI Acquisition</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-7 inline-flex items-stretch rounded-full border border-[#2a6b85]/70 bg-[#071013] p-1 shadow-[0_0_28px_rgba(56,163,184,0.18)]">
+          <span class="inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white sm:px-4 sm:text-xs"><span class="status-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#38a3b8]"></span>NY</span>
+          <span class="inline-flex items-center rounded-full bg-[#12313c] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#9fe4f0] sm:px-4 sm:text-xs">Gratis AI-workshop</span>
+        </div>
+
+        <h1 class="mb-4 text-balance text-center text-2xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl">Så Här Tjänar Nybörjare <span class="text-[#9fe4f0]">18 105 $ Per Månad</span> I <span class="headline-mark">Återkommande Intäkter</span> (i snitt) Med AI 2026</h1>
+
+        <p class="mb-5 max-w-2xl text-balance text-center text-sm leading-relaxed text-white/45 sm:text-base">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">8–10 timmar i veckan.</span> Allt gås igenom steg för steg på den kostnadsfria workshopen.</p>
+
+        <div class="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2a6b85]/70 bg-[#071013]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">
           <div class="flex shrink-0 -space-x-1.5">
             ${avatars.map((src, i) => `<div class="relative h-7 w-7 overflow-hidden rounded-full ring-2 ring-black sm:h-8 sm:w-8" style="z-index:${3 - i}"><img alt="" width="32" height="32" class="h-full w-full object-cover" src="${src}"></div>`).join('')}
           </div>
           <p class="text-left text-xs font-bold text-[#9fe4f0] sm:text-sm">3 478 nybörjare anmälde sig den här veckan</p>
         </div>
-
-        <h1 class="mb-4 text-balance text-center text-xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">Så Här Tjänar Nybörjare 18 105 $ Per Månad I Återkommande Intäkter (i snitt) Med AI 2026</h1>
 
         <div class="mb-8 w-full max-w-3xl">
           <div class="vsl-frame relative aspect-video w-full overflow-hidden rounded-2xl border border-[#2a6b85]/70 bg-[#071013] shadow-[0_0_40px_rgba(56,163,184,0.18)]">
@@ -252,9 +284,6 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
           </div>
         </div>
 
-        <div class="mb-10 mx-auto grid w-fit grid-cols-[auto_auto] justify-items-start gap-x-5 gap-y-2 sm:mx-0 sm:flex sm:w-auto sm:flex-wrap sm:justify-center sm:gap-x-6">
-          ${BENEFITS.map((b) => `<span class="flex items-start gap-1.5 text-sm font-semibold text-white sm:items-center sm:text-base">${CHECK_ICON}${b}</span>`).join('')}
-        </div>
 
         <div id="workshop-opt-in" class="w-full scroll-mt-4">
           <div class="mx-auto mb-6 max-w-2xl">
