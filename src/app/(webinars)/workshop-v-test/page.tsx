@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { AnimatedGridPattern } from '@/components/magicui/animated-grid-pattern';
 import { BrandRow, Mark, OfferPills } from '@/components/workshop/hero-top';
 import { ScrollToOptInButton } from '@/components/workshop/scroll-to-opt-in-button';
-import { TestimonialWall } from '@/components/workshop/testimonial-wall';
 import { VideoPlaceholder } from '@/components/workshop/video-placeholder';
 import { WorkshopOptIn } from '@/components/workshop/workshop-opt-in';
 
@@ -26,10 +25,10 @@ export default function WorkshopVTestPage() {
         <div className="contents">
           <BrandRow />
 
-          <OfferPills offer="Gratis AI-workshop" />
+          <OfferPills offer="AI-systemet 2026" />
 
-          <h1 className="mb-4 text-balance text-center text-2xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl">
-            Så Här Tjänar Nybörjare <span className="text-[#9fe4f0]">18 105 $ Per Månad</span> I{' '}
+          <h1 className="mb-4 text-balance text-center text-3xl font-extrabold leading-[1.03] tracking-[-0.02em] text-white sm:text-5xl md:text-6xl">
+            Så Här Tjänar Nybörjare <span className="text-[#c9f776]">18 105 $ Per Månad</span> I{' '}
             <Mark>Återkommande Intäkter</Mark> (i snitt) Med AI 2026
           </h1>
 
@@ -43,7 +42,7 @@ export default function WorkshopVTestPage() {
             igenom steg för steg på den kostnadsfria workshopen.
           </p>
 
-          <div className="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2a6b85]/70 bg-[#071013]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">
+          <div className="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2f343a]/70 bg-[#0f1113]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">
             <div className="flex shrink-0 -space-x-1.5">
               {SOCIAL_PROOF_AVATARS.map((src, i) => (
                 <div
@@ -61,7 +60,7 @@ export default function WorkshopVTestPage() {
                 </div>
               ))}
             </div>
-            <p className="text-left text-xs font-bold text-[#9fe4f0] sm:text-sm">
+            <p className="text-left text-xs font-bold text-[#c9f776] sm:text-sm">
               3 478 nybörjare anmälde sig den här veckan
             </p>
           </div>
@@ -71,12 +70,8 @@ export default function WorkshopVTestPage() {
 
         <WorkshopOptIn />
 
-        <div className="w-full mt-16">
-          <TestimonialWall />
-
-          <div className="flex justify-center mt-8">
-            <ScrollToOptInButton />
-          </div>
+        <div className="mt-12 flex w-full justify-center">
+          <ScrollToOptInButton />
         </div>
       </div>
     </div>

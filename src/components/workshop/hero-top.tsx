@@ -16,12 +16,12 @@ export const HOST = {
 /** Generisk verifieringsmarkering. */
 function VerifiedMark() {
   return (
-    <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4 shrink-0 text-[#38a3b8]">
+    <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4 shrink-0 text-[#a3e635]">
       <circle cx="10" cy="10" r="9" fill="currentColor" />
       <path
         d="M6 10.2l2.6 2.6L14 7.4"
         fill="none"
-        stroke="#04191f"
+        stroke="#0f1113"
         strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -30,24 +30,12 @@ function VerifiedMark() {
   );
 }
 
-/** Ordmärke: två vikter, andra ordet i accentfärg, med en svag gloria. */
-function Wordmark() {
-  return (
-    <span className="brand-wordmark select-none text-lg font-black italic tracking-tight sm:text-2xl">
-      <span className="text-white">AI</span>
-      <span className="text-[#9fe4f0]">ACQUISITION</span>
-    </span>
-  );
-}
-
-/** Ordmärke till vänster, värd och räckvidd till höger. */
+/** Värd och räckvidd, centrerat överst. */
 export function BrandRow() {
   return (
-    <div className="mb-5 flex w-full flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-10">
-      <Wordmark />
-
+    <div className="mb-6 flex w-full items-center justify-center">
       <div className="flex items-center gap-2.5">
-        <span className="rounded-full bg-gradient-to-tr from-[#38a3b8] via-[#9fe4f0] to-[#2a6b85] p-[2px]">
+        <span className="rounded-full bg-gradient-to-tr from-[#84cc16] via-[#c9f776] to-[#4d7c0f] p-[2px]">
           <span className="block overflow-hidden rounded-full ring-2 ring-black">
             <Image
               src={HOST.avatar}
@@ -66,7 +54,7 @@ export function BrandRow() {
           </p>
           <p className="text-xs font-medium text-white/45 sm:text-sm">{HOST.name}</p>
           {HOST.followers ? (
-            <p className="text-xs font-bold text-[#9fe4f0] sm:text-sm">{HOST.followers} följare</p>
+            <p className="text-xs font-bold text-[#c9f776] sm:text-sm">{HOST.followers} följare</p>
           ) : null}
         </div>
       </div>
@@ -77,12 +65,12 @@ export function BrandRow() {
 /** Två sammanfogade piller: status till vänster, erbjudandet till höger. */
 export function OfferPills({ status = 'NY', offer }: { status?: string; offer: string }) {
   return (
-    <div className="mb-7 inline-flex items-stretch rounded-full border border-[#2a6b85]/70 bg-[#071013] p-1 shadow-[0_0_28px_rgba(56,163,184,0.18)]">
+    <div className="mb-7 inline-flex items-stretch rounded-full border border-[#2f343a] bg-[#0f1113] p-1 shadow-[0_0_28px_rgba(163,230,53,0.18)]">
       <span className="inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white sm:px-4 sm:text-xs">
-        <span className="status-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#38a3b8]" />
+        <span className="status-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#a3e635]" />
         {status}
       </span>
-      <span className="inline-flex items-center rounded-full bg-[#12313c] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#9fe4f0] sm:px-4 sm:text-xs">
+      <span className="inline-flex items-center rounded-full bg-[#1e2a12] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#c9f776] sm:px-4 sm:text-xs">
         {offer}
       </span>
     </div>

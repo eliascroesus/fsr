@@ -10,7 +10,6 @@ import { readFile, rm, writeFile } from 'node:fs/promises';
 import { promisify } from 'node:util';
 import path from 'node:path';
 
-import { SUCCESS_WIN_SLUGS } from './success-win-slugs.mjs';
 
 const execFileAsync = promisify(execFile);
 
@@ -39,7 +38,7 @@ const CHEVRON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
 
 const MAIL_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`;
 
-const TICK = `<svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#38a3b8]"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>`;
+const TICK = `<svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#a3e635]"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>`;
 
 const SE_FLAG = `<svg viewBox="0 0 24 16" class="h-4 w-6 rounded-[2px]"><rect width="24" height="16" fill="#006aa7"/><rect y="6.5" width="24" height="3" fill="#fecc02"/><rect x="7" width="3" height="16" fill="#fecc02"/></svg>`;
 
@@ -48,10 +47,10 @@ const BOOKING_URL =
   'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1ghy5mwfxSxcxe-jbhtkhxSiL_AWeu26VMG8rIAXrHLi-k2ZHdMI3zW8SsUfWD4lBhtD4Kvdjc?gv=true';
 
 const CTA_GRADIENT =
-  'linear-gradient(to right, rgb(30, 74, 95) 0%, rgb(42, 107, 133) 50%, rgb(56, 163, 184) 100%)';
+  'linear-gradient(to right, rgb(132, 204, 22) 0%, rgb(163, 230, 53) 50%, rgb(190, 242, 100) 100%)';
 
 const ctaButton = (id, extra = '') =>
-  `<button type="${id === 'submitBtn' ? 'submit' : 'button'}" id="${id}" class="w-full ${extra} py-3.5 px-4 rounded-xl text-white font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(56,163,184,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
+  `<button type="${id === 'submitBtn' ? 'submit' : 'button'}" id="${id}" class="w-full ${extra} py-3.5 px-4 rounded-xl text-black font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(163,230,53,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
     <span class="flex flex-col items-center leading-tight">
       <span class="text-base sm:text-lg md:text-xl tracking-wide">${id === 'bottomCta' ? 'STARTA TESTET' : 'BOKA ETT SAMTAL'}</span>
       <span class="text-xs sm:text-sm font-semibold opacity-90">${id === 'bottomCta' ? 'WORKSHOPPEN BÖRJAR KL. 20 EST I KVÄLL' : 'FÅ GRATIS TILLGÅNG TILL VÅR 1-TIMMESKURS'}</span>
@@ -67,8 +66,8 @@ const COUNTDOWN_UNITS = [
 ];
 
 const countdownBlock = (prefix) => `
-  <div class="w-full rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-3 py-4 sm:px-5 text-center">
-    <p class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#9fe4f0] sm:text-sm">Platserna stänger om</p>
+  <div class="w-full rounded-2xl border border-[#2f343a]/60 bg-black/30 px-3 py-4 sm:px-5 text-center">
+    <p class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#c9f776] sm:text-sm">Platserna stänger om</p>
     <div class="flex justify-center gap-3 sm:gap-4">
       ${COUNTDOWN_UNITS
         .map(
@@ -82,16 +81,16 @@ const countdownBlock = (prefix) => `
   </div>`;
 
 const PREVIEW_BADGE = `
-<div style="position:fixed;left:12px;bottom:12px;z-index:60;display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:9999px;border:1px solid rgba(159,228,240,.35);background:rgba(7,16,19,.92);backdrop-filter:blur(6px);font:600 11px/1.2 Inter,system-ui,sans-serif;color:#9fe4f0;letter-spacing:.04em;">
-  <span style="width:7px;height:7px;border-radius:9999px;background:#38a3b8;flex:none;"></span>
+<div style="position:fixed;left:12px;bottom:12px;z-index:60;display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:9999px;border:1px solid rgba(201,247,118,.35);background:rgba(15,17,19,.92);backdrop-filter:blur(6px);font:600 11px/1.2 Inter,system-ui,sans-serif;color:#c9f776;letter-spacing:.04em;">
+  <span style="width:7px;height:7px;border-radius:9999px;background:#a3e635;flex:none;"></span>
   FÖRHANDSVISNING — INTE DEN RIKTIGA SIDAN
 </div>`;
 
 const SCHEDULER_FRAME = `
-  <div class="overflow-hidden rounded-2xl border border-[#2a6b85]/60 bg-white shadow-[0_0_36px_rgba(56,163,184,0.18)]">
+  <div class="overflow-hidden rounded-2xl border border-[#2f343a]/60 bg-white shadow-[0_0_36px_rgba(163,230,53,0.18)]">
     <iframe src="${BOOKING_URL}" title="Boka ditt samtal" loading="lazy" class="block h-[680px] w-full border-0 sm:h-[600px]"></iframe>
   </div>
-  <p class="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">Laddar kalendern inte? <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#9fe4f0] underline-offset-4 transition-colors hover:text-[#38a3b8] hover:underline">Öppna bokningssidan &#8599;</a></p>`;
+  <p class="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">Laddar kalendern inte? <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#c9f776] underline-offset-4 transition-colors hover:text-[#a3e635] hover:underline">Öppna bokningssidan &#8599;</a></p>`;
 
 /**
  * The Artifact viewer's CSP admits no third-party frames, so the embed would
@@ -99,11 +98,11 @@ const SCHEDULER_FRAME = `
  * and says why.
  */
 const SCHEDULER_LINK = `
-  <div class="rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-5 py-9 text-center shadow-[0_0_36px_rgba(56,163,184,0.12)]">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-3 h-10 w-10 text-[#38a3b8]"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+  <div class="rounded-2xl border border-[#2f343a]/60 bg-black/30 px-5 py-9 text-center shadow-[0_0_36px_rgba(163,230,53,0.12)]">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-3 h-10 w-10 text-[#a3e635]"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
     <p class="text-sm font-extrabold tracking-wide text-white sm:text-base">Bokning via Google Kalender</p>
     <p class="mx-auto mt-1.5 max-w-sm text-[11px] leading-relaxed text-white/45 sm:text-xs">Den riktiga kalendern är inbäddad här på sidan. Den här förhandsvisningen länkar vidare i stället, eftersom visningen blockerar inbäddade ramar.</p>
-    <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-1.5 rounded-xl px-5 py-3 text-sm font-extrabold tracking-wide text-white shadow-[0_0_28px_rgba(56,163,184,0.35)] transition-all duration-200 hover:opacity-90 sm:text-base" style="background:${CTA_GRADIENT}">Öppna bokningssidan &#8599;</a>
+    <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-1.5 rounded-xl px-5 py-3 text-sm font-extrabold tracking-wide text-black shadow-[0_0_28px_rgba(163,230,53,0.35)] transition-all duration-200 hover:opacity-90 sm:text-base" style="background:${CTA_GRADIENT}">Öppna bokningssidan &#8599;</a>
   </div>`;
 
 const SCHEDULER_BLOCK = ARTIFACT ? SCHEDULER_LINK : SCHEDULER_FRAME;
@@ -168,14 +167,11 @@ async function main() {
   );
   const playIcon = await dataUri('images/aia-assets/play-icon.svg', 'image/svg+xml');
   const logo = await dataUri('images/new-logo.png', 'image/png');
-  const wins = await Promise.all(
-    SUCCESS_WIN_SLUGS.map((slug) => dataUri(`images/success-wins/${slug}.png`, 'image/png')),
-  );
 
   const stepper = ['Test', 'Dina uppgifter', 'Boka samtal']
     .map(
       (label, i) => `
-      <div data-step-cell="${i + 1}" class="relative flex min-h-16 flex-col items-center justify-center border-r border-[#2a6b85]/40 px-1.5 py-2 text-center last:border-r-0 sm:min-h-24 sm:px-4 sm:py-3">
+      <div data-step-cell="${i + 1}" class="relative flex min-h-16 flex-col items-center justify-center border-r border-[#2f343a]/40 px-1.5 py-2 text-center last:border-r-0 sm:min-h-24 sm:px-4 sm:py-3">
         <span data-step-num class="mb-1 flex h-6 w-6 items-center justify-center rounded-full border text-[10px] font-black sm:h-8 sm:w-8 sm:text-sm">${i + 1}</span>
         <span data-step-label class="text-[9px] font-black uppercase leading-tight tracking-wide sm:text-sm">${label}</span>
       </div>`,
@@ -208,21 +204,21 @@ async function main() {
   .vsl-label { font-size:2.7778cqw; }
   @media (prefers-reduced-motion: reduce) { .vsl-pulse { animation:none } }
   /* Hero top — mirrors the same rules in globals.css. */
-  .brand-wordmark { text-shadow: 0 0 18px rgba(56,163,184,.45), 0 0 44px rgba(56,163,184,.2); }
+  .brand-wordmark { text-shadow: 0 0 18px rgba(163,230,53,.45), 0 0 44px rgba(163,230,53,.2); }
   @keyframes status-pulse { 0%,100% { opacity:1; transform:scale(1) } 50% { opacity:.45; transform:scale(.82) } }
   .status-dot { animation: status-pulse 2s ease-in-out infinite; }
   .headline-mark {
     text-decoration-line: underline;
-    text-decoration-color: #38a3b8;
+    text-decoration-color: #a3e635;
     text-decoration-thickness: 0.075em;
     text-underline-offset: 0.14em;
   }
   @media (prefers-reduced-motion: reduce) { .status-dot { animation:none } }
-  .tier { border-color: rgba(42,107,133,.4); background:#0b0f10; }
-  .tier:hover { border-color:#2a6b85; }
-  .tier[aria-pressed="true"] { border-color:#38a3b8; background:rgba(18,49,60,.85); box-shadow:0 0 28px rgba(56,163,184,.25); }
+  .tier { border-color: rgba(42,107,133,.4); background:#0a0c0d; }
+  .tier:hover { border-color:#2f343a; }
+  .tier[aria-pressed="true"] { border-color:#a3e635; background:rgba(18,49,60,.85); box-shadow:0 0 28px rgba(163,230,53,.25); }
   .tier [data-radio] { border-color: rgba(255,255,255,.3); }
-  .tier[aria-pressed="true"] [data-radio] { border-color:#9fe4f0; background:#38a3b8; }
+  .tier[aria-pressed="true"] [data-radio] { border-color:#c9f776; background:#a3e635; }
   .tier[aria-pressed="true"] [data-radio]::after { content:""; width:7px; height:4px; border-left:2.5px solid #000; border-bottom:2.5px solid #000; transform:rotate(-45deg) translate(1px,-1px); }
   input[type=checkbox]{ appearance:none;-webkit-appearance:none; }
   input[type=checkbox]:checked{ background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%2338a3b8' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e"); background-size:100% 100%; background-repeat:no-repeat; }
@@ -238,45 +234,44 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       </svg>
 
       <div class="mx-auto flex w-full max-w-5xl flex-col items-center px-4 sm:px-8 sm:py-16 lg:px-12 py-10">
-        <div class="mb-5 flex w-full flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-10">
-          <span class="brand-wordmark select-none text-lg font-black italic tracking-tight sm:text-2xl"><span class="text-white">AI</span><span class="text-[#9fe4f0]">ACQUISITION</span></span>
+        <div class="mb-6 flex w-full items-center justify-center">
           <div class="flex items-center gap-2.5">
-            <span class="rounded-full bg-gradient-to-tr from-[#38a3b8] via-[#9fe4f0] to-[#2a6b85] p-[2px]">
+            <span class="rounded-full bg-gradient-to-tr from-[#a3e635] via-[#c9f776] to-[#2f343a] p-[2px]">
               <span class="block overflow-hidden rounded-full ring-2 ring-black"><img alt="" width="48" height="48" class="h-10 w-10 object-cover sm:h-12 sm:w-12" src="${avatars[0]}"></span>
             </span>
             <div class="text-left leading-tight">
               <p class="flex items-center gap-1 text-sm font-black text-white sm:text-base">@aiacquisition
-                <svg viewBox="0 0 20 20" aria-hidden="true" class="h-4 w-4 shrink-0 text-[#38a3b8]"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M6 10.2l2.6 2.6L14 7.4" fill="none" stroke="#04191f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 20 20" aria-hidden="true" class="h-4 w-4 shrink-0 text-[#a3e635]"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M6 10.2l2.6 2.6L14 7.4" fill="none" stroke="#0f1113" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </p>
               <p class="text-xs font-medium text-white/45 sm:text-sm">AI Acquisition</p>
             </div>
           </div>
         </div>
 
-        <div class="mb-7 inline-flex items-stretch rounded-full border border-[#2a6b85]/70 bg-[#071013] p-1 shadow-[0_0_28px_rgba(56,163,184,0.18)]">
-          <span class="inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white sm:px-4 sm:text-xs"><span class="status-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#38a3b8]"></span>NY</span>
-          <span class="inline-flex items-center rounded-full bg-[#12313c] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#9fe4f0] sm:px-4 sm:text-xs">Gratis AI-workshop</span>
+        <div class="mb-7 inline-flex items-stretch rounded-full border border-[#2f343a]/70 bg-[#0f1113] p-1 shadow-[0_0_28px_rgba(163,230,53,0.18)]">
+          <span class="inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white sm:px-4 sm:text-xs"><span class="status-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#a3e635]"></span>NY</span>
+          <span class="inline-flex items-center rounded-full bg-[#1e2a12] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#c9f776] sm:px-4 sm:text-xs">AI-systemet 2026</span>
         </div>
 
-        <h1 class="mb-4 text-balance text-center text-2xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl">Så Här Tjänar Nybörjare <span class="text-[#9fe4f0]">18 105 $ Per Månad</span> I <span class="headline-mark">Återkommande Intäkter</span> (i snitt) Med AI 2026</h1>
+        <h1 class="mb-4 text-balance text-center text-3xl font-extrabold leading-[1.03] tracking-[-0.02em] text-white sm:text-5xl md:text-6xl">Så Här Tjänar Nybörjare <span class="text-[#c9f776]">18 105 $ Per Månad</span> I <span class="headline-mark">Återkommande Intäkter</span> (i snitt) Med AI 2026</h1>
 
         <p class="mb-5 max-w-2xl text-balance text-center text-sm leading-relaxed text-white/45 sm:text-base">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">8–10 timmar i veckan.</span> Allt gås igenom steg för steg på den kostnadsfria workshopen.</p>
 
-        <div class="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2a6b85]/70 bg-[#071013]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">
+        <div class="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2f343a]/70 bg-[#0f1113]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">
           <div class="flex shrink-0 -space-x-1.5">
             ${avatars.map((src, i) => `<div class="relative h-7 w-7 overflow-hidden rounded-full ring-2 ring-black sm:h-8 sm:w-8" style="z-index:${3 - i}"><img alt="" width="32" height="32" class="h-full w-full object-cover" src="${src}"></div>`).join('')}
           </div>
-          <p class="text-left text-xs font-bold text-[#9fe4f0] sm:text-sm">3 478 nybörjare anmälde sig den här veckan</p>
+          <p class="text-left text-xs font-bold text-[#c9f776] sm:text-sm">3 478 nybörjare anmälde sig den här veckan</p>
         </div>
 
         <div class="mb-8 w-full max-w-3xl">
-          <div class="vsl-frame relative aspect-video w-full overflow-hidden rounded-2xl border border-[#2a6b85]/70 bg-[#071013] shadow-[0_0_40px_rgba(56,163,184,0.18)]">
+          <div class="vsl-frame relative aspect-video w-full overflow-hidden rounded-2xl border border-[#2f343a]/70 bg-[#0f1113] shadow-[0_0_40px_rgba(163,230,53,0.18)]">
             <div id="vslEmpty" class="absolute inset-0 hidden place-items-center">
               <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/25 sm:text-xs">Platshållare för video</p>
             </div>
-            <button type="button" id="vslOverlay" aria-label="Klicka för att lyssna" class="absolute inset-0 h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38a3b8]">
+            <button type="button" id="vslOverlay" aria-label="Klicka för att lyssna" class="absolute inset-0 h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a3e635]">
               <span class="vsl-pulse absolute inset-0 block">
-                <span class="vsl-card absolute block border-solid border-white bg-[rgba(16,136,188,0.75)]" style="left:32.361%;top:19.506%;width:35.278%;height:60.988%"></span>
+                <span class="vsl-card absolute block border-solid border-white bg-[rgba(101,163,13,0.78)]" style="left:32.361%;top:19.506%;width:35.278%;height:60.988%"></span>
                 <span class="absolute block" style="left:39.931%;top:27.407%;width:20.139%;height:35.802%"><img alt="" class="h-full w-full" src="${playIcon}"></span>
                 <span class="vsl-label absolute block text-center font-bold leading-tight text-white" style="left:32.361%;top:70.617%;width:35.278%">Klicka för att lyssna</span>
               </span>
@@ -287,17 +282,17 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 
         <div id="workshop-opt-in" class="w-full scroll-mt-4">
           <div class="mx-auto mb-6 max-w-2xl">
-            <div class="grid w-full grid-cols-3 overflow-hidden rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/95">${stepper}</div>
+            <div class="grid w-full grid-cols-3 overflow-hidden rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/95">${stepper}</div>
           </div>
 
           <div class="mx-auto flex w-full max-w-2xl flex-col gap-4">
           <!-- STEP 1 - test -->
           <section data-panel="1" class="w-full">
-            <div class="w-full overflow-hidden rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 shadow-md">
-              <div class="h-1 w-full bg-white/10"><div id="quizBar" class="h-full bg-[#38a3b8] transition-[width] duration-300 ease-out" style="width:0%"></div></div>
+            <div class="w-full overflow-hidden rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 shadow-md">
+              <div class="h-1 w-full bg-white/10"><div id="quizBar" class="h-full bg-[#a3e635] transition-[width] duration-300 ease-out" style="width:0%"></div></div>
               <div class="p-6 sm:p-8">
                 <div class="mb-4 flex items-center gap-2">
-                  <span id="quizNum" class="flex h-6 w-6 items-center justify-center rounded-md bg-[#38a3b8] text-xs font-black text-black">1</span>
+                  <span id="quizNum" class="flex h-6 w-6 items-center justify-center rounded-md bg-[#a3e635] text-xs font-black text-black">1</span>
                   <span id="quizCount" class="text-[10px] font-black uppercase tracking-[0.18em] text-white/40 sm:text-xs"></span>
                 </div>
                 <h2 id="quizTitle" class="text-balance text-lg font-extrabold leading-snug text-white sm:text-2xl"></h2>
@@ -312,19 +307,19 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 
           <!-- STEP 2 - your details -->
           <section data-panel="2" class="w-full hidden">
-            <div class="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
+            <div class="w-full rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 p-6 sm:p-8 shadow-md">
               <h2 class="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">SÄKRA DIN GRATISPLATS NU</h2>
               <form id="optin" class="flex w-full flex-col gap-3">
-                <input id="fullName" required type="text" placeholder="Ditt fullständiga namn här..." class="w-full px-3 py-3 rounded-xl border-2 border-[#2a6b85]/30 bg-[#0b0f10] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]">
+                <input id="fullName" required type="text" placeholder="Ditt fullständiga namn här..." class="w-full px-3 py-3 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#a3e635] focus:border-[#a3e635]">
                 <div class="relative">
-                  <input id="email" required type="email" placeholder="Din e-postadress här...*" class="w-full py-3 pl-3 pr-11 rounded-xl border-2 border-[#2a6b85]/30 bg-[#0b0f10] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]">${MAIL_ICON}
+                  <input id="email" required type="email" placeholder="Din e-postadress här...*" class="w-full py-3 pl-3 pr-11 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#a3e635] focus:border-[#a3e635]">${MAIL_ICON}
                 </div>
                 <div class="relative">
-                  <span class="pointer-events-none absolute left-0 top-0 bottom-0 flex w-10 items-center justify-center rounded-l-md border border-r-0 border-[#2a6b85] bg-[#0b0f10]">${SE_FLAG}</span>
-                  <input id="phone" required type="tel" value="+46" placeholder="Telefonnummer" class="w-full px-4 py-3 pl-12 rounded-md border border-[#2a6b85] bg-[#0b0f10] text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]">
+                  <span class="pointer-events-none absolute left-0 top-0 bottom-0 flex w-10 items-center justify-center rounded-l-md border border-r-0 border-[#2f343a] bg-[#0a0c0d]">${SE_FLAG}</span>
+                  <input id="phone" required type="tel" value="+46" placeholder="Telefonnummer" class="w-full px-4 py-3 pl-12 rounded-md border border-[#2f343a] bg-[#0a0c0d] text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#a3e635] focus:border-[#a3e635]">
                 </div>
                 <div class="flex items-start gap-3 py-1">
-                  <input id="receiveGiftTop" type="checkbox" class="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#38a3b8] bg-[#0b0f10] focus:ring-[#38a3b8] focus:ring-2">
+                  <input id="receiveGiftTop" type="checkbox" class="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#a3e635] bg-[#0a0c0d] focus:ring-[#a3e635] focus:ring-2">
                   <label for="receiveGiftTop" class="cursor-pointer text-xs font-medium leading-snug text-white/75 sm:text-sm">🎁 Jag vill inte dela mitt telefonnummer och missar chansen att vinna en MacBook, iPhone eller 1 000 $</label>
                 </div>
                 <p class="text-[9px] sm:text-[10px] text-gray-500 text-center leading-tight">Genom att ange ditt telefonnummer godkänner du att vi skickar sms om ditt deltagande i webbinariet. Svara STOP när som helst för att avsluta.</p>
@@ -336,16 +331,16 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 
           <!-- STEP 3 - book a call -->
           <section data-panel="3" class="w-full hidden">
-            <div class="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
+            <div class="w-full rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 p-6 sm:p-8 shadow-md">
               <div class="mb-5 flex justify-center">
-                <span class="flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#9fe4f0] bg-[#38a3b8] shadow-[0_0_28px_rgba(56,163,184,0.35)]">
+                <span class="flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#c9f776] bg-[#a3e635] shadow-[0_0_28px_rgba(163,230,53,0.35)]">
                   <svg viewBox="0 0 20 20" fill="currentColor" class="h-7 w-7 text-black"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                 </span>
               </div>
               <h2 class="mb-2 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">VÄLJ TID FÖR DITT SAMTAL</h2>
               <p class="mb-6 text-center text-xs text-white/60 sm:text-sm" id="callLine"></p>
               <div class="mb-3">${SCHEDULER_BLOCK}</div>
-              <dl class="mb-5 grid gap-2 rounded-2xl border border-[#2a6b85]/60 bg-black/30 px-4 py-4 text-left" id="summary"></dl>
+              <dl class="mb-5 grid gap-2 rounded-2xl border border-[#2f343a]/60 bg-black/30 px-4 py-4 text-left" id="summary"></dl>
               <div class="mt-3">${PRIVACY}</div>
             </div>
           </section>
@@ -355,13 +350,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
           </div>
         </div>
 
-        <div class="w-full mt-16">
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8 drop-shadow-lg">Vad folk säger</h2>
-          <div class="columns-1 sm:columns-2 lg:columns-3 gap-4">
-            ${wins.map((src, i) => `<div class="break-inside-avoid mb-4"><img alt="Kundresultat ${i + 1}" width="400" height="300" loading="lazy" class="w-full rounded-lg shadow-md" src="${src}"></div>`).join('')}
-          </div>
-          <div class="flex justify-center mt-8">${ctaButton('bottomCta', 'max-w-2xl')}</div>
-        </div>
+        <div class="mt-12 flex w-full justify-center">${ctaButton('bottomCta', 'max-w-2xl')}</div>
       </div>
     </div>
   </main>
@@ -374,9 +363,9 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       <p class="text-neutral-400">In a survey of over 660 businesses with over 100 responding, business owners averaged $18,105 in monthly revenue after implementing our system.</p>
       <p class="text-neutral-400">Also NOT GOOGLE or FACEBOOK: This site is not a part of the Google website, Google Inc, Facebook/Meta website, or Meta, Inc. Additionally, This site is NOT endorsed by Google or Meta in any way.</p>
       <div class="flex justify-center space-x-8">
-        <a class="text-neutral-400 hover:text-[#38a3b8] transition-colors" href="https://www.aiacquisition.com/privacy-policy">Integritetspolicy</a>
-        <a class="text-neutral-400 hover:text-[#38a3b8] transition-colors" href="https://www.aiacquisition.com/terms-of-service">Användarvillkor</a>
-        <a class="text-neutral-400 hover:text-[#38a3b8] transition-colors" href="mailto:support@aiarbitrageagency.com">Kontakta oss</a>
+        <a class="text-neutral-400 hover:text-[#a3e635] transition-colors" href="https://www.aiacquisition.com/privacy-policy">Integritetspolicy</a>
+        <a class="text-neutral-400 hover:text-[#a3e635] transition-colors" href="https://www.aiacquisition.com/terms-of-service">Användarvillkor</a>
+        <a class="text-neutral-400 hover:text-[#a3e635] transition-colors" href="mailto:support@aiarbitrageagency.com">Kontakta oss</a>
       </div>
       <p class="text-neutral-400">© <span id="year"></span> AI Acquisition LLC. Med ensamrätt.</p>
     </div>
@@ -435,10 +424,10 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     panels.forEach(function(p){ p.classList.toggle('hidden', +p.dataset.panel !== state.step); });
     cells.forEach(function(c){
       var n = +c.dataset.stepCell, on = n <= state.step, active = n === state.step;
-      c.classList.toggle('bg-[#12313c]/85', active);
+      c.classList.toggle('bg-[#1e2a12]/85', active);
       var num = c.querySelector('[data-step-num]'), lab = c.querySelector('[data-step-label]');
       num.className = 'mb-1 flex h-6 w-6 items-center justify-center rounded-full border text-[10px] font-black sm:h-8 sm:w-8 sm:text-sm ' +
-        (on ? 'border-[#9fe4f0] bg-[#38a3b8] text-black' : 'border-white/25 text-white/45');
+        (on ? 'border-[#c9f776] bg-[#a3e635] text-black' : 'border-white/25 text-white/45');
       lab.className = 'text-[9px] font-black uppercase leading-tight tracking-wide sm:text-sm ' + (on ? 'text-white' : 'text-white/40');
     });
   }
@@ -457,7 +446,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     document.getElementById('quizNum').textContent = state.qi + 1;
     document.getElementById('quizCount').textContent = 'Fråga ' + (state.qi + 1) + ' av ' + QUIZ.length;
     document.getElementById('quizTitle').innerHTML =
-      q.title + '<span class="ml-1 text-[#38a3b8]" aria-label="Den här frågan är obligatorisk.">*</span>';
+      q.title + '<span class="ml-1 text-[#a3e635]" aria-label="Den här frågan är obligatorisk.">*</span>';
     document.getElementById('quizDesc').textContent = q.description;
     document.getElementById('quizBar').style.width =
       (((state.qi + (chosen ? 1 : 0)) / QUIZ.length) * 100) + '%';
@@ -465,10 +454,10 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     document.getElementById('quizOptions').innerHTML = q.options.map(function(o){
       var on = chosen === o[0];
       return '<button type="button" role="radio" aria-checked="' + on + '" data-key="' + o[0] + '" ' +
-        'class="flex w-full items-center gap-3 rounded-xl border-2 px-3 py-3 text-left transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38a3b8] ' +
-        (on ? 'border-[#38a3b8] bg-[#12313c]/85 shadow-[0_0_20px_rgba(56,163,184,0.2)]' : 'border-[#2a6b85]/40 bg-[#111c21] hover:border-[#2a6b85] hover:bg-[#16242a]') + '">' +
+        'class="flex w-full items-center gap-3 rounded-xl border-2 px-3 py-3 text-left transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a3e635] ' +
+        (on ? 'border-[#a3e635] bg-[#1e2a12]/85 shadow-[0_0_20px_rgba(163,230,53,0.2)]' : 'border-[#2f343a]/40 bg-[#15181c] hover:border-[#2f343a] hover:bg-[#1b1f24]') + '">' +
         '<span aria-hidden="true" class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border text-xs font-black ' +
-        (on ? 'border-[#9fe4f0] bg-[#38a3b8] text-black' : 'border-white/20 text-white/50') + '">' + o[0] + '</span>' +
+        (on ? 'border-[#c9f776] bg-[#a3e635] text-black' : 'border-white/20 text-white/50') + '">' + o[0] + '</span>' +
         '<span class="text-sm font-semibold text-white sm:text-base">' + o[1] + '</span></button>';
     }).join('');
 
@@ -541,7 +530,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     rows.push(['Workshop', 'Kl. 20.00 EST i kväll']);
     document.getElementById('summary').innerHTML = rows.map(function(r){
       return '<div class="flex items-start justify-between gap-3">' +
-        '<dt class="text-[10px] font-black uppercase tracking-[0.18em] text-[#9fe4f0] sm:text-xs">' + r[0] + '</dt>' +
+        '<dt class="text-[10px] font-black uppercase tracking-[0.18em] text-[#c9f776] sm:text-xs">' + r[0] + '</dt>' +
         '<dd class="break-all text-xs font-semibold text-white sm:text-sm">' + r[1] + '</dd></div>';
     }).join('');
 

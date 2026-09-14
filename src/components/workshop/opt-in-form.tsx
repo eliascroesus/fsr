@@ -11,7 +11,7 @@ import type { LeadDetails } from './types';
 const CHECKBOX_ID = 'receiveGiftTop';
 
 const INPUT_CLASS =
-  'w-full px-3 py-3 rounded-xl border-2 border-[#2a6b85]/30 bg-[#0b0f10] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]';
+  'w-full px-3 py-3 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#a3e635] focus:border-[#a3e635]';
 
 export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void }) {
   const [fullName, setFullName] = useState('');
@@ -31,7 +31,7 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
   };
 
   return (
-    <div className="w-full rounded-2xl border border-[#2a6b85]/70 bg-[#071013]/85 p-6 sm:p-8 shadow-md">
+    <div className="w-full rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 p-6 sm:p-8 shadow-md">
         <h2 className="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">
           SÄKRA DIN GRATISPLATS NU
         </h2>
@@ -52,7 +52,7 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
               required
               data-whop-tracked="email"
               placeholder="Din e-postadress här...*"
-              className="w-full py-3 pl-3 pr-11 rounded-xl border-2 border-[#2a6b85]/30 bg-[#0b0f10] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]"
+              className="w-full py-3 pl-3 pr-11 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#a3e635] focus:border-[#a3e635]"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -74,11 +74,11 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
                 required: !declinePhone,
                 'data-whop-tracked': 'phone',
               }}
-              inputClass="w-full px-4 py-3 rounded-md border border-[#2a6b85] bg-[#0b0f10] pl-12 text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#38a3b8] focus:border-[#38a3b8]"
+              inputClass="w-full px-4 py-3 rounded-md border border-[#2f343a] bg-[#0a0c0d] pl-12 text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#a3e635] focus:border-[#a3e635]"
               buttonStyle={{
                 backgroundColor: 'rgb(11, 15, 16)',
                 color: 'white',
-                border: '1px solid rgb(42, 107, 133)',
+                border: '1px solid rgb(163, 230, 53)',
               }}
             />
           </div>
@@ -89,7 +89,7 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
               type="checkbox"
               checked={declinePhone}
               onChange={(e) => setDeclinePhone(e.target.checked)}
-              className="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#38a3b8] bg-[#0b0f10] text-[#38a3b8] focus:ring-[#38a3b8] focus:ring-2"
+              className="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#a3e635] bg-[#0a0c0d] text-[#a3e635] focus:ring-[#a3e635] focus:ring-2"
             />
             <label
               htmlFor={CHECKBOX_ID}
