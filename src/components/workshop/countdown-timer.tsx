@@ -2,62 +2,18 @@
 
 import { useEffect, useState } from 'react';
 
-const WORKSHOP_TIME_ZONE = 'America/New_York';
-const WORKSHOP_HOUR = 20; // 8PM EST/EDT
-
-type Parts = { year: number; month: number; day: number; hour: number; minute: number; second: number };
-
-const partsFormatter = new Intl.DateTimeFormat('en-US', {
-  timeZone: WORKSHOP_TIME_ZONE,
-  hour12: false,
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-  hour: '2-digit',
-  minute: '2-digit',
-  second: '2-digit',
-});
-
-/** Read a UTC instant as wall-clock parts in the workshop's time zone. */
-function zonedParts(at: Date): Parts {
-  const map: Record<string, string> = {};
-  for (const { type, value } of partsFormatter.formatToParts(at)) {
-    if (type !== 'literal') map[type] = value;
-  }
-  return {
-    year: Number(map.year),
-    month: Number(map.month),
-    day: Number(map.day),
-    // Intl emits hour 24 for midnight under hour12:false in some engines.
-    hour: Number(map.hour) % 24,
-    minute: Number(map.minute),
-    second: Number(map.second),
-  };
-}
-
-/** Offset in ms between the zone's wall clock and UTC at a given instant. */
-function zoneOffsetMs(at: Date): number {
-  const p = zonedParts(at);
-  return Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second) - at.getTime();
-}
-
 /**
- * The next 8PM in New York, as a UTC timestamp. The offset is resolved twice so
- * the result stays correct across a DST boundary.
+ * The offer closes at the end of the visitor's own day, so the deadline is
+ * real wherever they are rather than pinned to one city's clock.
  */
-function nextWorkshopStart(now: Date): number {
-  const p = zonedParts(now);
-  const rollToTomorrow = p.hour >= WORKSHOP_HOUR;
-  const wallClock = Date.UTC(p.year, p.month - 1, p.day + (rollToTomorrow ? 1 : 0), WORKSHOP_HOUR, 0, 0);
-
-  let utc = wallClock - zoneOffsetMs(now);
-  utc = wallClock - zoneOffsetMs(new Date(utc));
-  return utc;
+function deadlineFrom(now: Date): number {
+  const end = new Date(now);
+  end.setHours(24, 0, 0, 0);
+  return end.getTime();
 }
 
 function remainingFrom(now: Date) {
-  const diff = Math.max(0, nextWorkshopStart(now) - now.getTime());
-  const totalSeconds = Math.floor(diff / 1000);
+  const totalSeconds = Math.max(0, Math.floor((deadlineFrom(now) - now.getTime()) / 1000));
 
   return {
     hours: Math.floor(totalSeconds / 3600),
@@ -98,7 +54,7 @@ export function CountdownTimer() {
   return (
     <div className="w-full rounded-2xl border border-[#2f343a]/60 bg-black/30 px-3 py-4 sm:px-5 text-center">
       <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#ceff62] sm:text-sm">
-        Platserna stänger om
+        Möjligheten stänger om
       </p>
       <div className="flex justify-center gap-3 sm:gap-4">
         <TimeCell value={remaining.hours} label="timmar" />

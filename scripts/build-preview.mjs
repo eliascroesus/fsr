@@ -67,7 +67,7 @@ const ctaButton = (id, extra = '') =>
   `<button type="${id === 'submitBtn' ? 'submit' : 'button'}" id="${id}" class="w-full ${extra} py-3.5 px-4 rounded-xl text-black font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(152,221,41,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
     <span class="flex flex-col items-center leading-tight">
       <span class="text-base sm:text-lg md:text-xl tracking-wide">${id === 'bottomCta' ? 'STARTA TESTET' : 'BOKA ETT SAMTAL'}</span>
-      <span class="text-xs sm:text-sm font-semibold opacity-90">${id === 'bottomCta' ? 'WORKSHOPPEN BÖRJAR KL. 20 EST I KVÄLL' : 'FÅ GRATIS TILLGÅNG TILL VÅR 1-TIMMESKURS'}</span>
+      <span class="text-xs sm:text-sm font-semibold opacity-90">${id === 'bottomCta' ? 'TAR 60 SEKUNDER — GRATIS 1-TIMMESKURS INGÅR' : 'FÅ GRATIS TILLGÅNG TILL VÅR 1-TIMMESKURS'}</span>
     </span>${CHEVRON}
   </button>`;
 
@@ -81,7 +81,7 @@ const COUNTDOWN_UNITS = [
 
 const countdownBlock = (prefix) => `
   <div class="w-full rounded-2xl border border-[#2f343a]/60 bg-black/30 px-3 py-4 sm:px-5 text-center">
-    <p class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#ceff62] sm:text-sm">Platserna stänger om</p>
+    <p class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#ceff62] sm:text-sm">Möjligheten stänger om</p>
     <div class="flex justify-center gap-3 sm:gap-4">
       ${COUNTDOWN_UNITS
         .map(
@@ -227,6 +227,7 @@ async function main() {
     background-image: linear-gradient(180deg, #ceff62 0%, #98dd29 100%);
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent; color: transparent;
+    filter: drop-shadow(0 0 7px rgba(152,221,41,.2)) drop-shadow(0 0 20px rgba(152,221,41,.11));
   }
   .headline-mark {
     text-decoration-line: underline;
@@ -262,7 +263,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 
         <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Så Här Tjänar Nybörjare <span class="headline-accent">18 105 $ Per Månad</span> I <span class="headline-mark">Återkommande Intäkter</span> (i snitt) Med AI 2026</h1>
 
-        <p class="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">8–10 timmar i veckan.</span> Allt gås igenom steg för steg på den kostnadsfria workshopen.</p>
+        <p class="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">8–10 timmar i veckan.</span> Vi går igenom exakt hur du kommer igång på ditt samtal.</p>
 
         <div class="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2f343a]/70 bg-[#0f1113]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">
           <div class="flex shrink-0 -space-x-1.5">
@@ -315,7 +316,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
           <!-- STEP 2 - your details -->
           <section data-panel="2" class="w-full hidden">
             <div class="w-full rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 p-6 sm:p-8 shadow-md">
-              <h2 class="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">SÄKRA DIN GRATISPLATS NU</h2>
+              <h2 class="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">VART SKICKAR VI DIN TILLGÅNG?</h2>
               <form id="optin" class="flex w-full flex-col gap-3">
                 <input id="fullName" required type="text" placeholder="Ditt fullständiga namn här..." class="w-full px-3 py-3 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#98dd29] focus:border-[#98dd29]">
                 <div class="relative">
@@ -329,7 +330,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
                   <input id="receiveGiftTop" type="checkbox" class="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#98dd29] bg-[#0a0c0d] focus:ring-[#98dd29] focus:ring-2">
                   <label for="receiveGiftTop" class="cursor-pointer text-xs font-medium leading-snug text-white/75 sm:text-sm">🎁 Jag vill inte dela mitt telefonnummer och missar chansen att vinna en MacBook, iPhone eller 1 000 $</label>
                 </div>
-                <p class="text-[9px] sm:text-[10px] text-gray-500 text-center leading-tight">Genom att ange ditt telefonnummer godkänner du att vi skickar sms om ditt deltagande i webbinariet. Svara STOP när som helst för att avsluta.</p>
+                <p class="text-[9px] sm:text-[10px] text-gray-500 text-center leading-tight">Genom att ange ditt telefonnummer godkänner du att vi skickar sms om ditt samtal. Svara STOP när som helst för att avsluta.</p>
                 ${ctaButton('submitBtn')}
                 ${PRIVACY}
               </form>
@@ -400,19 +401,13 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
   }
   squares.appendChild(frag);
 
-  // ---- countdown to the next 8PM America/New_York -------------------------
-  var fmt = new Intl.DateTimeFormat('en-US', { timeZone:'America/New_York', hour12:false,
-    year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit' });
-  function parts(d){ var o={}; fmt.formatToParts(d).forEach(function(p){ if(p.type!=='literal') o[p.type]=+p.value; }); o.hour%=24; return o; }
-  function offset(d){ var p=parts(d); return Date.UTC(p.year,p.month-1,p.day,p.hour,p.minute,p.second)-d.getTime(); }
-  function target(now){
-    var p=parts(now), wall=Date.UTC(p.year,p.month-1,p.day+(p.hour>=20?1:0),20,0,0);
-    var utc=wall-offset(now); return wall-offset(new Date(utc));
-  }
+  // ---- countdown: the offer closes at the end of the visitor's own day ----
+  function deadline(now){ var d = new Date(now); d.setHours(24,0,0,0); return d.getTime(); }
   function pad(n){ return String(n).padStart(2,'0'); }
   function tick(){
-    var now=new Date(), s=Math.max(0, Math.floor((target(now)-now.getTime())/1000));
-    var v={ hours:Math.floor(s/3600), minutes:Math.floor(s%3600/60), seconds:s%60 };
+    var now = new Date();
+    var s = Math.max(0, Math.floor((deadline(now) - now.getTime()) / 1000));
+    var v = { hours: Math.floor(s/3600), minutes: Math.floor(s%3600/60), seconds: s%60 };
     document.querySelectorAll('[data-cd]').forEach(function(el){
       el.textContent = pad(v[el.getAttribute('data-cd').split('-')[1]]);
     });
@@ -534,8 +529,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     if (goal) rows.push(['Mål', goal[1]]);
     rows.push(['E-post', state.lead.email]);
     if (!state.lead.declined) rows.push(['Telefon', state.lead.phone]);
-    rows.push(['Workshop', 'Kl. 20.00 EST i kväll']);
-    document.getElementById('summary').innerHTML = rows.map(function(r){
+        document.getElementById('summary').innerHTML = rows.map(function(r){
       return '<div class="flex items-start justify-between gap-3">' +
         '<dt class="text-[10px] font-black uppercase tracking-[0.18em] text-[#ceff62] sm:text-xs">' + r[0] + '</dt>' +
         '<dd class="break-all text-xs font-semibold text-white sm:text-sm">' + r[1] + '</dd></div>';

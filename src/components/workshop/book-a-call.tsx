@@ -99,25 +99,19 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
               <dd className="text-xs font-semibold text-white sm:text-sm">{lead.phone}</dd>
             </div>
           )}
-          <div className="flex items-start justify-between gap-3">
-            <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#ceff62] sm:text-xs">
-              Workshop
-            </dt>
-            <dd className="text-xs font-semibold text-white sm:text-sm">Kl. 20.00 EST i kväll</dd>
-          </div>
         </dl>
 
         <ul className="mb-5 flex flex-col gap-2.5">
           <li className="flex items-start gap-2.5 text-xs font-medium text-white/85 sm:text-sm">
             <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#98dd29]" aria-hidden="true" />
-            Din länk är på väg till {lead.email} — kolla skräpposten om den inte dykt upp om ett
-            par minuter.
+            Din tillgång till 1-timmeskursen är på väg till {lead.email} — kolla skräpposten om
+            den inte dykt upp om ett par minuter.
           </li>
           {lead.declinedPhone ? null : (
             <li className="flex items-start gap-2.5 text-xs font-medium text-white/85 sm:text-sm">
               <MessageSquare className="mt-0.5 h-4 w-4 shrink-0 text-[#98dd29]" aria-hidden="true" />
-              Vi skickar en påminnelse via sms innan vi kör igång. Svara STOP när som helst för
-              att avsluta.
+              Vi skickar en påminnelse via sms innan ditt samtal. Svara STOP när som helst för att
+              avsluta.
             </li>
           )}
         </ul>

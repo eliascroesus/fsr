@@ -37,8 +37,8 @@ export default function WorkshopVTestPage() {
                 {line}{' '}
               </span>
             ))}
-            <span className="font-medium italic text-white/60">8–10 timmar i veckan.</span> Allt gås
-            igenom steg för steg på den kostnadsfria workshopen.
+            <span className="font-medium italic text-white/60">8–10 timmar i veckan.</span> Vi går igenom exakt hur
+            du kommer igång på ditt samtal.
           </p>
 
           <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2f343a]/70 bg-[#0f1113]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">

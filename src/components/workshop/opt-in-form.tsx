@@ -33,7 +33,7 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
   return (
     <div className="w-full rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 p-6 sm:p-8 shadow-md">
         <h2 className="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">
-          SÄKRA DIN GRATISPLATS NU
+          VART SKICKAR VI DIN TILLGÅNG?
         </h2>
 
         <form id={`${CHECKBOX_ID}-form`} onSubmit={handleSubmit} className="flex w-full flex-col gap-3">
@@ -101,8 +101,8 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
           </div>
 
           <p className="text-[9px] sm:text-[10px] text-gray-500 text-center leading-tight">
-            Genom att ange ditt telefonnummer godkänner du att vi skickar sms om ditt deltagande i
-            webbinariet. Svara STOP när som helst för att avsluta.
+            Genom att ange ditt telefonnummer godkänner du att vi skickar sms om ditt
+            samtal. Svara STOP när som helst för att avsluta.
           </p>
 
           <CtaButton
