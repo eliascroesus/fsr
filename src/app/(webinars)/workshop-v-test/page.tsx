@@ -20,7 +20,7 @@ export default function WorkshopVTestPage() {
     <div className="min-h-screen flex flex-col bg-black">
       <AnimatedGridPattern className="fixed inset-0 h-full w-full -z-10" />
 
-      <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 py-6 sm:px-8 sm:py-16 lg:px-12">
+      <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
         {/* `contents` keeps these children in the parent's flex flow. */}
         <div className="contents">
           <OfferPills offer="AI-systemet 2026" />

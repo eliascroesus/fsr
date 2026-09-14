@@ -255,7 +255,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
         <svg x="-1" y="-1" class="overflow-visible" id="squares"></svg>
       </svg>
 
-      <div class="mx-auto flex w-full max-w-5xl flex-col items-center px-4 py-6 sm:px-8 sm:py-16 lg:px-12">
+      <div class="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
         <div class="mb-7 inline-flex items-stretch rounded-full border border-[#2f343a]/70 bg-[#0f1113] p-1 shadow-[0_0_28px_rgba(152,221,41,0.18)]">
           <span class="inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white sm:px-4 sm:text-xs"><span class="status-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#98dd29]"></span>NY</span>
           <span class="inline-flex items-center rounded-full bg-[#1e2a12] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#ceff62] sm:px-4 sm:text-xs">AI-systemet 2026</span>
