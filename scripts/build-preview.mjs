@@ -56,8 +56,9 @@ const TICK = `<svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-3.5 w
 
 const SE_FLAG = `<svg viewBox="0 0 24 16" class="h-4 w-6 rounded-[2px]"><rect width="24" height="16" fill="#006aa7"/><rect y="6.5" width="24" height="3" fill="#fecc02"/><rect x="7" width="3" height="16" fill="#fecc02"/></svg>`;
 
-/** Cinema8 media id for the VSL, and its player script. */
+/** Cinema8 media ids for the two players, and the player script. */
 const VSL_MEDIA_ID = 'oJKx7gbO';
+const CLOSING_MEDIA_ID = 'mJdb4E5D';
 const CINEMA8_PLAYER_SRC = 'https://static-01.cinema8.com/embed/player.js';
 
 /**
@@ -74,6 +75,16 @@ const VSL_BODY = ARTIFACT
     </div>`
   : `<cinema8-player media-id="${VSL_MEDIA_ID}" style="position:absolute;top:0;left:0;width:100%;height:100%"></cinema8-player>`;
 
+/** The closing video, same story — vertical source, so it gets a 9:16 frame. */
+const CLOSING_BODY = ARTIFACT
+  ? `<div class="absolute inset-0 grid place-items-center px-6 text-center">
+      <div>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/30 sm:text-xs">Video</p>
+        <p class="mx-auto mt-2 max-w-xs text-[11px] leading-relaxed text-white/40 sm:text-xs">Videon spelas upp här på sidan. Den här förhandsvisningen kan inte ladda spelaren, eftersom visningen blockerar externa skript.</p>
+      </div>
+    </div>`
+  : `<cinema8-player media-id="${CLOSING_MEDIA_ID}" autoplay="false" style="position:absolute;top:0;left:0;width:100%;height:100%"></cinema8-player>`;
+
 /** Google Calendar appointment schedule embedded on the booking step. */
 const BOOKING_URL =
   'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1ghy5mwfxSxcxe-jbhtkhxSiL_AWeu26VMG8rIAXrHLi-k2ZHdMI3zW8SsUfWD4lBhtD4Kvdjc?gv=true';
@@ -82,10 +93,10 @@ const CTA_GRADIENT =
   'linear-gradient(to right, rgb(74, 180, 56) 0%, rgb(95, 214, 62) 50%, rgb(168, 247, 107) 100%)';
 
 const ctaButton = (id, extra = '') =>
-  `<button type="${id === 'submitBtn' ? 'submit' : 'button'}" id="${id}" class="w-full ${extra} py-3.5 px-4 rounded-xl text-black font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(79,209,47,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
+  `<button type="submit" id="${id}" class="w-full ${extra} py-3.5 px-4 rounded-xl text-black font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(79,209,47,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
     <span class="flex flex-col items-center leading-tight">
-      <span class="text-base sm:text-lg md:text-xl tracking-wide">${id === 'bottomCta' ? 'SE OM DU PASSAR – STARTA TESTET' : 'BOKA ETT SAMTAL'}</span>
-      <span class="text-xs sm:text-sm font-semibold opacity-90">${id === 'bottomCta' ? '4 FRÅGOR · 60 SEKUNDER · GRATIS 1-TIMMESKURS' : 'FÅ GRATIS TILLGÅNG TILL VÅR 1-TIMMESKURS'}</span>
+      <span class="text-base sm:text-lg md:text-xl tracking-wide">BOKA ETT SAMTAL</span>
+      <span class="text-xs sm:text-sm font-semibold opacity-90">FÅ GRATIS TILLGÅNG TILL VÅR 1-TIMMESKURS</span>
     </span>${CHEVRON}
   </button>`;
 
@@ -357,7 +368,13 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
           </div>
         </div>
 
-        <div class="mt-12 flex w-full justify-center">${ctaButton('bottomCta', 'max-w-2xl')}</div>
+        <div class="mt-12 flex w-full justify-center">
+          <div class="w-full max-w-[340px]">
+            <div class="vsl-frame relative aspect-[9/16] w-full overflow-hidden rounded-2xl border border-[#2f343a]/70 bg-[#0f1113] shadow-[0_0_40px_rgba(79,209,47,0.18)]">
+              ${CLOSING_BODY}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -518,10 +535,6 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     }).join('');
 
     goto(3);
-  });
-
-  document.getElementById('bottomCta').addEventListener('click', function(){
-    document.getElementById('workshop-opt-in').scrollIntoView({ behavior:'smooth', block:'start' });
   });
 
   render();

@@ -222,15 +222,12 @@ the whole funnel. Counts down to the end of the visitor's own local day.
 
 ---
 
-## 10. Bottom CTA
+## 10. Closing video
 
-Full-width button, max 672px, centred, 48px below the funnel. Scrolls back up to
-the test.
-
-| Text | Size | Weight | Colour |
-| --- | --- | --- | --- |
-| `SE OM DU PASSAR – STARTA TESTET` | 20 / 16px | 800 | black on the green gradient |
-| `4 FRÅGOR · 60 SEKUNDER · GRATIS 1-TIMMESKURS` | 14 / 12px | 600 | black, 90% opacity |
+No text. A second Cinema8 player, 48px below the funnel and centred: a vertical
+source, so it sits in a 9:16 frame capped at 340px wide rather than letterboxed
+inside a 16:9 one. Same frame styling as the VSL — `rounded-2xl`, `#2f343a`
+border, green glow — and it does not autoplay.
 
 ---
 
@@ -260,8 +257,6 @@ the real pages exist.
 
 ```
 ┌──────────────────────────────────────┐
-│  ● NY | HIGH TICKET CLOSING          │  pills, 24px from top
-│                                      │
 │  H1 — promise + guarantee            │  52/27px, 3 emphasis styles
 │  sub — 4 fragments, 3 weights        │  16.5/13.2px
 │  ◉◉◉ 178 nybörjare …                 │  social proof pill
@@ -275,7 +270,8 @@ the real pages exist.
 │  ┌── countdown ──────────────┐       │  fixed slot below the card
 │  └───────────────────────────┘       │
 │                                      │
-│  [ SE OM DU PASSAR – STARTA TESTET ] │  bottom CTA
+│  ┌─ VIDEO 9:16 ─┐                    │  closing video, 340px wide
+│  └──────────────┘                    │
 │  footer — 4 legal paragraphs         │
 └──────────────────────────────────────┘
 ```

@@ -1,8 +1,7 @@
 import Image from 'next/image';
 
 import { Mark } from '@/components/workshop/hero-top';
-import { ScrollToOptInButton } from '@/components/workshop/scroll-to-opt-in-button';
-import { VideoPlaceholder } from '@/components/workshop/video-placeholder';
+import { CLOSING_MEDIA_ID, VideoPlaceholder } from '@/components/workshop/video-placeholder';
 import { WorkshopOptIn } from '@/components/workshop/workshop-opt-in';
 
 const SOCIAL_PROOF_AVATARS = [
@@ -71,8 +70,15 @@ export default function WorkshopVTestPage() {
 
         <WorkshopOptIn />
 
+        {/* Closing video. Vertical source, so it gets a 9:16 frame at phone
+            width rather than a letterboxed 16:9 one, and it waits to be played. */}
         <div className="mt-12 flex w-full justify-center">
-          <ScrollToOptInButton />
+          <VideoPlaceholder
+            mediaId={CLOSING_MEDIA_ID}
+            orientation="portrait"
+            autoplay={false}
+            className="w-full max-w-[340px]"
+          />
         </div>
       </div>
     </div>
