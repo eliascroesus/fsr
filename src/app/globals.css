@@ -10,7 +10,7 @@
    * `text-muted-foreground` and `hover:text-primary`, and the rest of the page
    * on `bg-black`. The live stylesheet was not reachable from this environment,
    * so the token values below are set to a dark root that matches the black
-   * page and maps `--primary` onto the brand teal (#98dd29). Swap the block for
+   * page and maps `--primary` onto the brand teal (#4fd12f). Swap the block for
    * the commented light values if the original footer is meant to render white.
    */
   :root {
@@ -23,20 +23,20 @@
     --muted: 210 10% 12%;
     --muted-foreground: 0 0% 63%;
 
-    --accent: 82 40% 12%;
+    --accent: 112 40% 12%;
     --accent-foreground: 0 0% 98%;
 
     --secondary: 210 10% 12%;
     --secondary-foreground: 0 0% 98%;
 
-    /* #98dd29 */
-    --primary: 82 78% 55%;
+    /* #4fd12f */
+    --primary: 112 63% 50%;
     --primary-foreground: 0 0% 4%;
 
     /* #2f343a */
     --border: 220 8% 21%;
     --input: 220 8% 21%;
-    --ring: 82 78% 55%;
+    --ring: 112 63% 50%;
 
     --radius: 0.5rem;
   }
@@ -102,8 +102,8 @@
 
 .phone-input-container .react-tel-input .form-control:focus {
   outline: none;
-  border-color: #98dd29;
-  box-shadow: 0 0 0 2px #98dd29;
+  border-color: #4fd12f;
+  box-shadow: 0 0 0 2px #4fd12f;
 }
 
 .phone-input-container .react-tel-input .flag-dropdown {
@@ -135,11 +135,11 @@
 }
 
 .phone-input-container .react-tel-input .selected-flag .arrow {
-  border-top-color: #ceff62;
+  border-top-color: #a8f76b;
 }
 
 .phone-input-container .react-tel-input .selected-flag .arrow.up {
-  border-bottom-color: #ceff62;
+  border-bottom-color: #a8f76b;
 }
 
 .phone-input-container .react-tel-input .country-list {
@@ -158,7 +158,7 @@
 }
 
 .phone-input-container .react-tel-input .country-list .country .dial-code {
-  color: #ceff62;
+  color: #a8f76b;
 }
 
 .phone-input-container .react-tel-input .country-list .search {
@@ -194,32 +194,15 @@
   container-type: inline-size;
 }
 
-.vsl-pulse {
-  animation: vsl-pulse 1.3333333333333333s infinite;
-}
 
-.vsl-card {
-  border-radius: 1.6667cqw;
-  border-width: 0.0781cqw;
-}
-
-.vsl-label {
-  font-size: 2.7778cqw;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .vsl-pulse {
-    animation: none;
-  }
-}
 
 /* --- Hero top ------------------------------------------------------------ */
 
 /* Soft halo behind the wordmark, so it reads as a mark rather than as text. */
 .brand-wordmark {
   text-shadow:
-    0 0 18px rgba(152, 221, 41, 0.45),
-    0 0 44px rgba(152, 221, 41, 0.2);
+    0 0 18px rgba(79, 209, 47, 0.45),
+    0 0 44px rgba(79, 209, 47, 0.2);
 }
 
 /* Live indicator on the status pill. */
@@ -261,20 +244,20 @@
 
 /* Vertical gradient on the emphasised phrase, light at the top. */
 .headline-accent {
-  background-image: linear-gradient(180deg, #ceff62 0%, #98dd29 100%);
+  background-image: linear-gradient(180deg, #a8f76b 0%, #4fd12f 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   /* drop-shadow, not text-shadow: the glyphs are transparent and painted by
      the clipped gradient, so the filter has to act on the rendered result. */
-  filter: drop-shadow(0 0 8px rgba(152, 221, 41, 0.32))
-    drop-shadow(0 0 24px rgba(152, 221, 41, 0.18));
+  filter: drop-shadow(0 0 8px rgba(79, 209, 47, 0.32))
+    drop-shadow(0 0 24px rgba(79, 209, 47, 0.18));
 }
 
 .headline-mark {
   text-decoration-line: underline;
-  text-decoration-color: #98dd29;
+  text-decoration-color: #4fd12f;
   text-decoration-thickness: 0.072em;
   text-underline-offset: 0.16em;
 }

@@ -52,12 +52,12 @@ const CHEVRON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
 
 const MAIL_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`;
 
-const TICK = `<svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#98dd29]"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>`;
+const TICK = `<svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#4fd12f]"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>`;
 
 const SE_FLAG = `<svg viewBox="0 0 24 16" class="h-4 w-6 rounded-[2px]"><rect width="24" height="16" fill="#006aa7"/><rect y="6.5" width="24" height="3" fill="#fecc02"/><rect x="7" width="3" height="16" fill="#fecc02"/></svg>`;
 
 /** Cinema8 media id for the VSL, and its player script. */
-const VSL_MEDIA_ID = 'zJANjqaO';
+const VSL_MEDIA_ID = 'oJKx7gbO';
 const CINEMA8_PLAYER_SRC = 'https://static-01.cinema8.com/embed/player.js';
 
 /**
@@ -79,10 +79,10 @@ const BOOKING_URL =
   'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1ghy5mwfxSxcxe-jbhtkhxSiL_AWeu26VMG8rIAXrHLi-k2ZHdMI3zW8SsUfWD4lBhtD4Kvdjc?gv=true';
 
 const CTA_GRADIENT =
-  'linear-gradient(to right, rgb(122, 180, 30) 0%, rgb(152, 221, 41) 50%, rgb(206, 255, 98) 100%)';
+  'linear-gradient(to right, rgb(74, 180, 56) 0%, rgb(95, 214, 62) 50%, rgb(168, 247, 107) 100%)';
 
 const ctaButton = (id, extra = '') =>
-  `<button type="${id === 'submitBtn' ? 'submit' : 'button'}" id="${id}" class="w-full ${extra} py-3.5 px-4 rounded-xl text-black font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(152,221,41,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
+  `<button type="${id === 'submitBtn' ? 'submit' : 'button'}" id="${id}" class="w-full ${extra} py-3.5 px-4 rounded-xl text-black font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(79,209,47,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
     <span class="flex flex-col items-center leading-tight">
       <span class="text-base sm:text-lg md:text-xl tracking-wide">${id === 'bottomCta' ? 'STARTA TESTET' : 'BOKA ETT SAMTAL'}</span>
       <span class="text-xs sm:text-sm font-semibold opacity-90">${id === 'bottomCta' ? 'TAR 60 SEKUNDER — GRATIS 1-TIMMESKURS INGÅR' : 'FÅ GRATIS TILLGÅNG TILL VÅR 1-TIMMESKURS'}</span>
@@ -99,7 +99,7 @@ const COUNTDOWN_UNITS = [
 
 const countdownBlock = (prefix) => `
   <div class="w-full rounded-2xl border border-[#2f343a]/60 bg-black/30 px-3 py-4 sm:px-5 text-center">
-    <p class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#ceff62] sm:text-sm">Möjligheten stänger om</p>
+    <p class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#a8f76b] sm:text-sm">Möjligheten stänger om</p>
     <div class="flex justify-center gap-3 sm:gap-4">
       ${COUNTDOWN_UNITS
         .map(
@@ -113,16 +113,16 @@ const countdownBlock = (prefix) => `
   </div>`;
 
 const PREVIEW_BADGE = `
-<div style="position:fixed;left:12px;bottom:12px;z-index:60;display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:9999px;border:1px solid rgba(206,255,98,.35);background:rgba(15,17,19,.92);backdrop-filter:blur(6px);font:600 11px/1.2 Geist,system-ui,sans-serif;color:#ceff62;letter-spacing:.04em;">
-  <span style="width:7px;height:7px;border-radius:9999px;background:#98dd29;flex:none;"></span>
+<div style="position:fixed;left:12px;bottom:12px;z-index:60;display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:9999px;border:1px solid rgba(168,247,107,.35);background:rgba(15,17,19,.92);backdrop-filter:blur(6px);font:600 11px/1.2 Geist,system-ui,sans-serif;color:#a8f76b;letter-spacing:.04em;">
+  <span style="width:7px;height:7px;border-radius:9999px;background:#4fd12f;flex:none;"></span>
   FÖRHANDSVISNING — INTE DEN RIKTIGA SIDAN
 </div>`;
 
 const SCHEDULER_FRAME = `
-  <div class="overflow-hidden rounded-2xl border border-[#2f343a]/60 bg-white shadow-[0_0_36px_rgba(152,221,41,0.18)]">
+  <div class="overflow-hidden rounded-2xl border border-[#2f343a]/60 bg-white shadow-[0_0_36px_rgba(79,209,47,0.18)]">
     <iframe src="${BOOKING_URL}" title="Boka ditt samtal" loading="lazy" class="block h-[680px] w-full border-0 sm:h-[600px]"></iframe>
   </div>
-  <p class="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">Laddar kalendern inte? <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#ceff62] underline-offset-4 transition-colors hover:text-[#98dd29] hover:underline">Öppna bokningssidan &#8599;</a></p>`;
+  <p class="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">Laddar kalendern inte? <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#a8f76b] underline-offset-4 transition-colors hover:text-[#4fd12f] hover:underline">Öppna bokningssidan &#8599;</a></p>`;
 
 /**
  * The Artifact viewer's CSP admits no third-party frames, so the embed would
@@ -130,11 +130,11 @@ const SCHEDULER_FRAME = `
  * and says why.
  */
 const SCHEDULER_LINK = `
-  <div class="rounded-2xl border border-[#2f343a]/60 bg-black/30 px-5 py-9 text-center shadow-[0_0_36px_rgba(152,221,41,0.12)]">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-3 h-10 w-10 text-[#98dd29]"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+  <div class="rounded-2xl border border-[#2f343a]/60 bg-black/30 px-5 py-9 text-center shadow-[0_0_36px_rgba(79,209,47,0.12)]">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-3 h-10 w-10 text-[#4fd12f]"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
     <p class="text-sm font-extrabold tracking-wide text-white sm:text-base">Bokning via Google Kalender</p>
     <p class="mx-auto mt-1.5 max-w-sm text-[11px] leading-relaxed text-white/45 sm:text-xs">Den riktiga kalendern är inbäddad här på sidan. Den här förhandsvisningen länkar vidare i stället, eftersom visningen blockerar inbäddade ramar.</p>
-    <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-1.5 rounded-xl px-5 py-3 text-sm font-extrabold tracking-wide text-black shadow-[0_0_28px_rgba(152,221,41,0.35)] transition-all duration-200 hover:opacity-90 sm:text-base" style="background:${CTA_GRADIENT}">Öppna bokningssidan &#8599;</a>
+    <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-1.5 rounded-xl px-5 py-3 text-sm font-extrabold tracking-wide text-black shadow-[0_0_28px_rgba(79,209,47,0.35)] transition-all duration-200 hover:opacity-90 sm:text-base" style="background:${CTA_GRADIENT}">Öppna bokningssidan &#8599;</a>
   </div>`;
 
 const SCHEDULER_BLOCK = ARTIFACT ? SCHEDULER_LINK : SCHEDULER_FRAME;
@@ -197,7 +197,6 @@ async function main() {
       dataUri(`images/${f}`, 'image/avif'),
     ),
   );
-  const playIcon = await dataUri('images/aia-assets/play-icon.svg', 'image/svg+xml');
   const logo = await dataUri('images/new-logo.png', 'image/png');
 
   const stepper = ['Test', 'Dina uppgifter', 'Boka samtal']
@@ -212,13 +211,13 @@ async function main() {
 
 
   const head = ARTIFACT
-    ? `<title>AI Acquisition Workshop</title>`
+    ? `<title>FSR</title>`
     : `<!doctype html>
 <html lang="sv">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Acquisition — Workshop (local preview)</title>`;
+<title>FSR — lokal förhandsvisning</title>`;
 
   const html = `${head}
 <style>/*__TAILWIND__*/</style>
@@ -229,36 +228,31 @@ async function main() {
   @keyframes sqfade { from { opacity:0 } to { opacity:.05 } }
   /* Smart-autoplay overlay: 1920x1080 stage coordinates expressed as
      percentages, with cqw carrying the type and radius proportions. */
-  @keyframes vsl-pulse { 0%{transform:scale(1)} 50%{transform:scale(1.05)} 100%{transform:scale(1)} }
   .vsl-frame { container-type: inline-size; }
-  .vsl-pulse { animation: vsl-pulse 1.3333333333333333s infinite; }
-  .vsl-card { border-radius:1.6667cqw; border-width:0.0781cqw; }
-  .vsl-label { font-size:2.7778cqw; }
-  @media (prefers-reduced-motion: reduce) { .vsl-pulse { animation:none } }
   /* Hero top — mirrors the same rules in globals.css. */
-  .brand-wordmark { text-shadow: 0 0 18px rgba(152,221,41,.45), 0 0 44px rgba(152,221,41,.2); }
+  .brand-wordmark { text-shadow: 0 0 18px rgba(79,209,47,.45), 0 0 44px rgba(79,209,47,.2); }
   @keyframes status-pulse { 0%,100% { opacity:1; transform:scale(1) } 50% { opacity:.45; transform:scale(.82) } }
   .status-dot { animation: status-pulse 2s ease-in-out infinite; }
   .hero-headline { font-size: clamp(1.6rem, 0.95rem + 3.1vw, 3.5rem); line-height:1.06; letter-spacing:0; }
   .hero-sub { font-size: clamp(0.8125rem, 0.73rem + 0.4vw, 1.0625rem); line-height:1.5; }
   .headline-accent {
-    background-image: linear-gradient(180deg, #ceff62 0%, #98dd29 100%);
+    background-image: linear-gradient(180deg, #a8f76b 0%, #4fd12f 100%);
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent; color: transparent;
-    filter: drop-shadow(0 0 8px rgba(152,221,41,.32)) drop-shadow(0 0 24px rgba(152,221,41,.18));
+    filter: drop-shadow(0 0 8px rgba(79,209,47,.32)) drop-shadow(0 0 24px rgba(79,209,47,.18));
   }
   .headline-mark {
     text-decoration-line: underline;
-    text-decoration-color: #98dd29;
+    text-decoration-color: #4fd12f;
     text-decoration-thickness: 0.072em;
     text-underline-offset: 0.16em;
   }
   @media (prefers-reduced-motion: reduce) { .status-dot { animation:none } }
   .tier { border-color: rgba(42,107,133,.4); background:#0a0c0d; }
   .tier:hover { border-color:#2f343a; }
-  .tier[aria-pressed="true"] { border-color:#98dd29; background:rgba(18,49,60,.85); box-shadow:0 0 28px rgba(152,221,41,.25); }
+  .tier[aria-pressed="true"] { border-color:#4fd12f; background:rgba(18,49,60,.85); box-shadow:0 0 28px rgba(79,209,47,.25); }
   .tier [data-radio] { border-color: rgba(255,255,255,.3); }
-  .tier[aria-pressed="true"] [data-radio] { border-color:#ceff62; background:#98dd29; }
+  .tier[aria-pressed="true"] [data-radio] { border-color:#a8f76b; background:#4fd12f; }
   .tier[aria-pressed="true"] [data-radio]::after { content:""; width:7px; height:4px; border-left:2.5px solid #000; border-bottom:2.5px solid #000; transform:rotate(-45deg) translate(1px,-1px); }
   input[type=checkbox]{ appearance:none;-webkit-appearance:none; }
   input[type=checkbox]:checked{ background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%2338a3b8' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e"); background-size:100% 100%; background-repeat:no-repeat; }
@@ -274,9 +268,9 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       </svg>
 
       <div class="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
-        <div class="mb-7 inline-flex items-stretch rounded-full border border-[#2f343a]/70 bg-[#0f1113] p-1 shadow-[0_0_28px_rgba(152,221,41,0.18)]">
-          <span class="inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white sm:px-4 sm:text-xs"><span class="status-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#98dd29]"></span>NY</span>
-          <span class="inline-flex items-center rounded-full bg-[#1e2a12] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#ceff62] sm:px-4 sm:text-xs">High Ticket Closing</span>
+        <div class="mb-7 inline-flex items-stretch rounded-full border border-[#2f343a]/70 bg-[#0f1113] p-1 shadow-[0_0_28px_rgba(79,209,47,0.18)]">
+          <span class="inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white sm:px-4 sm:text-xs"><span class="status-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#4fd12f]"></span>NY</span>
+          <span class="inline-flex items-center rounded-full bg-[#1e2a12] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#a8f76b] sm:px-4 sm:text-xs">High Ticket Closing</span>
         </div>
 
         <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Jag visar dig hur du kommer igång med <span class="headline-mark">High Ticket Closing</span> och ger dig ett <span class="headline-accent">erbjudande värt 10 000 $</span> på 90 dagar… <em class="italic">annars får du full återbetalning</em></h1>
@@ -287,19 +281,12 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
           <div class="flex shrink-0 -space-x-1.5">
             ${avatars.map((src, i) => `<div class="relative h-7 w-7 overflow-hidden rounded-full ring-2 ring-black sm:h-8 sm:w-8" style="z-index:${3 - i}"><img alt="" width="32" height="32" class="h-full w-full object-cover" src="${src}"></div>`).join('')}
           </div>
-          <p class="text-left text-xs font-bold text-[#ceff62] sm:text-sm">3 478 nybörjare anmälde sig den här veckan</p>
+          <p class="text-left text-xs font-bold text-[#a8f76b] sm:text-sm">3 478 nybörjare anmälde sig den här veckan</p>
         </div>
 
         <div class="mb-8 w-full max-w-3xl">
-          <div class="vsl-frame relative aspect-video w-full overflow-hidden rounded-2xl border border-[#2f343a]/70 bg-[#0f1113] shadow-[0_0_40px_rgba(152,221,41,0.18)]">
+          <div class="vsl-frame relative aspect-video w-full overflow-hidden rounded-2xl border border-[#2f343a]/70 bg-[#0f1113] shadow-[0_0_40px_rgba(79,209,47,0.18)]">
             ${VSL_BODY}
-            <button type="button" id="vslOverlay" aria-label="Klicka för att lyssna" class="absolute inset-0 z-10 h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#98dd29]">
-              <span class="vsl-pulse absolute inset-0 block">
-                <span class="vsl-card absolute block border-solid border-white bg-[rgba(101,163,13,0.78)]" style="left:32.361%;top:19.506%;width:35.278%;height:60.988%"></span>
-                <span class="absolute block" style="left:39.931%;top:27.407%;width:20.139%;height:35.802%"><img alt="" class="h-full w-full" src="${playIcon}"></span>
-                <span class="vsl-label absolute block text-center font-bold leading-tight text-white" style="left:32.361%;top:70.617%;width:35.278%">Klicka för att lyssna</span>
-              </span>
-            </button>
           </div>
         </div>
 
@@ -313,10 +300,10 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
           <!-- STEP 1 - test -->
           <section data-panel="1" class="w-full">
             <div class="w-full overflow-hidden rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 shadow-md">
-              <div class="h-1 w-full bg-white/10"><div id="quizBar" class="h-full bg-[#98dd29] transition-[width] duration-300 ease-out" style="width:0%"></div></div>
+              <div class="h-1 w-full bg-white/10"><div id="quizBar" class="h-full bg-[#4fd12f] transition-[width] duration-300 ease-out" style="width:0%"></div></div>
               <div class="p-6 sm:p-8">
                 <div class="mb-4 flex items-center gap-2">
-                  <span id="quizNum" class="flex h-6 w-6 items-center justify-center rounded-md bg-[#98dd29] text-xs font-black text-black">1</span>
+                  <span id="quizNum" class="flex h-6 w-6 items-center justify-center rounded-md bg-[#4fd12f] text-xs font-black text-black">1</span>
                   <span id="quizCount" class="text-[10px] font-black uppercase tracking-[0.18em] text-white/40 sm:text-xs"></span>
                 </div>
                 <h2 id="quizTitle" class="text-balance text-lg font-extrabold leading-snug text-white sm:text-2xl"></h2>
@@ -334,16 +321,16 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
             <div class="w-full rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 p-6 sm:p-8 shadow-md">
               <h2 class="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">VART SKICKAR VI DIN TILLGÅNG?</h2>
               <form id="optin" class="flex w-full flex-col gap-3">
-                <input id="fullName" required type="text" placeholder="Ditt fullständiga namn här..." class="w-full px-3 py-3 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#98dd29] focus:border-[#98dd29]">
+                <input id="fullName" required type="text" placeholder="Ditt fullständiga namn här..." class="w-full px-3 py-3 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]">
                 <div class="relative">
-                  <input id="email" required type="email" placeholder="Din e-postadress här...*" class="w-full py-3 pl-3 pr-11 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#98dd29] focus:border-[#98dd29]">${MAIL_ICON}
+                  <input id="email" required type="email" placeholder="Din e-postadress här...*" class="w-full py-3 pl-3 pr-11 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]">${MAIL_ICON}
                 </div>
                 <div class="relative">
                   <span class="pointer-events-none absolute left-0 top-0 bottom-0 flex w-10 items-center justify-center rounded-l-md border border-r-0 border-[#2f343a] bg-[#0a0c0d]">${SE_FLAG}</span>
-                  <input id="phone" required type="tel" value="+46" placeholder="Telefonnummer" class="w-full px-4 py-3 pl-12 rounded-md border border-[#2f343a] bg-[#0a0c0d] text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#98dd29] focus:border-[#98dd29]">
+                  <input id="phone" required type="tel" value="+46" placeholder="Telefonnummer" class="w-full px-4 py-3 pl-12 rounded-md border border-[#2f343a] bg-[#0a0c0d] text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]">
                 </div>
                 <div class="flex items-start gap-3 py-1">
-                  <input id="receiveGiftTop" type="checkbox" class="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#98dd29] bg-[#0a0c0d] focus:ring-[#98dd29] focus:ring-2">
+                  <input id="receiveGiftTop" type="checkbox" class="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#4fd12f] bg-[#0a0c0d] focus:ring-[#4fd12f] focus:ring-2">
                   <label for="receiveGiftTop" class="cursor-pointer text-xs font-medium leading-snug text-white/75 sm:text-sm">🎁 Jag vill inte dela mitt telefonnummer och missar chansen att vinna en MacBook, iPhone eller 1 000 $</label>
                 </div>
                 <p class="text-[9px] sm:text-[10px] text-gray-500 text-center leading-tight">Genom att ange ditt telefonnummer godkänner du att vi skickar sms om ditt samtal. Svara STOP när som helst för att avsluta.</p>
@@ -357,7 +344,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
           <section data-panel="3" class="w-full hidden">
             <div class="w-full rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 p-6 sm:p-8 shadow-md">
               <div class="mb-5 flex justify-center">
-                <span class="flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#ceff62] bg-[#98dd29] shadow-[0_0_28px_rgba(152,221,41,0.35)]">
+                <span class="flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#a8f76b] bg-[#4fd12f] shadow-[0_0_28px_rgba(79,209,47,0.35)]">
                   <svg viewBox="0 0 20 20" fill="currentColor" class="h-7 w-7 text-black"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                 </span>
               </div>
@@ -381,17 +368,17 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 
   <section id="footer" class="bg-black text-center px-4 py-8 text-xs">
     <div class="container mx-auto max-w-4xl space-y-6">
-      <div class="flex justify-center"><img alt="AI Acquisition LLC-logga" width="48" height="48" class="opacity-50" src="${logo}"></div>
-      <p class="text-neutral-400">AI Acquisition and all individuals affiliated with this organization assumes no responsibility for the outcome, result, or success of the services, and does not guarantee specific results or outcome. Success depends in part on the time you devote, and your implementation of the guidance, strategies and support received. The strategies, content, articles and all other features are for educational purposes only.</p>
-      <p class="text-neutral-400">Though our services and products are tailored for our clients, we cannot give any guarantees or warranties (either express or implied), about results or earning money with the ideas, information, tools and strategies set out in the services. Any testimonials provided are of real-life individuals and businesses and their own personal and individual experiences. These must not be taken as "typical" results and will not be specific to your particular circumstances or actions you choose to take following receipt of the services and products.</p>
-      <p class="text-neutral-400">In a survey of over 660 businesses with over 100 responding, business owners averaged $18,105 in monthly revenue after implementing our system.</p>
-      <p class="text-neutral-400">Also NOT GOOGLE or FACEBOOK: This site is not a part of the Google website, Google Inc, Facebook/Meta website, or Meta, Inc. Additionally, This site is NOT endorsed by Google or Meta in any way.</p>
+      <div class="flex justify-center"><img alt="FSR-logga" width="48" height="48" class="opacity-50" src="${logo}"></div>
+      <p class="text-neutral-400">FSR och alla personer som är knutna till företaget tar inget ansvar för utfallet, resultatet eller framgången av tjänsterna, och garanterar inga specifika resultat. Hur det går beror bland annat på hur mycket tid du lägger ner och på hur du tillämpar den vägledning och det stöd du får. Innehållet och alla övriga funktioner är uteslutande i utbildningssyfte.</p>
+      <p class="text-neutral-400">Vi kan inte lämna några garantier eller utfästelser, varken uttryckliga eller underförstådda, om resultat eller om att tjäna pengar på de metoder, den information och de strategier som ingår. Försäljning av högprisprodukter kräver eget arbete, och resultaten varierar från person till person.</p>
+      <p class="text-neutral-400">Eventuella omdömen kommer från verkliga personer och beskriver deras egna individuella upplevelser. De ska inte uppfattas som typiska resultat och kommer inte att vara specifika för just dina förhållanden eller de åtgärder du väljer att vidta.</p>
+      <p class="text-neutral-400">Den här sidan är inte en del av Googles webbplats, Google Inc, Facebook/Metas webbplats eller Meta, Inc. Sidan är inte heller på något sätt godkänd av Google eller Meta.</p>
       <div class="flex justify-center space-x-8">
-        <a class="text-neutral-400 hover:text-[#98dd29] transition-colors" href="https://www.aiacquisition.com/privacy-policy">Integritetspolicy</a>
-        <a class="text-neutral-400 hover:text-[#98dd29] transition-colors" href="https://www.aiacquisition.com/terms-of-service">Användarvillkor</a>
-        <a class="text-neutral-400 hover:text-[#98dd29] transition-colors" href="mailto:support@aiarbitrageagency.com">Kontakta oss</a>
+        <a class="text-neutral-400 hover:text-[#4fd12f] transition-colors" href="/integritetspolicy">Integritetspolicy</a>
+        <a class="text-neutral-400 hover:text-[#4fd12f] transition-colors" href="/anvandarvillkor">Användarvillkor</a>
+        <a class="text-neutral-400 hover:text-[#4fd12f] transition-colors" href="mailto:support@fsr.se">Kontakta oss</a>
       </div>
-      <p class="text-neutral-400">© <span id="year"></span> AI Acquisition LLC. Med ensamrätt.</p>
+      <p class="text-neutral-400">© <span id="year"></span> FSR. Med ensamrätt.</p>
     </div>
   </section>
 </div>
@@ -445,7 +432,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       c.classList.toggle('bg-[#1e2a12]/85', active);
       var num = c.querySelector('[data-step-num]'), lab = c.querySelector('[data-step-label]');
       num.className = 'mb-1 flex h-6 w-6 items-center justify-center rounded-full border text-[10px] font-black sm:h-8 sm:w-8 sm:text-sm ' +
-        (on ? 'border-[#ceff62] bg-[#98dd29] text-black' : 'border-white/25 text-white/45');
+        (on ? 'border-[#a8f76b] bg-[#4fd12f] text-black' : 'border-white/25 text-white/45');
       lab.className = 'text-[9px] font-black uppercase leading-tight tracking-wide sm:text-sm ' + (on ? 'text-white' : 'text-white/40');
     });
   }
@@ -464,7 +451,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     document.getElementById('quizNum').textContent = state.qi + 1;
     document.getElementById('quizCount').textContent = 'Fråga ' + (state.qi + 1) + ' av ' + QUIZ.length;
     document.getElementById('quizTitle').innerHTML =
-      q.title + '<span class="ml-1 text-[#98dd29]" aria-label="Den här frågan är obligatorisk.">*</span>';
+      q.title + '<span class="ml-1 text-[#4fd12f]" aria-label="Den här frågan är obligatorisk.">*</span>';
     document.getElementById('quizDesc').textContent = q.description;
     document.getElementById('quizBar').style.width =
       (((state.qi + (chosen ? 1 : 0)) / QUIZ.length) * 100) + '%';
@@ -472,10 +459,10 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     document.getElementById('quizOptions').innerHTML = q.options.map(function(o){
       var on = chosen === o[0];
       return '<button type="button" role="radio" aria-checked="' + on + '" data-key="' + o[0] + '" ' +
-        'class="flex w-full items-center gap-3 rounded-xl border-2 px-3 py-3 text-left transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#98dd29] ' +
-        (on ? 'border-[#98dd29] bg-[#1e2a12]/85 shadow-[0_0_20px_rgba(152,221,41,0.2)]' : 'border-[#2f343a]/40 bg-[#15181c] hover:border-[#2f343a] hover:bg-[#1b1f24]') + '">' +
+        'class="flex w-full items-center gap-3 rounded-xl border-2 px-3 py-3 text-left transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4fd12f] ' +
+        (on ? 'border-[#4fd12f] bg-[#1e2a12]/85 shadow-[0_0_20px_rgba(79,209,47,0.2)]' : 'border-[#2f343a]/40 bg-[#15181c] hover:border-[#2f343a] hover:bg-[#1b1f24]') + '">' +
         '<span aria-hidden="true" class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border text-xs font-black ' +
-        (on ? 'border-[#ceff62] bg-[#98dd29] text-black' : 'border-white/20 text-white/50') + '">' + o[0] + '</span>' +
+        (on ? 'border-[#a8f76b] bg-[#4fd12f] text-black' : 'border-white/20 text-white/50') + '">' + o[0] + '</span>' +
         '<span class="text-sm font-semibold text-white sm:text-base">' + o[1] + '</span></button>';
     }).join('');
 
@@ -547,15 +534,12 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     if (!state.lead.declined) rows.push(['Telefon', state.lead.phone]);
         document.getElementById('summary').innerHTML = rows.map(function(r){
       return '<div class="flex items-start justify-between gap-3">' +
-        '<dt class="text-[10px] font-black uppercase tracking-[0.18em] text-[#ceff62] sm:text-xs">' + r[0] + '</dt>' +
+        '<dt class="text-[10px] font-black uppercase tracking-[0.18em] text-[#a8f76b] sm:text-xs">' + r[0] + '</dt>' +
         '<dd class="break-all text-xs font-semibold text-white sm:text-sm">' + r[1] + '</dd></div>';
     }).join('');
 
     goto(3);
   });
-
-  var vsl = document.getElementById('vslOverlay');
-  if (vsl) vsl.addEventListener('click', function(){ vsl.remove(); });
 
   document.getElementById('bottomCta').addEventListener('click', function(){
     document.getElementById('workshop-opt-in').scrollIntoView({ behavior:'smooth', block:'start' });

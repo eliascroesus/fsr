@@ -34,7 +34,7 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
   return (
     <div className="w-full rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 p-6 sm:p-8 shadow-md">
         <div className="mb-5 flex justify-center">
-          <span className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#ceff62] bg-[#98dd29] shadow-[0_0_28px_rgba(152,221,41,0.35)]">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#a8f76b] bg-[#4fd12f] shadow-[0_0_28px_rgba(79,209,47,0.35)]">
             <Check className="h-7 w-7 text-black" strokeWidth={3.5} aria-hidden="true" />
           </span>
         </div>
@@ -49,7 +49,7 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
 
         {/* Scheduler. `children` overrides it if the booking tool ever changes. */}
         <div className="mb-3">
-          <div className="overflow-hidden rounded-2xl border border-[#2f343a]/60 bg-white shadow-[0_0_36px_rgba(152,221,41,0.18)]">
+          <div className="overflow-hidden rounded-2xl border border-[#2f343a]/60 bg-white shadow-[0_0_36px_rgba(79,209,47,0.18)]">
             {children ?? (
               <iframe
                 src={BOOKING_URL}
@@ -68,7 +68,7 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-semibold text-[#ceff62] underline-offset-4 transition-colors hover:text-[#98dd29] hover:underline"
+              className="inline-flex items-center gap-1 font-semibold text-[#a8f76b] underline-offset-4 transition-colors hover:text-[#4fd12f] hover:underline"
             >
               Öppna bokningssidan
               <ExternalLink className="h-3 w-3" aria-hidden="true" />
@@ -79,21 +79,21 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
         <dl className="mb-5 grid gap-2 rounded-2xl border border-[#2f343a]/60 bg-black/30 px-4 py-4 text-left">
           {goal ? (
             <div className="flex items-start justify-between gap-3">
-              <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#ceff62] sm:text-xs">
+              <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#a8f76b] sm:text-xs">
                 Mål
               </dt>
               <dd className="text-right text-xs font-semibold text-white sm:text-sm">{goal}</dd>
             </div>
           ) : null}
           <div className="flex items-start justify-between gap-3">
-            <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#ceff62] sm:text-xs">
+            <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#a8f76b] sm:text-xs">
               E-post
             </dt>
             <dd className="break-all text-xs font-semibold text-white sm:text-sm">{lead.email}</dd>
           </div>
           {lead.declinedPhone ? null : (
             <div className="flex items-start justify-between gap-3">
-              <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#ceff62] sm:text-xs">
+              <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#a8f76b] sm:text-xs">
                 Telefon
               </dt>
               <dd className="text-xs font-semibold text-white sm:text-sm">{lead.phone}</dd>
@@ -103,13 +103,13 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
 
         <ul className="mb-5 flex flex-col gap-2.5">
           <li className="flex items-start gap-2.5 text-xs font-medium text-white/85 sm:text-sm">
-            <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#98dd29]" aria-hidden="true" />
+            <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#4fd12f]" aria-hidden="true" />
             Din tillgång till 1-timmeskursen är på väg till {lead.email} — kolla skräpposten om
             den inte dykt upp om ett par minuter.
           </li>
           {lead.declinedPhone ? null : (
             <li className="flex items-start gap-2.5 text-xs font-medium text-white/85 sm:text-sm">
-              <MessageSquare className="mt-0.5 h-4 w-4 shrink-0 text-[#98dd29]" aria-hidden="true" />
+              <MessageSquare className="mt-0.5 h-4 w-4 shrink-0 text-[#4fd12f]" aria-hidden="true" />
               Vi skickar en påminnelse via sms innan ditt samtal. Svara STOP när som helst för att
               avsluta.
             </li>

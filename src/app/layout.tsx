@@ -43,8 +43,8 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'AI Acquisition',
-  description: 'Officiell webbplats för AI Acquisition',
+  title: 'FSR',
+  description: 'Officiell webbplats för FSR',
   icons: {
     icon: [{ url: '/favicon.ico', type: 'image/x-icon', sizes: '16x16' }],
   },

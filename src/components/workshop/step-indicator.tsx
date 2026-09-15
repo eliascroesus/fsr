@@ -25,7 +25,7 @@ export function StepIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
                 className={cn(
                   'mb-1 flex h-6 w-6 items-center justify-center rounded-full border text-[10px] font-black sm:h-8 sm:w-8 sm:text-sm',
                   isActive || isComplete
-                    ? 'border-[#ceff62] bg-[#98dd29] text-black'
+                    ? 'border-[#a8f76b] bg-[#4fd12f] text-black'
                     : 'border-white/25 text-white/45',
                 )}
               >

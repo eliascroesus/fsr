@@ -59,7 +59,7 @@ export default function WorkshopVTestPage() {
                 </div>
               ))}
             </div>
-            <p className="text-left text-xs font-bold text-[#ceff62] sm:text-sm">
+            <p className="text-left text-xs font-bold text-[#a8f76b] sm:text-sm">
               3 478 nybörjare anmälde sig den här veckan
             </p>
           </div>

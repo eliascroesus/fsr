@@ -53,7 +53,7 @@ export function CountdownTimer() {
 
   return (
     <div className="w-full rounded-2xl border border-[#2f343a]/60 bg-black/30 px-3 py-4 sm:px-5 text-center">
-      <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#ceff62] sm:text-sm">
+      <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#a8f76b] sm:text-sm">
         Möjligheten stänger om
       </p>
       <div className="flex justify-center gap-3 sm:gap-4">

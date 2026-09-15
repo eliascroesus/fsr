@@ -1,9 +1,13 @@
 import Image from 'next/image';
 
+/**
+ * Relativa sökvägar tills FSR:s riktiga sidor finns — byt till fulla adresser
+ * när de är publicerade.
+ */
 const FOOTER_LINKS = [
-  { label: 'Integritetspolicy', href: 'https://www.aiacquisition.com/privacy-policy' },
-  { label: 'Användarvillkor', href: 'https://www.aiacquisition.com/terms-of-service' },
-  { label: 'Kontakta oss', href: 'mailto:support@aiarbitrageagency.com' },
+  { label: 'Integritetspolicy', href: '/integritetspolicy' },
+  { label: 'Användarvillkor', href: '/anvandarvillkor' },
+  { label: 'Kontakta oss', href: 'mailto:support@fsr.se' },
 ];
 
 export function SiteFooter() {
@@ -13,7 +17,7 @@ export function SiteFooter() {
         <div className="flex justify-center">
           <Image
             src="/images/new-logo.png"
-            alt="AI Acquisition LLC-logga"
+            alt="FSR-logga"
             width={48}
             height={48}
             className="opacity-50"
@@ -21,33 +25,29 @@ export function SiteFooter() {
         </div>
 
         <p className="text-muted-foreground">
-          AI Acquisition och alla personer som är knutna till organisationen tar inget ansvar för
-          utfallet, resultatet eller framgången av tjänsterna och garanterar inga specifika resultat
-          eller utfall. Framgång beror bland annat på hur mycket tid du lägger ner och på hur du
-          tillämpar den vägledning, de strategier och det stöd du får. Strategierna, innehållet,
-          artiklarna och alla övriga funktioner är uteslutande i utbildningssyfte.
+          FSR och alla personer som är knutna till företaget tar inget ansvar för utfallet,
+          resultatet eller framgången av tjänsterna, och garanterar inga specifika resultat. Hur det
+          går beror bland annat på hur mycket tid du lägger ner och på hur du tillämpar den
+          vägledning och det stöd du får. Innehållet och alla övriga funktioner är uteslutande i
+          utbildningssyfte.
         </p>
 
         <p className="text-muted-foreground">
-          Även om våra tjänster och produkter är anpassade efter våra kunder kan vi inte lämna
-          några garantier eller utfästelser (varken uttryckliga eller underförstådda) om resultat
-          eller om att tjäna pengar på de idéer, den information, de verktyg och de strategier som
-          ingår i tjänsterna. Eventuella omdömen kommer från verkliga personer och företag och deras
-          egna personliga och individuella upplevelser. De ska inte uppfattas som
-          &quot;typiska&quot; resultat och kommer inte att vara specifika för just dina förhållanden
-          eller de åtgärder du väljer att vidta efter att ha tagit del av tjänsterna och
-          produkterna.
+          Vi kan inte lämna några garantier eller utfästelser, varken uttryckliga eller
+          underförstådda, om resultat eller om att tjäna pengar på de metoder, den information och
+          de strategier som ingår. Försäljning av högprisprodukter kräver eget arbete, och
+          resultaten varierar från person till person.
         </p>
 
         <p className="text-muted-foreground">
-          I en undersökning bland över 660 företag, varav över 100 svarade, hade företagarna i
-          genomsnitt 18 105 $ i månadsomsättning efter att ha implementerat vårt system.
+          Eventuella omdömen kommer från verkliga personer och beskriver deras egna individuella
+          upplevelser. De ska inte uppfattas som typiska resultat och kommer inte att vara specifika
+          för just dina förhållanden eller de åtgärder du väljer att vidta.
         </p>
 
         <p className="text-muted-foreground">
-          Dessutom INTE GOOGLE eller FACEBOOK: Den här sidan är inte en del av Googles webbplats,
-          Google Inc, Facebook/Metas webbplats eller Meta, Inc. Sidan är inte heller på något sätt
-          godkänd av Google eller Meta.
+          Den här sidan är inte en del av Googles webbplats, Google Inc, Facebook/Metas webbplats
+          eller Meta, Inc. Sidan är inte heller på något sätt godkänd av Google eller Meta.
         </p>
 
         <div className="flex justify-center space-x-8">
@@ -63,7 +63,7 @@ export function SiteFooter() {
         </div>
 
         <p className="text-muted-foreground">
-          © {new Date().getFullYear()} AI Acquisition LLC. Med ensamrätt.
+          © {new Date().getFullYear()} FSR. Med ensamrätt.
         </p>
       </div>
     </section>

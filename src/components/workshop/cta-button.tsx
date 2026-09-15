@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 /** The teal gradient used by every primary button on the page. */
 export const CTA_GRADIENT =
-  'linear-gradient(to right, rgb(122, 180, 30) 0%, rgb(152, 221, 41) 50%, rgb(206, 255, 98) 100%)';
+  'linear-gradient(to right, rgb(74, 180, 56) 0%, rgb(95, 214, 62) 50%, rgb(168, 247, 107) 100%)';
 
 interface CtaButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   primaryLabel: string;
@@ -27,7 +27,7 @@ export function CtaButton({
       className={cn(
         'w-full py-3.5 px-4 rounded-xl text-black font-extrabold transition-all duration-200',
         'flex items-center justify-center gap-1',
-        'shadow-[0_0_28px_rgba(152,221,41,0.35)] hover:opacity-90 hover:scale-[1.01]',
+        'shadow-[0_0_28px_rgba(79,209,47,0.35)] hover:opacity-90 hover:scale-[1.01]',
         'disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100',
         className,
       )}
