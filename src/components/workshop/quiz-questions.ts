@@ -11,11 +11,10 @@ export const QUIZ_QUESTIONS: readonly QuizQuestion[] = [
     title: 'Vad beskriver dig bäst?',
     description: 'Vi frågar för att kunna hjälpa dig att nå dina mål på bästa sätt.',
     options: [
-      { key: 'A', value: 'job-9-5', label: 'Jag har ett 8–17-jobb' },
+      { key: 'A', value: 'job', label: 'Jag har ett jobb' },
       { key: 'B', value: 'business-owner', label: 'Jag driver eget företag' },
       { key: 'C', value: 'student', label: 'Jag är student' },
       { key: 'D', value: 'unemployed', label: 'Jag är arbetslös' },
-      { key: 'E', value: 'given-up', label: 'Jag har gett upp' },
     ],
   },
   {
@@ -38,7 +37,6 @@ export const QUIZ_QUESTIONS: readonly QuizQuestion[] = [
       { key: 'B', value: 'at-25k', label: '25 000 kr i månaden' },
       { key: 'C', value: 'past-50k', label: 'Passera 50 000 kr i månaden' },
       { key: 'D', value: 'past-100k', label: 'Passera 100 000 kr i månaden' },
-      { key: 'E', value: 'given-up', label: 'Jag har gett upp' },
     ],
   },
   {
@@ -48,11 +46,11 @@ export const QUIZ_QUESTIONS: readonly QuizQuestion[] = [
     description:
       'Det gäller utbildning, verktyg och coachning. Välj bara ett belopp du faktiskt har tillgång till i dag.',
     options: [
-      { key: 'A', value: 'lt-5k', label: '😬 Under 5 000 kr' },
-      { key: 'B', value: '5k-15k', label: '🌱 5 000–15 000 kr' },
-      { key: 'C', value: '15k-30k', label: '🚀 15 000–30 000 kr' },
-      { key: 'D', value: '30k-50k', label: '🔥 30 000–50 000 kr' },
-      { key: 'E', value: 'gt-50k', label: '💎 50 000 kr+' },
+      { key: 'A', value: 'lt-5k', label: 'Under 5 000 kr' },
+      { key: 'B', value: '5k-15k', label: '5 000–15 000 kr' },
+      { key: 'C', value: '15k-30k', label: '15 000–30 000 kr' },
+      { key: 'D', value: '30k-50k', label: '30 000–50 000 kr' },
+      { key: 'E', value: 'gt-50k', label: '50 000 kr+' },
     ],
   },
 ] as const;

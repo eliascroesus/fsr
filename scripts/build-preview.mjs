@@ -147,11 +147,10 @@ const QUIZ = [
     title: 'Vad beskriver dig bäst?',
     description: 'Vi frågar för att kunna hjälpa dig att nå dina mål på bästa sätt.',
     options: [
-      ['A', 'Jag har ett 8–17-jobb'],
+      ['A', 'Jag har ett jobb'],
       ['B', 'Jag driver eget företag'],
       ['C', 'Jag är student'],
       ['D', 'Jag är arbetslös'],
-      ['E', 'Jag har gett upp'],
     ],
   },
   {
@@ -174,7 +173,6 @@ const QUIZ = [
       ['B', '25 000 kr i månaden'],
       ['C', 'Passera 50 000 kr i månaden'],
       ['D', 'Passera 100 000 kr i månaden'],
-      ['E', 'Jag har gett upp'],
     ],
   },
   {
@@ -182,11 +180,11 @@ const QUIZ = [
     title: 'Föreställ dig att det är om 3 månader och du redan stänger affärer — hur mycket är du beredd att investera för att komma dit?',
     description: 'Det gäller utbildning, verktyg och coachning. Välj bara ett belopp du faktiskt har tillgång till i dag.',
     options: [
-      ['A', '😬 Under 5 000 kr'],
-      ['B', '🌱 5 000–15 000 kr'],
-      ['C', '🚀 15 000–30 000 kr'],
-      ['D', '🔥 30 000–50 000 kr'],
-      ['E', '💎 50 000 kr+'],
+      ['A', 'Under 5 000 kr'],
+      ['B', '5 000–15 000 kr'],
+      ['C', '15 000–30 000 kr'],
+      ['D', '30 000–50 000 kr'],
+      ['E', '50 000 kr+'],
     ],
   },
 ];
@@ -328,8 +326,8 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
                   <input id="phone" required type="tel" value="+46" placeholder="Telefonnummer" class="w-full px-4 py-3 pl-12 rounded-md border border-[#2f343a] bg-[#0a0c0d] text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]">
                 </div>
                 <div class="flex items-start gap-3 py-1">
-                  <input id="receiveGiftTop" type="checkbox" class="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#4fd12f] bg-[#0a0c0d] focus:ring-[#4fd12f] focus:ring-2">
-                  <label for="receiveGiftTop" class="cursor-pointer text-xs font-medium leading-snug text-white/75 sm:text-sm">🎁 Jag vill inte dela mitt telefonnummer och missar chansen att vinna en MacBook, iPhone eller 1 000 $</label>
+                  <input id="receiveGiftTop" type="checkbox" checked class="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#4fd12f] bg-[#0a0c0d] focus:ring-[#4fd12f] focus:ring-2">
+                  <label for="receiveGiftTop" class="cursor-pointer text-xs font-medium leading-snug text-white/75 sm:text-sm">🎁 Ja tack! Skicka min gratis VIP-gåva och en påminnelse om mitt samtal</label>
                 </div>
                 <p class="text-[9px] sm:text-[10px] text-gray-500 text-center leading-tight">Genom att ange ditt telefonnummer godkänner du att vi skickar sms om ditt samtal. Svara STOP när som helst för att avsluta.</p>
                 ${ctaButton('submitBtn')}
@@ -486,14 +484,14 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
   // ---- step 2: details ----------------------------------------------------
   document.getElementById('receiveGiftTop').addEventListener('change', function(e){
     var phone = document.getElementById('phone');
-    phone.required = !e.target.checked;
-    phone.disabled = e.target.checked;
-    phone.classList.toggle('opacity-40', e.target.checked);
+    phone.required = e.target.checked;
+    phone.disabled = !e.target.checked;
+    phone.classList.toggle('opacity-40', !e.target.checked);
   });
 
   document.getElementById('optin').addEventListener('submit', function(e){
     e.preventDefault();
-    var declined = document.getElementById('receiveGiftTop').checked;
+    var declined = !document.getElementById('receiveGiftTop').checked;
     state.lead = {
       fullName: document.getElementById('fullName').value.trim(),
       email: document.getElementById('email').value.trim(),

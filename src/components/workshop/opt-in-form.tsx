@@ -10,6 +10,9 @@ import type { LeadDetails } from './types';
 
 const CHECKBOX_ID = 'receiveGiftTop';
 
+const CONSENT_LABEL =
+  '🎁 Ja tack! Skicka min gratis VIP-gåva och en påminnelse om mitt samtal';
+
 const INPUT_CLASS =
   'w-full px-3 py-3 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]';
 
@@ -17,16 +20,17 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('+46');
-  // Inverted opt-out: checking it means "don't share my phone".
-  const [declinePhone, setDeclinePhone] = useState(false);
+  // Opt-in: checking it means "yes, text me". LeadDetails still records the
+  // decline, so downstream consumers keep reading a single flag.
+  const [wantsReminders, setWantsReminders] = useState(true);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit({
       fullName: fullName.trim(),
       email: email.trim(),
-      phone: declinePhone ? '' : phone,
-      declinedPhone: declinePhone,
+      phone: wantsReminders ? phone : '',
+      declinedPhone: !wantsReminders,
     });
   };
 
@@ -62,16 +66,21 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
             />
           </div>
 
-          <div className="phone-input-container">
+          {/* Greyed out rather than hidden when they opt out, so the layout
+              doesn't jump and the field is one click from coming back. */}
+          <div
+            className={`phone-input-container${wantsReminders ? '' : ' opacity-40'}`}
+          >
             <PhoneInput
               country="se"
               value={phone}
               onChange={setPhone}
+              disabled={!wantsReminders}
               specialLabel="Telefon"
               placeholder="Telefonnummer"
               inputProps={{
                 type: 'tel',
-                required: !declinePhone,
+                required: wantsReminders,
                 'data-whop-tracked': 'phone',
               }}
               inputClass="w-full px-4 py-3 rounded-md border border-[#2f343a] bg-[#0a0c0d] pl-12 text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]"
@@ -87,16 +96,15 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
             <input
               id={CHECKBOX_ID}
               type="checkbox"
-              checked={declinePhone}
-              onChange={(e) => setDeclinePhone(e.target.checked)}
+              checked={wantsReminders}
+              onChange={(e) => setWantsReminders(e.target.checked)}
               className="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#4fd12f] bg-[#0a0c0d] text-[#4fd12f] focus:ring-[#4fd12f] focus:ring-2"
             />
             <label
               htmlFor={CHECKBOX_ID}
               className="cursor-pointer text-xs font-medium leading-snug text-white/75 sm:text-sm"
             >
-              🎁 Jag vill inte dela mitt telefonnummer och missar chansen att vinna en MacBook,
-              iPhone eller 1 000 $
+              {CONSENT_LABEL}
             </label>
           </div>
 

@@ -131,11 +131,10 @@ Progress bar (2px, `#98dd29`) sits flush along the card's top edge.
 **Vad beskriver dig bäst?**
 *Vi frågar för att kunna hjälpa dig att nå dina mål på bästa sätt.*
 
-- **A** — Jag har ett 8–17-jobb
+- **A** — Jag har ett jobb
 - **B** — Jag driver eget företag
 - **C** — Jag är student
 - **D** — Jag är arbetslös
-- **E** — Jag har gett upp
 
 ### Question 2
 **Hur mycket tjänar du i månaden just nu?**
@@ -154,17 +153,16 @@ Progress bar (2px, `#98dd29`) sits flush along the card's top edge.
 - **B** — 25 000 kr i månaden
 - **C** — Passera 50 000 kr i månaden
 - **D** — Passera 100 000 kr i månaden
-- **E** — Jag har gett upp
 
 ### Question 4
 **Föreställ dig att det är om 3 månader och du redan stänger affärer — hur mycket är du beredd att investera för att komma dit?**
 *Det gäller utbildning, verktyg och coachning. Välj bara ett belopp du faktiskt har tillgång till i dag.*
 
-- **A** — 😬 Under 5 000 kr
-- **B** — 🌱 5 000–15 000 kr
-- **C** — 🚀 15 000–30 000 kr
-- **D** — 🔥 30 000–50 000 kr
-- **E** — 💎 50 000 kr+
+- **A** — Under 5 000 kr
+- **B** — 5 000–15 000 kr
+- **C** — 15 000–30 000 kr
+- **D** — 30 000–50 000 kr
+- **E** — 50 000 kr+
 
 ---
 
@@ -176,7 +174,7 @@ Progress bar (2px, `#98dd29`) sits flush along the card's top edge.
 | Field 1 placeholder | `Ditt fullständiga namn här...` | 16px | 400 | grey 500 |
 | Field 2 placeholder | `Din e-postadress här...*` | 16px | 400 | grey 500 — trailing mail icon |
 | Field 3 | `Telefonnummer`, prefilled `+46` | 16px | 500 | Swedish flag in the country slot |
-| Checkbox label | `🎁 Jag vill inte dela mitt telefonnummer och missar chansen att vinna en MacBook, iPhone eller 1 000 $` | 14 / 12px | 500 | white 75% |
+| Checkbox label | `🎁 Ja tack! Skicka min gratis VIP-gåva och en påminnelse om mitt samtal` — checked by default | 14 / 12px | 500 | white 75% |
 | Consent | `Genom att ange ditt telefonnummer godkänner du att vi skickar sms om ditt samtal. Svara STOP när som helst för att avsluta.` | 10 / 9px | 400 | grey 500, centred |
 | CTA line 1 | `BOKA ETT SAMTAL` | 20 / 16px | 800 | **black** on the green gradient |
 | CTA line 2 | `FÅ GRATIS TILLGÅNG TILL VÅR 1-TIMMESKURS` | 14 / 12px | 600 | black, 90% opacity |
