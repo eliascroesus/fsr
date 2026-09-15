@@ -151,6 +151,7 @@ const QUIZ = [
       ['B', 'Jag driver eget företag'],
       ['C', 'Jag är student'],
       ['D', 'Jag är arbetslös'],
+      ['E', 'Jag har gett upp'],
     ],
   },
   {
@@ -158,35 +159,34 @@ const QUIZ = [
     title: 'Hur mycket tjänar du i månaden just nu?',
     description: 'Det visar oss vilken startpunkt i systemet som passar dig.',
     options: [
-      ['A', 'Under 2 000 $'],
-      ['B', '2 000–5 000 $'],
-      ['C', '5 000–10 000 $'],
-      ['D', '10 000–25 000 $'],
-      ['E', 'Över 25 000 $'],
+      ['A', '0 kr'],
+      ['B', '0–5 000 kr'],
+      ['C', '5 000–10 000 kr'],
+      ['D', '20 000 kr+'],
     ],
   },
   {
     id: 'goal',
-    title: 'Vad vill du uppnå de kommande 12 månaderna?',
-    description: 'Så att vi kan visa dig vägen som passar det resultat du faktiskt vill ha.',
+    title: 'Var vill du vara om 6 månader?',
+    description: 'Svara på vad du faktiskt siktar på — inte på vad du tror är rimligt.',
     options: [
-      ['A', 'De första 1 000–5 000 $ i månaden vid sidan av'],
-      ['B', 'Ersätta min heltidsinkomst'],
-      ['C', 'Skala förbi 10 000 $ i månaden'],
-      ['D', 'Bygga ett företag jag kan sälja'],
-      ['E', 'Full ekonomisk frihet'],
+      ['A', 'Mina första 10 000 kr i månaden'],
+      ['B', '25 000 kr i månaden'],
+      ['C', 'Passera 50 000 kr i månaden'],
+      ['D', 'Passera 100 000 kr i månaden'],
+      ['E', 'Jag har gett upp'],
     ],
   },
   {
     id: 'investment',
-    title: 'Hur mycket kan du investera i dig själv och de verktyg som krävs?',
-    description: 'Gäller utbildning, verktyg och coachning — vi rekommenderar bara sådant som passar din nivå.',
+    title: 'Föreställ dig att det är om 3 månader och du redan stänger affärer — hur mycket är du beredd att investera för att komma dit?',
+    description: 'Det gäller utbildning, verktyg och coachning. Välj bara ett belopp du faktiskt har tillgång till i dag.',
     options: [
-      ['A', 'Under 500 $'],
-      ['B', '500–1 000 $'],
-      ['C', '1 000–3 000 $'],
-      ['D', '3 000–5 000 $'],
-      ['E', 'Över 5 000 $'],
+      ['A', '😬 Under 5 000 kr'],
+      ['B', '🌱 5 000–15 000 kr'],
+      ['C', '🚀 15 000–30 000 kr'],
+      ['D', '🔥 30 000–50 000 kr'],
+      ['E', '💎 50 000 kr+'],
     ],
   },
 ];
@@ -227,17 +227,17 @@ async function main() {
   /* Smart-autoplay overlay: 1920x1080 stage coordinates expressed as
      percentages, with cqw carrying the type and radius proportions. */
   /* Hero backdrop — mirrors the same rules in globals.css. */
-  .hero-backdrop { position:absolute; inset:0 0 auto 0; height:clamp(420px,72vh,780px); pointer-events:none; z-index:0; }
+  .hero-backdrop { position:absolute; inset:0 0 auto 0; height:clamp(660px,112vh,1180px); pointer-events:none; z-index:0; }
   .hero-backdrop::before, .hero-backdrop::after { content:''; position:absolute; inset:0; }
   .hero-backdrop::before {
     background-image:
-      linear-gradient(to right, rgba(255,255,255,.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,.055) 1px, transparent 1px);
+      linear-gradient(to right, rgba(255,255,255,.085) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.085) 1px, transparent 1px);
     background-size:56px 56px;
-    -webkit-mask-image: linear-gradient(to bottom,#000 0%,rgba(0,0,0,.5) 48%,transparent 100%);
-    mask-image: linear-gradient(to bottom,#000 0%,rgba(0,0,0,.5) 48%,transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom,#000 0%,#000 62%,rgba(0,0,0,.55) 84%,transparent 100%);
+    mask-image: linear-gradient(to bottom,#000 0%,#000 62%,rgba(0,0,0,.55) 84%,transparent 100%);
   }
-  .hero-backdrop::after { background: radial-gradient(62% 58% at 50% 0%, rgba(79,209,47,.13) 0%, transparent 70%); }
+  .hero-backdrop::after { background: radial-gradient(64% 40% at 50% 0%, rgba(79,209,47,.13) 0%, transparent 70%); }
   .vsl-frame { container-type: inline-size; }
   /* Hero top — mirrors the same rules in globals.css. */
   .brand-wordmark { text-shadow: 0 0 18px rgba(79,209,47,.45), 0 0 44px rgba(79,209,47,.2); }

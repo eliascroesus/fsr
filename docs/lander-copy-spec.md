@@ -135,36 +135,36 @@ Progress bar (2px, `#98dd29`) sits flush along the card's top edge.
 - **B** — Jag driver eget företag
 - **C** — Jag är student
 - **D** — Jag är arbetslös
+- **E** — Jag har gett upp
 
 ### Question 2
 **Hur mycket tjänar du i månaden just nu?**
 *Det visar oss vilken startpunkt i systemet som passar dig.*
 
-- **A** — Under 2 000 $
-- **B** — 2 000–5 000 $
-- **C** — 5 000–10 000 $
-- **D** — 10 000–25 000 $
-- **E** — Över 25 000 $
+- **A** — 0 kr
+- **B** — 0–5 000 kr
+- **C** — 5 000–10 000 kr
+- **D** — 20 000 kr+
 
 ### Question 3
-**Vad vill du uppnå de kommande 12 månaderna?**
-*Så att vi kan visa dig vägen som passar det resultat du faktiskt vill ha.*
+**Var vill du vara om 6 månader?**
+*Svara på vad du faktiskt siktar på — inte på vad du tror är rimligt.*
 
-- **A** — De första 1 000–5 000 $ i månaden vid sidan av
-- **B** — Ersätta min heltidsinkomst
-- **C** — Skala förbi 10 000 $ i månaden
-- **D** — Bygga ett företag jag kan sälja
-- **E** — Full ekonomisk frihet
+- **A** — Mina första 10 000 kr i månaden
+- **B** — 25 000 kr i månaden
+- **C** — Passera 50 000 kr i månaden
+- **D** — Passera 100 000 kr i månaden
+- **E** — Jag har gett upp
 
 ### Question 4
-**Hur mycket kan du investera i dig själv och de verktyg som krävs?**
-*Gäller utbildning, verktyg och coachning — vi rekommenderar bara sådant som passar din nivå.*
+**Föreställ dig att det är om 3 månader och du redan stänger affärer — hur mycket är du beredd att investera för att komma dit?**
+*Det gäller utbildning, verktyg och coachning. Välj bara ett belopp du faktiskt har tillgång till i dag.*
 
-- **A** — Under 500 $
-- **B** — 500–1 000 $
-- **C** — 1 000–3 000 $
-- **D** — 3 000–5 000 $
-- **E** — Över 5 000 $
+- **A** — 😬 Under 5 000 kr
+- **B** — 🌱 5 000–15 000 kr
+- **C** — 🚀 15 000–30 000 kr
+- **D** — 🔥 30 000–50 000 kr
+- **E** — 💎 50 000 kr+
 
 ---
 

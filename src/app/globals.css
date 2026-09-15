@@ -256,7 +256,9 @@
 .hero-backdrop {
   position: absolute;
   inset: 0 0 auto 0;
-  height: clamp(420px, 72vh, 780px);
+  /* Tall enough to run past the bottom of the VSL frame at every width: the
+     video sits ~406px down on desktop and is 432px tall at max-w-3xl. */
+  height: clamp(660px, 112vh, 1180px);
   pointer-events: none;
   z-index: 0;
 }
@@ -270,13 +272,27 @@
 
 .hero-backdrop::before {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.085) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.085) 1px, transparent 1px);
   background-size: 56px 56px;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.5) 48%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.5) 48%, transparent 100%);
+  /* Holds full strength past the video and only fades over the last stretch,
+     so the grid still reads behind the whole player. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 62%,
+    rgba(0, 0, 0, 0.55) 84%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 62%,
+    rgba(0, 0, 0, 0.55) 84%,
+    transparent 100%
+  );
 }
 
 .hero-backdrop::after {
-  background: radial-gradient(62% 58% at 50% 0%, rgba(79, 209, 47, 0.13) 0%, transparent 70%);
+  background: radial-gradient(64% 40% at 50% 0%, rgba(79, 209, 47, 0.13) 0%, transparent 70%);
 }
