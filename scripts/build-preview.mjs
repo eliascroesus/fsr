@@ -265,7 +265,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       </svg>
 
       <div class="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
-        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Bli placerad på ett <span class="headline-accent">10 000 $ offer</span> på 90 dagar och lär dig <span class="headline-mark">online sales</span>… <em class="italic">annars får du full återbetalning</em></h1>
+        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Bli placerad på ett <span class="headline-accent">$10,000 offer</span> på 90 dagar och lär dig <span class="headline-mark">online sales</span>… <em class="italic">annars får du full återbetalning</em></h1>
 
         <p class="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">Ingen säljerfarenhet krävs.</span> På samtalet visar vi exakt var just du ska börja.</p>
 

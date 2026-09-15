@@ -40,7 +40,7 @@ via `clamp()`. Sizes below are given as **desktop (1200px) / mobile (390px)**.
 First element on the page, 24px from the top. Centred, balanced wrapping. **52.4 / 27.3px**, weight **800**, line-height
 **1.06** (55.5px at desktop), letter-spacing **0**.
 
-> Bli placerad på ett **10 000 $ offer** på 90 dagar och lär dig
+> Bli placerad på ett **$10,000 offer** på 90 dagar och lär dig
 > **online sales**… *annars får du full återbetalning*
 
 Three emphasis treatments inside one heading:
@@ -48,10 +48,11 @@ Three emphasis treatments inside one heading:
 | Fragment | Treatment |
 | --- | --- |
 | `online sales` | white text, `#4fd12f` underline — 0.072em thick, 0.16em below baseline |
-| `10 000 $ offer` | vertical gradient `#a8f76b` (top) → `#4fd12f` (bottom), clipped to the glyphs; glow: `drop-shadow(0 0 8px rgba(79,209,47,.32)) drop-shadow(0 0 24px rgba(79,209,47,.18))` |
+| `$10,000 offer` | vertical gradient `#a8f76b` (top) → `#4fd12f` (bottom), clipped to the glyphs; glow: `drop-shadow(0 0 8px rgba(79,209,47,.32)) drop-shadow(0 0 24px rgba(79,209,47,.18))` |
 | `annars får du full återbetalning` | italic (synthesised oblique — Geist has no italic axis) |
 
-`10 000 $` uses non-breaking spaces so the figure never splits across lines.
+`$10,000` is written in the English form deliberately; the sums inside the test
+use Swedish formatting (`2 000–5 000 $`).
 
 ---
 
