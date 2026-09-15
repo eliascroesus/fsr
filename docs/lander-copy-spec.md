@@ -35,38 +35,27 @@ via `clamp()`. Sizes below are given as **desktop (1200px) / mobile (390px)**.
 
 ---
 
-## 1. Status pills — top of page
+## 1. Headline — H1
 
-Two joined pills, centred, 24px from the top of the page.
-
-| Text | Size | Weight | Colour | Notes |
-| --- | --- | --- | --- | --- |
-| `NY` | 12 / 10px | 900 | `#ffffff` | uppercase, tracking `0.14em`, preceded by a pulsing 6px `#98dd29` dot |
-| `High Ticket Closing` | 12 / 10px | 900 | `#ceff62` | uppercase, tracking `0.14em`, on `#1e2a12` |
-
----
-
-## 2. Headline — H1
-
-Centred, balanced wrapping. **52.4 / 27.3px**, weight **800**, line-height
+First element on the page, 24px from the top. Centred, balanced wrapping. **52.4 / 27.3px**, weight **800**, line-height
 **1.06** (55.5px at desktop), letter-spacing **0**.
 
-> Vi lär dig **High Ticket Closing** och placerar dig som closer på ett
-> **erbjudande på 10 000 $**… *annars jobbar vi med dig gratis tills du är det*
+> Bli placerad på ett **10 000 $ offer** på 90 dagar och lär dig
+> **online sales**… *annars får du full återbetalning*
 
 Three emphasis treatments inside one heading:
 
 | Fragment | Treatment |
 | --- | --- |
-| `High Ticket Closing` | white text, `#4fd12f` underline — 0.072em thick, 0.16em below baseline |
-| `erbjudande på 10 000 $` | vertical gradient `#a8f76b` (top) → `#4fd12f` (bottom), clipped to the glyphs; glow: `drop-shadow(0 0 8px rgba(79,209,47,.32)) drop-shadow(0 0 24px rgba(79,209,47,.18))` |
-| `annars jobbar vi med dig gratis tills du är det` | italic (synthesised oblique — Geist has no italic axis) |
+| `online sales` | white text, `#4fd12f` underline — 0.072em thick, 0.16em below baseline |
+| `10 000 $ offer` | vertical gradient `#a8f76b` (top) → `#4fd12f` (bottom), clipped to the glyphs; glow: `drop-shadow(0 0 8px rgba(79,209,47,.32)) drop-shadow(0 0 24px rgba(79,209,47,.18))` |
+| `annars får du full återbetalning` | italic (synthesised oblique — Geist has no italic axis) |
 
 `10 000 $` uses non-breaking spaces so the figure never splits across lines.
 
 ---
 
-## 3. Sub-headline
+## 2. Sub-headline
 
 Centred, max width 576px, **16.5 / 13.2px**, line-height 1.5. Four fragments on
 one line, three weights:
@@ -81,7 +70,7 @@ one line, three weights:
 
 ---
 
-## 4. Social proof pill
+## 3. Social proof pill
 
 Centred pill, three overlapping 32px avatars on the left.
 
@@ -91,7 +80,7 @@ Centred pill, three overlapping 32px avatars on the left.
 
 ---
 
-## 5. Video block
+## 4. Video block
 
 16:9 frame, full content width (max 768px). Starts ~416px down on desktop,
 ~457px on mobile — deliberately inside the first screen so a visitor sees there
@@ -103,7 +92,7 @@ there only swallowed the click.
 
 ---
 
-## 6. Step indicator
+## 5. Step indicator
 
 Three equal cells in one rounded bar. Number badge above a label.
 
@@ -117,7 +106,7 @@ Labels: **14 / 9px**, weight 900, uppercase. Numbers: 14 / 10px, weight 900.
 
 ---
 
-## 7. STEP 1 — The test
+## 6. STEP 1 — The test
 
 One question per screen. Choosing an option advances automatically after 280ms;
 letter keys (A–E) also select. A `Tillbaka` link appears from question 2.
@@ -178,7 +167,7 @@ Progress bar (2px, `#98dd29`) sits flush along the card's top edge.
 
 ---
 
-## 8. STEP 2 — Details
+## 7. STEP 2 — Details
 
 | Element | Text | Size | Weight | Colour |
 | --- | --- | --- | --- | --- |
@@ -196,7 +185,7 @@ The checkbox is an **opt-out**: ticking it removes the phone requirement.
 
 ---
 
-## 9. STEP 3 — Book a call
+## 8. STEP 3 — Book a call
 
 | Element | Text | Size | Weight | Colour |
 | --- | --- | --- | --- | --- |
@@ -221,7 +210,7 @@ The checkbox is an **opt-out**: ticking it removes the phone requirement.
 
 ---
 
-## 10. Countdown
+## 9. Countdown
 
 Sits **below** whichever step card is showing, so it holds one position through
 the whole funnel. Counts down to the end of the visitor's own local day.
@@ -234,7 +223,7 @@ the whole funnel. Counts down to the end of the visitor's own local day.
 
 ---
 
-## 11. Bottom CTA
+## 10. Bottom CTA
 
 Full-width button, max 672px, centred, 48px below the funnel. Scrolls back up to
 the test.
@@ -246,7 +235,7 @@ the test.
 
 ---
 
-## 12. Footer
+## 11. Footer
 
 Centred, max width 896px, 48px logo at 50% opacity on top. All paragraphs
 **12px, weight 400, `#a3a3a3`**.

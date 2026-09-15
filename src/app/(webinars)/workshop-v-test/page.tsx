@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import { AnimatedGridPattern } from '@/components/magicui/animated-grid-pattern';
-import { Mark, OfferPills } from '@/components/workshop/hero-top';
+import { Mark } from '@/components/workshop/hero-top';
 import { ScrollToOptInButton } from '@/components/workshop/scroll-to-opt-in-button';
 import { VideoPlaceholder } from '@/components/workshop/video-placeholder';
 import { WorkshopOptIn } from '@/components/workshop/workshop-opt-in';
@@ -23,12 +23,11 @@ export default function WorkshopVTestPage() {
       <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
         {/* `contents` keeps these children in the parent's flex flow. */}
         <div className="contents">
-          <OfferPills offer="High Ticket Closing" />
-
           <h1 className="hero-headline mb-3 text-balance text-center font-extrabold text-white">
-            Vi lär dig <Mark>High Ticket Closing</Mark> och placerar dig som closer på ett{' '}
-            <span className="headline-accent">erbjudande på 10 000 $</span>…{' '}
-            <em className="italic">annars jobbar vi med dig gratis tills du är det</em>
+            Bli placerad på ett{' '}
+            <span className="headline-accent">10 000 $ offer</span> på 90 dagar och lär dig{' '}
+            <Mark>online sales</Mark>…{' '}
+            <em className="italic">annars får du full återbetalning</em>
           </h1>
 
           <p className="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">

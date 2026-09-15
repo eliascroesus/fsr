@@ -231,8 +231,6 @@ async function main() {
   .vsl-frame { container-type: inline-size; }
   /* Hero top — mirrors the same rules in globals.css. */
   .brand-wordmark { text-shadow: 0 0 18px rgba(79,209,47,.45), 0 0 44px rgba(79,209,47,.2); }
-  @keyframes status-pulse { 0%,100% { opacity:1; transform:scale(1) } 50% { opacity:.45; transform:scale(.82) } }
-  .status-dot { animation: status-pulse 2s ease-in-out infinite; }
   .hero-headline { font-size: clamp(1.6rem, 0.95rem + 3.1vw, 3.5rem); line-height:1.06; letter-spacing:0; }
   .hero-sub { font-size: clamp(0.8125rem, 0.73rem + 0.4vw, 1.0625rem); line-height:1.5; }
   .headline-accent {
@@ -247,7 +245,6 @@ async function main() {
     text-decoration-thickness: 0.072em;
     text-underline-offset: 0.16em;
   }
-  @media (prefers-reduced-motion: reduce) { .status-dot { animation:none } }
   .tier { border-color: rgba(42,107,133,.4); background:#0a0c0d; }
   .tier:hover { border-color:#2f343a; }
   .tier[aria-pressed="true"] { border-color:#4fd12f; background:rgba(18,49,60,.85); box-shadow:0 0 28px rgba(79,209,47,.25); }
@@ -268,12 +265,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       </svg>
 
       <div class="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
-        <div class="mb-7 inline-flex items-stretch rounded-full border border-[#2f343a]/70 bg-[#0f1113] p-1 shadow-[0_0_28px_rgba(79,209,47,0.18)]">
-          <span class="inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white sm:px-4 sm:text-xs"><span class="status-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#4fd12f]"></span>NY</span>
-          <span class="inline-flex items-center rounded-full bg-[#1e2a12] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#a8f76b] sm:px-4 sm:text-xs">High Ticket Closing</span>
-        </div>
-
-        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Vi lär dig <span class="headline-mark">High Ticket Closing</span> och placerar dig som closer på ett <span class="headline-accent">erbjudande på 10 000 $</span>… <em class="italic">annars jobbar vi med dig gratis tills du är det</em></h1>
+        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Bli placerad på ett <span class="headline-accent">10 000 $ offer</span> på 90 dagar och lär dig <span class="headline-mark">online sales</span>… <em class="italic">annars får du full återbetalning</em></h1>
 
         <p class="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">Ingen säljerfarenhet krävs.</span> På samtalet visar vi exakt var just du ska börja.</p>
 

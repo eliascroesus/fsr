@@ -205,23 +205,6 @@
     0 0 44px rgba(79, 209, 47, 0.2);
 }
 
-/* Live indicator on the status pill. */
-@keyframes status-pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.45;
-    transform: scale(0.82);
-  }
-}
-
-.status-dot {
-  animation: status-pulse 2s ease-in-out infinite;
-}
-
 /*
  * Accent rule under emphasised words in the headline. Drawn as a background
  * gradient rather than a border so it survives line wrapping and sits clear of
@@ -262,8 +245,4 @@
   text-underline-offset: 0.16em;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .status-dot {
-    animation: none;
-  }
-}
+
