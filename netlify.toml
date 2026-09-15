@@ -1,0 +1,25 @@
+# Netlify build settings.
+#
+# Netlify auto-detects Next.js and installs its Next.js Runtime, which handles
+# the server components, the image optimizer behind /_next/image, and the
+# static assets. Declaring the plugin here pins that behaviour explicitly.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Next 15 needs 18.18+; this matches what the project is developed against.
+  NODE_VERSION = "22"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Deploy Previews and branch deploys build the same way as production. Tracking
+# pixels are off unless NEXT_PUBLIC_ENABLE_TRACKING is set, so previews do not
+# pollute the real analytics properties — see docs/DEPLOY.md.
+[context.deploy-preview.environment]
+  NEXT_PUBLIC_ENABLE_TRACKING = "false"
+
+[context.branch-deploy.environment]
+  NEXT_PUBLIC_ENABLE_TRACKING = "false"
