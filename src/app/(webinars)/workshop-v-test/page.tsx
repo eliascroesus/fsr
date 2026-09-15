@@ -1,6 +1,5 @@
 import Image from 'next/image';
 
-import { AnimatedGridPattern } from '@/components/magicui/animated-grid-pattern';
 import { Mark } from '@/components/workshop/hero-top';
 import { ScrollToOptInButton } from '@/components/workshop/scroll-to-opt-in-button';
 import { VideoPlaceholder } from '@/components/workshop/video-placeholder';
@@ -17,15 +16,19 @@ const DISQUALIFIERS = ['Ingen egen produkt.', 'Inga annonser.', 'Jobba hemifrån
 
 export default function WorkshopVTestPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-black">
-      <AnimatedGridPattern className="fixed inset-0 h-full w-full -z-10" />
+    <div className="relative min-h-screen flex flex-col bg-black">
+      <div className="hero-backdrop" aria-hidden="true" />
 
-      <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
         {/* `contents` keeps these children in the parent's flex flow. */}
         <div className="contents">
           <h1 className="hero-headline mb-3 text-balance text-center font-extrabold text-white">
             Bli placerad på ett{' '}
-            <span className="headline-accent">$10,000 offer</span> på 90 dagar och lär dig{' '}
+            <span className="headline-accent">$10,000 offer</span> på{' '}
+            <Mark>
+              <span className="headline-accent">90 dagar</span>
+            </Mark>{' '}
+            och lär dig{' '}
             <Mark>online sales</Mark>…{' '}
             <em className="italic">annars får du full återbetalning</em>
           </h1>

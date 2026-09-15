@@ -15,7 +15,6 @@
     "@vercel/speed-insights": "^1.2.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.454.0",
-    "motion": "^11.15.0",
     "next": "^15.5.25",
     "posthog-js": "^1.203.1",
     "react": "^19.0.0",

@@ -224,10 +224,20 @@ async function main() {
 <style>/*__FONT__*/</style>
 <style>
   body { background:#000; color:#fff; font-family:Geist,ui-sans-serif,system-ui,sans-serif; margin:0; -webkit-font-smoothing:antialiased; }
-  .gridsq { animation: sqfade var(--dur) ease-in-out var(--delay) infinite alternate; }
-  @keyframes sqfade { from { opacity:0 } to { opacity:.05 } }
   /* Smart-autoplay overlay: 1920x1080 stage coordinates expressed as
      percentages, with cqw carrying the type and radius proportions. */
+  /* Hero backdrop — mirrors the same rules in globals.css. */
+  .hero-backdrop { position:absolute; inset:0 0 auto 0; height:clamp(420px,72vh,780px); pointer-events:none; z-index:0; }
+  .hero-backdrop::before, .hero-backdrop::after { content:''; position:absolute; inset:0; }
+  .hero-backdrop::before {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.055) 1px, transparent 1px);
+    background-size:56px 56px;
+    -webkit-mask-image: linear-gradient(to bottom,#000 0%,rgba(0,0,0,.5) 48%,transparent 100%);
+    mask-image: linear-gradient(to bottom,#000 0%,rgba(0,0,0,.5) 48%,transparent 100%);
+  }
+  .hero-backdrop::after { background: radial-gradient(62% 58% at 50% 0%, rgba(79,209,47,.13) 0%, transparent 70%); }
   .vsl-frame { container-type: inline-size; }
   /* Hero top — mirrors the same rules in globals.css. */
   .brand-wordmark { text-shadow: 0 0 18px rgba(79,209,47,.45), 0 0 44px rgba(79,209,47,.2); }
@@ -257,15 +267,11 @@ async function main() {
 ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 <div class="flex min-h-screen flex-col relative overflow-hidden">
   <main class="flex-1">
-    <div class="min-h-screen flex flex-col bg-black">
-      <svg aria-hidden="true" id="grid" class="pointer-events-none fill-gray-400/30 stroke-gray-400/30 [mask-image:radial-gradient(750px_circle_at_center,white,transparent)] fixed inset-0 h-full w-full -z-10">
-        <defs><pattern id="gp" width="40" height="40" patternUnits="userSpaceOnUse" x="-1" y="-1"><path d="M.5 40V.5H40" fill="none" stroke-dasharray="0"/></pattern></defs>
-        <rect width="100%" height="100%" fill="url(#gp)"/>
-        <svg x="-1" y="-1" class="overflow-visible" id="squares"></svg>
-      </svg>
+    <div class="relative min-h-screen flex flex-col bg-black">
+      <div class="hero-backdrop" aria-hidden="true"></div>
 
-      <div class="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
-        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Bli placerad på ett <span class="headline-accent">$10,000 offer</span> på 90 dagar och lär dig <span class="headline-mark">online sales</span>… <em class="italic">annars får du full återbetalning</em></h1>
+      <div class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
+        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Bli placerad på ett <span class="headline-accent">$10,000 offer</span> på <span class="headline-mark"><span class="headline-accent">90 dagar</span></span> och lär dig <span class="headline-mark">online sales</span>… <em class="italic">annars får du full återbetalning</em></h1>
 
         <p class="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">Ingen säljerfarenhet krävs.</span> På samtalet visar vi exakt var just du ska börja.</p>
 
@@ -378,23 +384,6 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 <script>
 (function () {
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // ---- animated grid ------------------------------------------------------
-  var squares = document.getElementById('squares');
-  var cols = Math.ceil(window.innerWidth / 40), rows = Math.ceil(window.innerHeight / 40);
-  var frag = document.createDocumentFragment();
-  for (var i = 0; i < 200; i++) {
-    var r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    r.setAttribute('width', 39); r.setAttribute('height', 39);
-    r.setAttribute('x', Math.floor(Math.random() * cols) * 40 + 1);
-    r.setAttribute('y', Math.floor(Math.random() * rows) * 40 + 1);
-    r.setAttribute('fill', 'currentColor'); r.setAttribute('stroke-width', 0);
-    r.setAttribute('class', 'gridsq');
-    r.style.setProperty('--dur', (3 + Math.random() * 2).toFixed(2) + 's');
-    r.style.setProperty('--delay', (Math.random() * 6).toFixed(2) + 's');
-    frag.appendChild(r);
-  }
-  squares.appendChild(frag);
 
   // ---- countdown: the offer closes at the end of the visitor's own day ----
   function deadline(now){ var d = new Date(now); d.setHours(24,0,0,0); return d.getTime(); }
