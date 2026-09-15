@@ -56,6 +56,24 @@ const TICK = `<svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-3.5 w
 
 const SE_FLAG = `<svg viewBox="0 0 24 16" class="h-4 w-6 rounded-[2px]"><rect width="24" height="16" fill="#006aa7"/><rect y="6.5" width="24" height="3" fill="#fecc02"/><rect x="7" width="3" height="16" fill="#fecc02"/></svg>`;
 
+/** Cinema8 media id for the VSL, and its player script. */
+const VSL_MEDIA_ID = 'zJANjqaO';
+const CINEMA8_PLAYER_SRC = 'https://static-01.cinema8.com/embed/player.js';
+
+/**
+ * The real player everywhere, and a notice in the artifact build — that
+ * viewer's CSP admits scripts only from a short allowlist, which this host is
+ * not on, so the element would mount and stay blank.
+ */
+const VSL_BODY = ARTIFACT
+  ? `<div class="absolute inset-0 grid place-items-center px-6 text-center">
+      <div>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/30 sm:text-xs">VSL</p>
+        <p class="mx-auto mt-2 max-w-xs text-[11px] leading-relaxed text-white/40 sm:text-xs">Videon spelas upp här på sidan. Den här förhandsvisningen kan inte ladda spelaren, eftersom visningen blockerar externa skript.</p>
+      </div>
+    </div>`
+  : `<cinema8-player media-id="${VSL_MEDIA_ID}" style="position:absolute;top:0;left:0;width:100%;height:100%"></cinema8-player>`;
+
 /** Google Calendar appointment schedule embedded on the booking step. */
 const BOOKING_URL =
   'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1ghy5mwfxSxcxe-jbhtkhxSiL_AWeu26VMG8rIAXrHLi-k2ZHdMI3zW8SsUfWD4lBhtD4Kvdjc?gv=true';
@@ -274,10 +292,8 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 
         <div class="mb-8 w-full max-w-3xl">
           <div class="vsl-frame relative aspect-video w-full overflow-hidden rounded-2xl border border-[#2f343a]/70 bg-[#0f1113] shadow-[0_0_40px_rgba(152,221,41,0.18)]">
-            <div id="vslEmpty" class="absolute inset-0 hidden place-items-center">
-              <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/25 sm:text-xs">Platshållare för video</p>
-            </div>
-            <button type="button" id="vslOverlay" aria-label="Klicka för att lyssna" class="absolute inset-0 h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#98dd29]">
+            ${VSL_BODY}
+            <button type="button" id="vslOverlay" aria-label="Klicka för att lyssna" class="absolute inset-0 z-10 h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#98dd29]">
               <span class="vsl-pulse absolute inset-0 block">
                 <span class="vsl-card absolute block border-solid border-white bg-[rgba(101,163,13,0.78)]" style="left:32.361%;top:19.506%;width:35.278%;height:60.988%"></span>
                 <span class="absolute block" style="left:39.931%;top:27.407%;width:20.139%;height:35.802%"><img alt="" class="h-full w-full" src="${playIcon}"></span>
@@ -539,11 +555,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
   });
 
   var vsl = document.getElementById('vslOverlay');
-  if (vsl) vsl.addEventListener('click', function(){
-    vsl.remove();
-    var empty = document.getElementById('vslEmpty');
-    if (empty) { empty.classList.remove('hidden'); empty.classList.add('grid'); }
-  });
+  if (vsl) vsl.addEventListener('click', function(){ vsl.remove(); });
 
   document.getElementById('bottomCta').addEventListener('click', function(){
     document.getElementById('workshop-opt-in').scrollIntoView({ behavior:'smooth', block:'start' });
@@ -552,7 +564,8 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
   render();
 })();
 </script>
-${ARTIFACT ? PREVIEW_BADGE : ''}
+${ARTIFACT ? PREVIEW_BADGE : `<script src="${CINEMA8_PLAYER_SRC}" async></script>`}
+${ARTIFACT ? '' : ''}
 ${ARTIFACT ? '' : '</body>\n</html>'}`;
 
   const out = path.join(ROOT, 'preview', ARTIFACT ? 'workshop-v-test.artifact.html' : 'workshop-v-test.html');
