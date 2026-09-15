@@ -13,7 +13,7 @@ const SOCIAL_PROOF_AVATARS = [
 ];
 
 /** Korta avfärdanden i fetstil före den förklarande raden. */
-const DISQUALIFIERS = ['Ingen egen produkt.', 'Inga annonser.', '100% hemifrån.'];
+const DISQUALIFIERS = ['Ingen egen produkt.', 'Inga annonser.', 'Jobba hemifrån.'];
 
 export default function WorkshopVTestPage() {
   return (
@@ -26,9 +26,9 @@ export default function WorkshopVTestPage() {
           <OfferPills offer="High Ticket Closing" />
 
           <h1 className="hero-headline mb-3 text-balance text-center font-extrabold text-white">
-            Jag visar dig hur du kommer igång med <Mark>High Ticket Closing</Mark> och ger dig
-            ett <span className="headline-accent">erbjudande värt 10 000 $</span> på 90
-            dagar… <em className="italic">annars får du full återbetalning</em>
+            Vi lär dig <Mark>High Ticket Closing</Mark> och placerar dig som closer på ett{' '}
+            <span className="headline-accent">erbjudande på 10 000 $</span>…{' '}
+            <em className="italic">annars jobbar vi med dig gratis tills du är det</em>
           </h1>
 
           <p className="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">
@@ -37,8 +37,8 @@ export default function WorkshopVTestPage() {
                 {line}{' '}
               </span>
             ))}
-            <span className="font-medium italic text-white/60">2–3 timmar om dagen.</span> Vi går igenom exakt hur
-            du kommer igång på ditt samtal.
+            <span className="font-medium italic text-white/60">Ingen säljerfarenhet krävs.</span> På samtalet visar vi exakt
+            var just du ska börja.
           </p>
 
           <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2f343a]/70 bg-[#0f1113]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">
@@ -60,7 +60,7 @@ export default function WorkshopVTestPage() {
               ))}
             </div>
             <p className="text-left text-xs font-bold text-[#a8f76b] sm:text-sm">
-              3 478 nybörjare anmälde sig den här veckan
+              178 nybörjare anmälde sig den här veckan
             </p>
           </div>
         </div>

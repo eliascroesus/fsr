@@ -7,8 +7,8 @@ export function ScrollToOptInButton() {
   return (
     <CtaButton
       className="max-w-2xl"
-      primaryLabel="STARTA TESTET"
-      secondaryLabel="TAR 60 SEKUNDER — GRATIS 1-TIMMESKURS INGÅR"
+      primaryLabel="SE OM DU PASSAR – STARTA TESTET"
+      secondaryLabel="4 FRÅGOR · 60 SEKUNDER · GRATIS 1-TIMMESKURS"
       onClick={() =>
         document
           .getElementById('workshop-opt-in')

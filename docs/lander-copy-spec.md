@@ -7,7 +7,7 @@ transcribed by hand.
 - **Language:** Swedish (`<html lang="sv">`)
 - **Offer:** high ticket closing. Visitor takes a 4-question test, leaves their
   details, then books a call. A free 1-hour course is the incentive.
-- **Route:** `/workshop-v-test` · **Page title:** `AI Acquisition`
+- **Route:** `/workshop-v-test` · **Page title:** `FSR`
 - **Layout:** single column, everything centred, max content width 1024px
   (`max-w-5xl`), 24px top padding at every width.
 
@@ -17,15 +17,15 @@ transcribed by hand.
 
 | Token | Value | Used for |
 | --- | --- | --- |
-| Accent | `#98dd29` | underline rules, dots, selected borders, gradient bottom |
-| Accent light | `#ceff62` | small-caps labels, pill text, gradient top |
+| Accent | `#4fd12f` | underline rules, dots, selected borders, gradient bottom |
+| Accent light | `#a8f76b` | small-caps labels, pill text, gradient top |
 | Page ground | `#000000` | body |
 | Card ink | `#0f1113` | cards, pills |
 | Field ink | `#0a0c0d` | inputs |
 | Selected tint | `#1e2a12` | active step, chosen option |
 | Border | `#2f343a` | all card and input borders |
 | Body text | `#ffffff` at 100 / 75 / 60 / 45 / 40% | hierarchy below headings |
-| CTA gradient | `rgb(122,180,30)` → `rgb(152,221,41)` → `rgb(206,255,98)`, left→right | primary buttons (black text) |
+| CTA gradient | `rgb(74,180,56)` → `rgb(95,214,62)` → `rgb(168,247,107)`, left→right | primary buttons (black text) |
 
 **Typeface:** Geist (all weights), letter-spacing `normal` everywhere except
 small-caps labels.
@@ -51,16 +51,16 @@ Two joined pills, centred, 24px from the top of the page.
 Centred, balanced wrapping. **52.4 / 27.3px**, weight **800**, line-height
 **1.06** (55.5px at desktop), letter-spacing **0**.
 
-> Jag visar dig hur du kommer igång med **High Ticket Closing** och ger dig ett
-> **erbjudande värt 10 000 $** på 90 dagar… *annars får du full återbetalning*
+> Vi lär dig **High Ticket Closing** och placerar dig som closer på ett
+> **erbjudande på 10 000 $**… *annars jobbar vi med dig gratis tills du är det*
 
 Three emphasis treatments inside one heading:
 
 | Fragment | Treatment |
 | --- | --- |
-| `High Ticket Closing` | white text, `#98dd29` underline — 0.072em thick, 0.16em below baseline |
-| `erbjudande värt 10 000 $` | vertical gradient `#ceff62` (top) → `#98dd29` (bottom), clipped to the glyphs; glow: `drop-shadow(0 0 8px rgba(152,221,41,.32)) drop-shadow(0 0 24px rgba(152,221,41,.18))` |
-| `annars får du full återbetalning` | italic (synthesised oblique — Geist has no italic axis) |
+| `High Ticket Closing` | white text, `#4fd12f` underline — 0.072em thick, 0.16em below baseline |
+| `erbjudande på 10 000 $` | vertical gradient `#a8f76b` (top) → `#4fd12f` (bottom), clipped to the glyphs; glow: `drop-shadow(0 0 8px rgba(79,209,47,.32)) drop-shadow(0 0 24px rgba(79,209,47,.18))` |
+| `annars jobbar vi med dig gratis tills du är det` | italic (synthesised oblique — Geist has no italic axis) |
 
 `10 000 $` uses non-breaking spaces so the figure never splits across lines.
 
@@ -75,9 +75,9 @@ one line, three weights:
 | --- | --- | --- |
 | `Ingen egen produkt.` | 700 | white 75% |
 | `Inga annonser.` | 700 | white 75% |
-| `100% hemifrån.` | 700 | white 75% |
-| `2–3 timmar om dagen.` | 500, italic | white 60% |
-| `Vi går igenom exakt hur du kommer igång på ditt samtal.` | 400 | white 45% |
+| `Jobba hemifrån.` | 700 | white 75% |
+| `Ingen säljerfarenhet krävs.` | 500, italic | white 60% |
+| `På samtalet visar vi exakt var just du ska börja.` | 400 | white 45% |
 
 ---
 
@@ -87,7 +87,7 @@ Centred pill, three overlapping 32px avatars on the left.
 
 | Text | Size | Weight | Colour |
 | --- | --- | --- | --- |
-| `3 478 nybörjare anmälde sig den här veckan` | 14 / 12px | 700 | `#ceff62` |
+| `178 nybörjare anmälde sig den här veckan` | 14 / 12px | 700 | `#a8f76b` |
 
 ---
 
@@ -97,14 +97,9 @@ Centred pill, three overlapping 32px avatars on the left.
 ~457px on mobile — deliberately inside the first screen so a visitor sees there
 is a video without scrolling.
 
-A translucent green card sits centred over it with:
-
-| Text | Size | Weight | Colour |
-| --- | --- | --- | --- |
-| `Klicka för att lyssna` | 21.3 / 9.9px (scales with frame width) | 700 | `#ffffff` |
-
-Clicking dismisses the overlay. Behind it, when empty: `Platshållare för video`
-(11–12px, uppercase, tracking `0.22em`, white 25%).
+The Cinema8 player (`<cinema8-player media-id="oJKx7gbO">`) fills the frame and
+owns its own play and unmute controls. Nothing is layered on top — an overlay
+there only swallowed the click.
 
 ---
 
@@ -114,7 +109,7 @@ Three equal cells in one rounded bar. Number badge above a label.
 
 | Cell | Label | Number | State |
 | --- | --- | --- | --- |
-| 1 | `Test` | 1 | active: `#98dd29` badge, black number, white label, `#1e2a12` cell |
+| 1 | `Snabbtest` | 1 | active: `#4fd12f` badge, black number, white label, `#1e2a12` cell |
 | 2 | `Dina uppgifter` | 2 | inactive: white 45% number, white 40% label |
 | 3 | `Boka samtal` | 3 | inactive |
 
@@ -246,29 +241,30 @@ the test.
 
 | Text | Size | Weight | Colour |
 | --- | --- | --- | --- |
-| `STARTA TESTET` | 20 / 16px | 800 | black on the green gradient |
-| `TAR 60 SEKUNDER — GRATIS 1-TIMMESKURS INGÅR` | 14 / 12px | 600 | black, 90% opacity |
+| `SE OM DU PASSAR – STARTA TESTET` | 20 / 16px | 800 | black on the green gradient |
+| `4 FRÅGOR · 60 SEKUNDER · GRATIS 1-TIMMESKURS` | 14 / 12px | 600 | black, 90% opacity |
 
 ---
 
 ## 12. Footer
 
 Centred, max width 896px, 48px logo at 50% opacity on top. All paragraphs
-**12px, weight 400, `#a3a3a3`**. Note: the legal text is in English while the
-rest of the page is Swedish.
+**12px, weight 400, `#a3a3a3`**.
 
-1. `AI Acquisition and all individuals affiliated with this organization assumes no responsibility for the outcome, result, or success of the services, and does not guarantee specific results or outcome. Success depends in part on the time you devote, and your implementation of the guidance, strategies and support received. The strategies, content, articles and all other features are for educational purposes only.`
+1. `FSR och alla personer som är knutna till företaget tar inget ansvar för utfallet, resultatet eller framgången av tjänsterna, och garanterar inga specifika resultat. Hur det går beror bland annat på hur mycket tid du lägger ner och på hur du tillämpar den vägledning och det stöd du får. Innehållet och alla övriga funktioner är uteslutande i utbildningssyfte.`
 
-2. `Though our services and products are tailored for our clients, we cannot give any guarantees or warranties (either express or implied), about results or earning money with the ideas, information, tools and strategies set out in the services. Any testimonials provided are of real-life individuals and businesses and their own personal and individual experiences. These must not be taken as "typical" results and will not be specific to your particular circumstances or actions you choose to take following receipt of the services and products.`
+2. `Vi kan inte lämna några garantier eller utfästelser, varken uttryckliga eller underförstådda, om resultat eller om att tjäna pengar på de metoder, den information och de strategier som ingår. Försäljning av högprisprodukter kräver eget arbete, och resultaten varierar från person till person.`
 
-3. `In a survey of over 660 businesses with over 100 responding, business owners averaged $18,105 in monthly revenue after implementing our system.`
+3. `Eventuella omdömen kommer från verkliga personer och beskriver deras egna individuella upplevelser. De ska inte uppfattas som typiska resultat och kommer inte att vara specifika för just dina förhållanden eller de åtgärder du väljer att vidta.`
 
-4. `Also NOT GOOGLE or FACEBOOK: This site is not a part of the Google website, Google Inc, Facebook/Meta website, or Meta, Inc. Additionally, This site is NOT endorsed by Google or Meta in any way.`
+4. `Den här sidan är inte en del av Googles webbplats, Google Inc, Facebook/Metas webbplats eller Meta, Inc. Sidan är inte heller på något sätt godkänd av Google eller Meta.`
 
-**Links** (12px, `#a3a3a3`, hover `#98dd29`), spaced 32px apart:
-`Integritetspolicy` · `Användarvillkor` · `Kontakta oss`
+**Links** (12px, `#a3a3a3`, hover `#4fd12f`), spaced 32px apart:
+`Integritetspolicy` (`/integritetspolicy`) · `Användarvillkor` (`/anvandarvillkor`) ·
+`Kontakta oss` (`mailto:support@fsr.se`) — the first two are placeholders until
+the real pages exist.
 
-**Copyright:** `© 2026 AI Acquisition LLC. Med ensamrätt.`
+**Copyright:** `© 2026 FSR. Med ensamrätt.`
 
 ---
 
@@ -280,18 +276,18 @@ rest of the page is Swedish.
 │                                      │
 │  H1 — promise + guarantee            │  52/27px, 3 emphasis styles
 │  sub — 4 fragments, 3 weights        │  16.5/13.2px
-│  ◉◉◉ 3 478 nybörjare …               │  social proof pill
+│  ◉◉◉ 178 nybörjare …                 │  social proof pill
 │                                      │
 │  ┌────── VIDEO 16:9 ──────┐          │  above the fold on mobile
 │  └────────────────────────┘          │
 │                                      │
-│  [ 1 TEST | 2 UPPGIFTER | 3 BOKA ]   │  step indicator
+│  [ 1 SNABBTEST | 2 UPPGIFTER | 3 BOKA ]  step indicator
 │  ┌── active step card ───────┐       │  test → details → booking
 │  └───────────────────────────┘       │
 │  ┌── countdown ──────────────┐       │  fixed slot below the card
 │  └───────────────────────────┘       │
 │                                      │
-│  [ STARTA TESTET ]                   │  bottom CTA
+│  [ SE OM DU PASSAR – STARTA TESTET ] │  bottom CTA
 │  footer — 4 legal paragraphs         │
 └──────────────────────────────────────┘
 ```

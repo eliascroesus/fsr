@@ -45,7 +45,7 @@ async function dataUri(rel, mime) {
   return `data:${mime};base64,${buf.toString('base64')}`;
 }
 
-const DISQUALIFIERS = ['Ingen egen produkt.', 'Inga annonser.', '100% hemifrån.'];
+const DISQUALIFIERS = ['Ingen egen produkt.', 'Inga annonser.', 'Jobba hemifrån.'];
 
 
 const CHEVRON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 shrink-0 ml-1"><path d="m9 18 6-6-6-6"/></svg>`;
@@ -84,8 +84,8 @@ const CTA_GRADIENT =
 const ctaButton = (id, extra = '') =>
   `<button type="${id === 'submitBtn' ? 'submit' : 'button'}" id="${id}" class="w-full ${extra} py-3.5 px-4 rounded-xl text-black font-extrabold transition-all duration-200 flex items-center justify-center gap-1 shadow-[0_0_28px_rgba(79,209,47,0.35)] hover:opacity-90 hover:scale-[1.01]" style="background:${CTA_GRADIENT}">
     <span class="flex flex-col items-center leading-tight">
-      <span class="text-base sm:text-lg md:text-xl tracking-wide">${id === 'bottomCta' ? 'STARTA TESTET' : 'BOKA ETT SAMTAL'}</span>
-      <span class="text-xs sm:text-sm font-semibold opacity-90">${id === 'bottomCta' ? 'TAR 60 SEKUNDER — GRATIS 1-TIMMESKURS INGÅR' : 'FÅ GRATIS TILLGÅNG TILL VÅR 1-TIMMESKURS'}</span>
+      <span class="text-base sm:text-lg md:text-xl tracking-wide">${id === 'bottomCta' ? 'SE OM DU PASSAR – STARTA TESTET' : 'BOKA ETT SAMTAL'}</span>
+      <span class="text-xs sm:text-sm font-semibold opacity-90">${id === 'bottomCta' ? '4 FRÅGOR · 60 SEKUNDER · GRATIS 1-TIMMESKURS' : 'FÅ GRATIS TILLGÅNG TILL VÅR 1-TIMMESKURS'}</span>
     </span>${CHEVRON}
   </button>`;
 
@@ -199,7 +199,7 @@ async function main() {
   );
   const logo = await dataUri('images/new-logo.png', 'image/png');
 
-  const stepper = ['Test', 'Dina uppgifter', 'Boka samtal']
+  const stepper = ['Snabbtest', 'Dina uppgifter', 'Boka samtal']
     .map(
       (label, i) => `
       <div data-step-cell="${i + 1}" class="relative flex min-h-16 flex-col items-center justify-center border-r border-[#2f343a]/40 px-1.5 py-2 text-center last:border-r-0 sm:min-h-24 sm:px-4 sm:py-3">
@@ -273,15 +273,15 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
           <span class="inline-flex items-center rounded-full bg-[#1e2a12] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#a8f76b] sm:px-4 sm:text-xs">High Ticket Closing</span>
         </div>
 
-        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Jag visar dig hur du kommer igång med <span class="headline-mark">High Ticket Closing</span> och ger dig ett <span class="headline-accent">erbjudande värt 10 000 $</span> på 90 dagar… <em class="italic">annars får du full återbetalning</em></h1>
+        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Vi lär dig <span class="headline-mark">High Ticket Closing</span> och placerar dig som closer på ett <span class="headline-accent">erbjudande på 10 000 $</span>… <em class="italic">annars jobbar vi med dig gratis tills du är det</em></h1>
 
-        <p class="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">2–3 timmar om dagen.</span> Vi går igenom exakt hur du kommer igång på ditt samtal.</p>
+        <p class="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">Ingen säljerfarenhet krävs.</span> På samtalet visar vi exakt var just du ska börja.</p>
 
         <div class="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2f343a]/70 bg-[#0f1113]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">
           <div class="flex shrink-0 -space-x-1.5">
             ${avatars.map((src, i) => `<div class="relative h-7 w-7 overflow-hidden rounded-full ring-2 ring-black sm:h-8 sm:w-8" style="z-index:${3 - i}"><img alt="" width="32" height="32" class="h-full w-full object-cover" src="${src}"></div>`).join('')}
           </div>
-          <p class="text-left text-xs font-bold text-[#a8f76b] sm:text-sm">3 478 nybörjare anmälde sig den här veckan</p>
+          <p class="text-left text-xs font-bold text-[#a8f76b] sm:text-sm">178 nybörjare anmälde sig den här veckan</p>
         </div>
 
         <div class="mb-8 w-full max-w-3xl">

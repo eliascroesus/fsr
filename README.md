@@ -1,4 +1,4 @@
-# AI Acquisition — `/workshop-v-test` replica
+# FSR — `/workshop-v-test` lander
 
 A 1:1 rebuild of the `www.aiacquisitionmethod.com/workshop-v-test` opt-in funnel
 page as a fresh Next.js 15 App Router project, reconstructed from the page's
