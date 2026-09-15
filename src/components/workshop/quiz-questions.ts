@@ -45,7 +45,7 @@ export const QUIZ_QUESTIONS: readonly QuizQuestion[] = [
     id: 'investment',
     title: 'Hur mycket kan du investera i dig själv och de verktyg som krävs?',
     description:
-      'Gäller AI-verktyg, mjukvara och coachning — vi rekommenderar bara sådant som passar din nivå.',
+      'Gäller utbildning, verktyg och coachning — vi rekommenderar bara sådant som passar din nivå.',
     options: [
       { key: 'A', value: 'lt-500', label: 'Under 500 $' },
       { key: 'B', value: '500-1k', label: '500–1 000 $' },

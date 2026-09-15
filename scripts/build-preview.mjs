@@ -45,7 +45,7 @@ async function dataUri(rel, mime) {
   return `data:${mime};base64,${buf.toString('base64')}`;
 }
 
-const DISQUALIFIERS = ['Inget lager.', 'Inget tekniskt krångel.', '100% hemifrån.'];
+const DISQUALIFIERS = ['Ingen egen produkt.', 'Inga annonser.', '100% hemifrån.'];
 
 
 const CHEVRON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 shrink-0 ml-1"><path d="m9 18 6-6-6-6"/></svg>`;
@@ -162,7 +162,7 @@ const QUIZ = [
   {
     id: 'investment',
     title: 'Hur mycket kan du investera i dig själv och de verktyg som krävs?',
-    description: 'Gäller AI-verktyg, mjukvara och coachning — vi rekommenderar bara sådant som passar din nivå.',
+    description: 'Gäller utbildning, verktyg och coachning — vi rekommenderar bara sådant som passar din nivå.',
     options: [
       ['A', 'Under 500 $'],
       ['B', '500–1 000 $'],
@@ -258,12 +258,12 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       <div class="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
         <div class="mb-7 inline-flex items-stretch rounded-full border border-[#2f343a]/70 bg-[#0f1113] p-1 shadow-[0_0_28px_rgba(152,221,41,0.18)]">
           <span class="inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white sm:px-4 sm:text-xs"><span class="status-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#98dd29]"></span>NY</span>
-          <span class="inline-flex items-center rounded-full bg-[#1e2a12] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#ceff62] sm:px-4 sm:text-xs">AI-systemet 2026</span>
+          <span class="inline-flex items-center rounded-full bg-[#1e2a12] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#ceff62] sm:px-4 sm:text-xs">High Ticket Closing</span>
         </div>
 
-        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Så Här Tjänar Nybörjare <span class="headline-accent">18 105 $ Per Månad</span> I <span class="headline-mark">Återkommande Intäkter</span> (i snitt) Med AI 2026</h1>
+        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Jag visar dig hur du kommer igång med <span class="headline-mark">High Ticket Closing</span> och ger dig ett <span class="headline-accent">erbjudande värt 10 000 $</span> på 90 dagar… <em class="italic">annars får du full återbetalning</em></h1>
 
-        <p class="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">8–10 timmar i veckan.</span> Vi går igenom exakt hur du kommer igång på ditt samtal.</p>
+        <p class="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">2–3 timmar om dagen.</span> Vi går igenom exakt hur du kommer igång på ditt samtal.</p>
 
         <div class="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2f343a]/70 bg-[#0f1113]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">
           <div class="flex shrink-0 -space-x-1.5">

@@ -13,7 +13,7 @@ const SOCIAL_PROOF_AVATARS = [
 ];
 
 /** Korta avfärdanden i fetstil före den förklarande raden. */
-const DISQUALIFIERS = ['Inget lager.', 'Inget tekniskt krångel.', '100% hemifrån.'];
+const DISQUALIFIERS = ['Ingen egen produkt.', 'Inga annonser.', '100% hemifrån.'];
 
 export default function WorkshopVTestPage() {
   return (
@@ -23,12 +23,12 @@ export default function WorkshopVTestPage() {
       <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
         {/* `contents` keeps these children in the parent's flex flow. */}
         <div className="contents">
-          <OfferPills offer="AI-systemet 2026" />
+          <OfferPills offer="High Ticket Closing" />
 
           <h1 className="hero-headline mb-3 text-balance text-center font-extrabold text-white">
-            Så Här Tjänar Nybörjare{' '}
-            <span className="headline-accent">18 105 $ Per Månad</span> I{' '}
-            <Mark>Återkommande Intäkter</Mark> (i snitt) Med AI 2026
+            Jag visar dig hur du kommer igång med <Mark>High Ticket Closing</Mark> och ger dig
+            ett <span className="headline-accent">erbjudande värt 10 000 $</span> på 90
+            dagar… <em className="italic">annars får du full återbetalning</em>
           </h1>
 
           <p className="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">
@@ -37,7 +37,7 @@ export default function WorkshopVTestPage() {
                 {line}{' '}
               </span>
             ))}
-            <span className="font-medium italic text-white/60">8–10 timmar i veckan.</span> Vi går igenom exakt hur
+            <span className="font-medium italic text-white/60">2–3 timmar om dagen.</span> Vi går igenom exakt hur
             du kommer igång på ditt samtal.
           </p>
 
