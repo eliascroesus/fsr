@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 /**
  * Relativa sökvägar tills FSR:s riktiga sidor finns — byt till fulla adresser
  * när de är publicerade.
@@ -14,16 +12,6 @@ export function SiteFooter() {
   return (
     <section id="footer" className="bg-background text-center px-4 py-8 text-xs">
       <div className="container mx-auto max-w-4xl space-y-6">
-        <div className="flex justify-center">
-          <Image
-            src="/images/new-logo.png"
-            alt="FSR-logga"
-            width={48}
-            height={48}
-            className="opacity-50"
-          />
-        </div>
-
         <p className="text-muted-foreground">
           FSR och alla personer som är knutna till företaget tar inget ansvar för utfallet,
           resultatet eller framgången av tjänsterna, och garanterar inga specifika resultat. Hur det

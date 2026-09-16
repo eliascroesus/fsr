@@ -233,7 +233,7 @@ border, green glow — and it does not autoplay.
 
 ## 11. Footer
 
-Centred, max width 896px, 48px logo at 50% opacity on top. All paragraphs
+Centred, max width 896px, no logo. All paragraphs
 **12px, weight 400, `#a3a3a3`**.
 
 1. `FSR och alla personer som är knutna till företaget tar inget ansvar för utfallet, resultatet eller framgången av tjänsterna, och garanterar inga specifika resultat. Hur det går beror bland annat på hur mycket tid du lägger ner och på hur du tillämpar den vägledning och det stöd du får. Innehållet och alla övriga funktioner är uteslutande i utbildningssyfte.`

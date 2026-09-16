@@ -206,7 +206,6 @@ async function main() {
       dataUri(`images/${f}`, 'image/avif'),
     ),
   );
-  const logo = await dataUri('images/new-logo.png', 'image/png');
 
   const stepper = ['Snabbtest', 'Dina uppgifter', 'Boka samtal']
     .map(
@@ -381,7 +380,6 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 
   <section id="footer" class="bg-black text-center px-4 py-8 text-xs">
     <div class="container mx-auto max-w-4xl space-y-6">
-      <div class="flex justify-center"><img alt="FSR-logga" width="48" height="48" class="opacity-50" src="${logo}"></div>
       <p class="text-neutral-400">FSR och alla personer som är knutna till företaget tar inget ansvar för utfallet, resultatet eller framgången av tjänsterna, och garanterar inga specifika resultat. Hur det går beror bland annat på hur mycket tid du lägger ner och på hur du tillämpar den vägledning och det stöd du får. Innehållet och alla övriga funktioner är uteslutande i utbildningssyfte.</p>
       <p class="text-neutral-400">Vi kan inte lämna några garantier eller utfästelser, varken uttryckliga eller underförstådda, om resultat eller om att tjäna pengar på de metoder, den information och de strategier som ingår. Försäljning av högprisprodukter kräver eget arbete, och resultaten varierar från person till person.</p>
       <p class="text-neutral-400">Eventuella omdömen kommer från verkliga personer och beskriver deras egna individuella upplevelser. De ska inte uppfattas som typiska resultat och kommer inte att vara specifika för just dina förhållanden eller de åtgärder du väljer att vidta.</p>
