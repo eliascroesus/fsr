@@ -358,12 +358,10 @@
     trackLead('details_submitted');
 
     // ---- step 3: book a call ----
-    var first = state.lead.fullName.split(' ')[0];
     var goalQ = QUIZ.filter(function(q){ return q.id === 'goal'; })[0];
     var goal = goalQ.options.filter(function(o){ return o[0] === state.answers['goal']; })[0];
     document.getElementById('callLine').textContent =
-      (first ? 'Du är med, ' + first + '. ' : 'Du är med. ') +
-      'Välj en tid nedan så lägger vi upp en plan för dina första 90 dagar.';
+      'Du är med. Välj en tid nedan så lägger du och David upp en plan för dina första 90 dagar.';
 
     var rows = [];
     if (goal) rows.push(['Mål', goal[1]]);
@@ -409,7 +407,7 @@
     Cal.ns['fsr']('ui', {
       theme: 'dark',
       cssVarsPerTheme: { dark: { 'cal-brand': '#50ff00' } },
-      hideEventTypeDetails: false,
+      hideEventTypeDetails: true,
       layout: 'month_view'
     });
   }

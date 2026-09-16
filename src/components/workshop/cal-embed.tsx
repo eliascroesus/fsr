@@ -105,7 +105,10 @@ export function CalEmbed({ name, email }: CalEmbedProps) {
     ns('ui', {
       theme: 'dark',
       cssVarsPerTheme: { dark: { 'cal-brand': '#50ff00' } },
-      hideEventTypeDetails: false,
+      // Host, title, blurb, duration and timezone are all hidden — the card
+      // around the embed already says what this is, and repeating it pushed
+      // the first available slot below the fold.
+      hideEventTypeDetails: true,
       layout: 'month_view',
     });
   }, [name, email]);
@@ -114,7 +117,7 @@ export function CalEmbed({ name, email }: CalEmbedProps) {
     <div
       ref={container}
       id="fsr-cal-inline"
-      className="h-[680px] w-full overflow-auto sm:h-[640px]"
+      className="min-h-[520px] w-full overflow-auto sm:min-h-[480px]"
     />
   );
 }

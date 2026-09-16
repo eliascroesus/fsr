@@ -136,7 +136,7 @@ const PREVIEW_BADGE = `
 
 const SCHEDULER_FRAME = `
   <div class="overflow-hidden rounded-2xl border border-[#2f343a]/60 bg-[#0a0c0d] shadow-[0_0_36px_rgba(79,209,47,0.18)]">
-    <div id="fsr-cal-inline" class="h-[680px] w-full overflow-auto sm:h-[640px]"></div>
+    <div id="fsr-cal-inline" class="min-h-[520px] w-full overflow-auto sm:min-h-[480px]"></div>
   </div>
   <p class="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">Laddar kalendern inte? <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#a8f76b] underline-offset-4 transition-colors hover:text-[#4fd12f] hover:underline">Öppna bokningssidan &#8599;</a></p>`;
 
@@ -555,12 +555,10 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     trackLead('details_submitted');
 
     // ---- step 3: book a call ----
-    var first = state.lead.fullName.split(' ')[0];
     var goalQ = QUIZ.filter(function(q){ return q.id === 'goal'; })[0];
     var goal = goalQ.options.filter(function(o){ return o[0] === state.answers['goal']; })[0];
     document.getElementById('callLine').textContent =
-      (first ? 'Du är med, ' + first + '. ' : 'Du är med. ') +
-      'Välj en tid nedan så lägger vi upp en plan för dina första 90 dagar.';
+      'Du är med. Välj en tid nedan så lägger du och David upp en plan för dina första 90 dagar.';
 
     var rows = [];
     if (goal) rows.push(['Mål', goal[1]]);
@@ -606,7 +604,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     Cal.ns['fsr']('ui', {
       theme: 'dark',
       cssVarsPerTheme: { dark: { 'cal-brand': '#50ff00' } },
-      hideEventTypeDetails: false,
+      hideEventTypeDetails: true,
       layout: 'month_view'
     });
   }

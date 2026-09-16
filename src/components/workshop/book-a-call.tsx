@@ -24,7 +24,6 @@ function answerLabel(questionId: string, answers: QuizAnswers): string | null {
 }
 
 export function BookACall({ lead, answers, children }: BookACallProps) {
-  const firstName = lead.fullName.split(' ')[0];
   const goal = answerLabel('goal', answers);
 
   return (
@@ -38,9 +37,11 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
         <h2 className="mb-2 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">
           VÄLJ TID FÖR DITT SAMTAL
         </h2>
+        {/* Names David: with the event details hidden the embed no longer says
+            who they are meeting. */}
         <p className="mb-6 text-center text-xs text-white/60 sm:text-sm">
-          {firstName ? `Du är med, ${firstName}. ` : 'Du är med. '}
-          Välj en tid nedan så lägger vi upp en plan för dina första 90 dagar.
+          Du är med. Välj en tid nedan så lägger du och David upp en plan för dina
+          första 90 dagar.
         </p>
 
         {/* Scheduler. `children` overrides it if the booking tool ever changes. */}
