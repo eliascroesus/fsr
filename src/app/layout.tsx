@@ -4,6 +4,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import './globals.css';
 
+import { SiteFooter } from '@/components/site-footer';
 import { PHProvider } from '@/components/tracking/posthog-provider';
 import { PreloadChunks } from '@/components/tracking/preload-chunks';
 import {
@@ -26,7 +27,7 @@ import {
   PromptWatchTag,
   WhopTag,
 } from '@/components/tracking/third-party-tags';
-import { META_PIXEL_PRIMARY } from '@/lib/tracking-config';
+import { META_PIXEL_PRIMARY, META_PIXELS_ADDITIONAL } from '@/lib/tracking-config';
 
 // Two next/font families, matching the two `__variable_*` classes the source
 // page puts on <body>. `font-sans` resolves to --font-sans in tailwind.config.
@@ -80,7 +81,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <HyrosTracking />
           <FathomTags />
           <SpeedInsights />
-          {children}
+
+          {/* Page chrome: full-height column, clipped overflow (the hero
+              backdrop bleeds past the viewport), and the footer. Lived in the
+              route group that the lander's move to the root removed. */}
+          <div className="relative flex min-h-screen flex-col overflow-hidden">
+            {META_PIXELS_ADDITIONAL[0] ? (
+              <MetaPixelNoscript pixelId={META_PIXELS_ADDITIONAL[0]} />
+            ) : null}
+
+            <main className="flex-1">{children}</main>
+
+            <SiteFooter />
+          </div>
         </PHProvider>
 
         <MetaPixelNoscript pixelId={META_PIXEL_PRIMARY} />
