@@ -32,9 +32,11 @@ browser → POST /api/lead → Apps Script web app → the sheet
 
    Keep it — step 3 needs the same value.
 4. **Save**.
-5. Pick `testWrite` from the function dropdown and press **Run**. Approve the
-   permission prompt. The sheet should gain a header row and one test row —
-   delete that row afterwards. If this works, the hard part is done.
+5. Pick **`testWrite`** from the function dropdown — the editor defaults to
+   `doPost`, which only does anything when the deployed web app receives a
+   request — and press **Run**. Approve the permission prompt. The sheet should
+   gain a header row and one test row; delete that row afterwards. If this
+   works, the hard part is done.
 
 ## 2. Deploy it as a web app
 

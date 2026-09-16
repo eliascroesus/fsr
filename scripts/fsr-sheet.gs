@@ -38,6 +38,15 @@ var HEADERS = [
 ];
 
 function doPost(e) {
+  // Pressing Run on this one in the editor calls it with no request. Say so,
+  // rather than reporting a clean "Execution completed" having done nothing.
+  if (!e || !e.postData) {
+    throw new Error(
+      'doPost only runs when the web app receives a request. To check the ' +
+        'sheet from here, pick testWrite in the dropdown and press Run.',
+    );
+  }
+
   try {
     var body = JSON.parse(e.postData.contents);
 
