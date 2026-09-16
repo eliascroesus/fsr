@@ -104,9 +104,9 @@ byte-for-byte copy.
 3. **Question copy is placeholder.** Question 1's options came from the
    reference form; questions 2-4 were written to brief and live in
    `quiz-questions.ts` — swap in production copy there. The booking step embeds
-   the real Google Calendar appointment schedule (`NEXT_PUBLIC_BOOKING_URL`
-   overrides it); `<BookACall>` still takes children if the booking tool ever
-   changes.
+   the Cal.com event inline (`NEXT_PUBLIC_CAL_LINK` overrides it), prefilled
+   with the name and e-mail from step 2; `<BookACall>` still takes children if
+   the booking tool ever changes.
 
 4. **Fonts.** Two `next/font` families behind `--font-sans` / `--font-mono`:
    Geist and Geist Mono. Only Geist is visible on this page — everything uses

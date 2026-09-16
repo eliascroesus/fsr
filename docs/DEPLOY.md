@@ -82,7 +82,7 @@ them when you want to override.
 | Variable | Default | What it does |
 | --- | --- | --- |
 | `NEXT_PUBLIC_VSL_MEDIA_ID` | `zJANjqaO` | Cinema8 media id for the hero video |
-| `NEXT_PUBLIC_BOOKING_URL` | the Google Calendar schedule | The booking embed on step 3 |
+| `NEXT_PUBLIC_CAL_LINK` | the Cal.com event, as `user/event` | The booking embed on step 3 |
 | `NEXT_PUBLIC_ENABLE_TRACKING` | on in production, off in dev | Master switch for every pixel |
 | `NEXT_PUBLIC_META_PIXEL_PRIMARY` | `1214987610625014` | Main Meta pixel |
 | `NEXT_PUBLIC_META_PIXELS_ADDITIONAL` | 3 further ids | Secondary Meta pixels |

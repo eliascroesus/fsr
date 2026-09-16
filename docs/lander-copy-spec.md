@@ -193,7 +193,7 @@ The checkbox is an **opt-out**: ticking it removes the phone requirement.
 | Check badge | ✓ in a 56px `#98dd29` circle | — | — | black glyph |
 | Heading | `VÄLJ TID FÖR DITT SAMTAL` | 18 / 14px | 700 | white, tracking `0.2em` |
 | Intro | `Du är med, {förnamn}. Välj en tid nedan så lägger vi upp en plan för dina första 90 dagar.` | 14 / 12px | 400 | white 60% |
-| Calendar | Google Calendar appointment embed, white panel in a bordered frame, 600px tall (680px on mobile) | — | — | — |
+| Calendar | Cal.com appointment embed, white panel in a bordered frame, 600px tall (680px on mobile) | — | — | — |
 | Fallback | `Laddar kalendern inte?` + link `Öppna bokningssidan ↗` | 12 / 11px | 400 / 600 | white 40% / `#ceff62` |
 
 **Summary rows** — label 12px weight 900 uppercase `#ceff62`, value 14px weight 600 white:

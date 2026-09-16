@@ -108,9 +108,9 @@ matched to columns by header text.
 
 ## What this does not capture
 
-- **Whether they actually booked.** The booking step is Google Calendar's own
-  embed in a cross-origin iframe; the page cannot see inside it. Booked calls
-  live in the Google Calendar the schedule belongs to.
+- **Whether they actually booked.** The booking step is Cal.com's own embed in
+  a cross-origin iframe; the page cannot see inside it. Booked calls live in
+  Cal.com, which has its own record of them.
 - **Anyone who does not finish the details form**, by design.
 - **Rate limiting.** `/api/lead` is public, like any public form. Field lengths
   and body size are capped, but a determined script could still add junk rows.

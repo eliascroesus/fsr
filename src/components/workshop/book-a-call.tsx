@@ -2,21 +2,17 @@
 
 import { Check, ExternalLink, Mail, MessageSquare } from 'lucide-react';
 
+import { CAL_BOOKING_URL, CalEmbed } from './cal-embed';
 import { QUIZ_QUESTIONS } from './quiz-questions';
 import type { LeadDetails, QuizAnswers } from './types';
 
-/**
- * Google Calendar appointment schedule. Overridable so staging and production
- * can point at different calendars without a code change.
- */
-export const BOOKING_URL =
-  process.env.NEXT_PUBLIC_BOOKING_URL ??
-  'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1ghy5mwfxSxcxe-jbhtkhxSiL_AWeu26VMG8rIAXrHLi-k2ZHdMI3zW8SsUfWD4lBhtD4Kvdjc?gv=true';
+/** Kept exported: the fallback link and the preview both point at it. */
+export const BOOKING_URL = CAL_BOOKING_URL;
 
 interface BookACallProps {
   lead: LeadDetails;
   answers: QuizAnswers;
-  /** Replaces the Google Calendar embed, if the booking tool ever changes. */
+  /** Replaces the Cal embed, if the booking tool ever changes. */
   children?: React.ReactNode;
 }
 
@@ -49,15 +45,8 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
 
         {/* Scheduler. `children` overrides it if the booking tool ever changes. */}
         <div className="mb-3">
-          <div className="overflow-hidden rounded-2xl border border-[#2f343a]/60 bg-white shadow-[0_0_36px_rgba(79,209,47,0.18)]">
-            {children ?? (
-              <iframe
-                src={BOOKING_URL}
-                title="Boka ditt samtal"
-                loading="lazy"
-                className="block h-[680px] w-full border-0 sm:h-[600px]"
-              />
-            )}
+          <div className="overflow-hidden rounded-2xl border border-[#2f343a]/60 bg-[#0a0c0d] shadow-[0_0_36px_rgba(79,209,47,0.18)]">
+            {children ?? <CalEmbed name={lead.fullName} email={lead.email} />}
           </div>
 
           {/* Some browsers and extensions block third-party frames outright,

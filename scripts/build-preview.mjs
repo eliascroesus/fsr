@@ -89,9 +89,10 @@ const CLOSING_BODY = ARTIFACT
     </div>`
   : `<cinema8-player media-id="${CLOSING_MEDIA_ID}" autoplay="false" style="position:absolute;top:0;left:0;width:100%;height:100%"></cinema8-player>`;
 
-/** Google Calendar appointment schedule embedded on the booking step. */
-const BOOKING_URL =
-  'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1ghy5mwfxSxcxe-jbhtkhxSiL_AWeu26VMG8rIAXrHLi-k2ZHdMI3zW8SsUfWD4lBhtD4Kvdjc?gv=true';
+/** Cal.com event booked on step 3. */
+const CAL_LINK = 'fsr-htc/45';
+const CAL_ORIGIN = 'https://app.cal.com';
+const BOOKING_URL = `https://cal.com/${CAL_LINK}`;
 
 const CTA_GRADIENT =
   'linear-gradient(to right, rgb(74, 180, 56) 0%, rgb(95, 214, 62) 50%, rgb(168, 247, 107) 100%)';
@@ -134,8 +135,8 @@ const PREVIEW_BADGE = `
 </div>`;
 
 const SCHEDULER_FRAME = `
-  <div class="overflow-hidden rounded-2xl border border-[#2f343a]/60 bg-white shadow-[0_0_36px_rgba(79,209,47,0.18)]">
-    <iframe src="${BOOKING_URL}" title="Boka ditt samtal" loading="lazy" class="block h-[680px] w-full border-0 sm:h-[600px]"></iframe>
+  <div class="overflow-hidden rounded-2xl border border-[#2f343a]/60 bg-[#0a0c0d] shadow-[0_0_36px_rgba(79,209,47,0.18)]">
+    <div id="fsr-cal-inline" class="h-[680px] w-full overflow-auto sm:h-[640px]"></div>
   </div>
   <p class="mt-2.5 text-center text-[11px] text-white/40 sm:text-xs">Laddar kalendern inte? <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#a8f76b] underline-offset-4 transition-colors hover:text-[#4fd12f] hover:underline">Öppna bokningssidan &#8599;</a></p>`;
 
@@ -147,8 +148,8 @@ const SCHEDULER_FRAME = `
 const SCHEDULER_LINK = `
   <div class="rounded-2xl border border-[#2f343a]/60 bg-black/30 px-5 py-9 text-center shadow-[0_0_36px_rgba(79,209,47,0.12)]">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-3 h-10 w-10 text-[#4fd12f]"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
-    <p class="text-sm font-extrabold tracking-wide text-white sm:text-base">Bokning via Google Kalender</p>
-    <p class="mx-auto mt-1.5 max-w-sm text-[11px] leading-relaxed text-white/45 sm:text-xs">Den riktiga kalendern är inbäddad här på sidan. Den här förhandsvisningen länkar vidare i stället, eftersom visningen blockerar inbäddade ramar.</p>
+    <p class="text-sm font-extrabold tracking-wide text-white sm:text-base">Bokning via Cal.com</p>
+    <p class="mx-auto mt-1.5 max-w-sm text-[11px] leading-relaxed text-white/45 sm:text-xs">Kalendern är inbäddad här på sidan. Den här förhandsvisningen länkar vidare i stället, eftersom visningen blockerar externa skript.</p>
     <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-1.5 rounded-xl px-5 py-3 text-sm font-extrabold tracking-wide text-black shadow-[0_0_28px_rgba(79,209,47,0.35)] transition-all duration-200 hover:opacity-90 sm:text-base" style="background:${CTA_GRADIENT}">Öppna bokningssidan &#8599;</a>
   </div>`;
 
@@ -571,8 +572,44 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
         '<dd class="break-all text-xs font-semibold text-white sm:text-sm">' + r[1] + '</dd></div>';
     }).join('');
 
+    mountCal();
     goto(3);
   });
+
+  /*
+   * Cal's own loader, mounted once the lead is known so the booking form can
+   * be prefilled. The artifact build has no embed to mount — its CSP blocks
+   * third-party scripts — so this is a no-op there.
+   */
+  function mountCal(){
+    var host = document.getElementById('fsr-cal-inline');
+    if (!host || host.dataset.mounted) return;
+    host.dataset.mounted = '1';
+
+    (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === 'string') { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ['initNamespace', namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, '${CAL_ORIGIN}/embed/embed.js', 'init');
+
+    Cal('init', 'fsr', { origin: '${CAL_ORIGIN}' });
+    Cal.config = Cal.config || {};
+    Cal.config.forwardQueryParams = true;
+
+    Cal.ns['fsr']('inline', {
+      elementOrSelector: host,
+      config: {
+        layout: 'month_view',
+        useSlotsViewOnSmallScreen: 'true',
+        name: (state.lead && state.lead.fullName) || '',
+        email: (state.lead && state.lead.email) || ''
+      },
+      calLink: '${CAL_LINK}'
+    });
+
+    Cal.ns['fsr']('ui', {
+      theme: 'dark',
+      cssVarsPerTheme: { dark: { 'cal-brand': '#50ff00' } },
+      hideEventTypeDetails: false,
+      layout: 'month_view'
+    });
+  }
 
   render();
 })();
