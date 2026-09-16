@@ -13,6 +13,16 @@ const CHECKBOX_ID = 'receiveGiftTop';
 const CONSENT_LABEL =
   '🎁 Ja tack! Skicka min gratis VIP-gåva och en påminnelse om mitt samtal';
 
+/**
+ * react-phone-input-2 reports the digits without a leading `+`, so the stored
+ * number is not dialable as-is. Put it back into E.164 before it leaves the
+ * form and reaches the sheet, the SMS tooling or the booking summary.
+ */
+function toE164(value: string): string {
+  const digits = value.replace(/\D/g, '');
+  return digits ? `+${digits}` : '';
+}
+
 const INPUT_CLASS =
   'w-full px-3 py-3 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]';
 
@@ -29,7 +39,7 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
     onSubmit({
       fullName: fullName.trim(),
       email: email.trim(),
-      phone: wantsReminders ? phone : '',
+      phone: wantsReminders ? toE164(phone) : '',
       declinedPhone: !wantsReminders,
     });
   };

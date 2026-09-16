@@ -93,27 +93,36 @@ byte-for-byte copy.
    The letters are vector paths, not `<text>`, so the output does not depend on
    which fonts the machine running it happens to have.
 
-2. **Question copy is placeholder.** Question 1's options came from the
+2. **Lead data goes to a Google Sheet.** The page posts to its own
+   `/api/lead`, which forwards server-side to an Apps Script webhook bound to
+   the sheet — no Google credentials in the repo and no webhook URL in the
+   browser bundle. Set `SHEETS_WEBHOOK_URL` and `SHEETS_WEBHOOK_TOKEN` to turn
+   it on; with them unset the funnel runs and records nothing. Setup, columns
+   and troubleshooting: `docs/SHEETS.md`. The script to paste into the sheet is
+   `scripts/fsr-sheet.gs`.
+
+3. **Question copy is placeholder.** Question 1's options came from the
    reference form; questions 2-4 were written to brief and live in
    `quiz-questions.ts` — swap in production copy there. The booking step embeds
    the real Google Calendar appointment schedule (`NEXT_PUBLIC_BOOKING_URL`
    overrides it); `<BookACall>` still takes children if the booking tool ever
    changes.
 
-3. **Fonts.** The original loads two `next/font` families through
-   `--font-sans` / a second variable; the specific families were not
-   identifiable from the markup. This uses Inter + Roboto Mono. Only Inter is
-   visible on this page (everything uses `font-sans`).
+4. **Fonts.** Two `next/font` families behind `--font-sans` / `--font-mono`:
+   Geist and Geist Mono. Only Geist is visible on this page — everything uses
+   `font-sans`. Geist ships no italic axis, so the headline's italic is a
+   synthesised oblique.
 
-4. **Footer theme tokens.** The footer uses shadcn's `bg-background` /
+5. **Footer theme tokens.** The footer uses shadcn's `bg-background` /
    `text-muted-foreground` / `hover:text-primary`. Since the original
    stylesheet was unreachable, `:root` in `globals.css` is set dark to match the
    black page, with `--primary` mapped to the brand teal. A commented light
    variant sits directly below it if the original footer renders white.
 
-5. **Nothing is wired to a backend.** Submitting advances the step and fires the
-   `Lead` pixel event; quiz answers are held in component state only. Point both
-   at the real CRM/webhook endpoint.
+6. **No CRM beyond the sheet.** Submitting advances the step, fires the `Lead`
+   pixel event and posts the row to `/api/lead`. There is no CRM, no e-mail
+   sequence and no confirmation mail — the 1-hour course the copy promises has
+   to be sent by whatever tooling reads the sheet.
 
 Tracking tags are disabled in development so local work doesn't pollute the real
 analytics properties. Set `NEXT_PUBLIC_ENABLE_TRACKING=true` to force them on.

@@ -484,9 +484,31 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 
     setTimeout(function(){
       state.advancing = false;
-      if (state.qi === QUIZ.length - 1) { goto(2); return; }
+      if (state.qi === QUIZ.length - 1) { trackLead('quiz_completed'); goto(2); return; }
       state.qi++; renderQuestion();
     }, ADVANCE_DELAY_MS);
+  }
+
+  /*
+   * The real page POSTs this to /api/lead, which forwards it to the sheet.
+   * This file has no server, so it logs the payload instead — the shape is the
+   * same, which makes it useful for checking what a lead row will contain.
+   */
+  function trackLead(event){
+    var answers = {};
+    QUIZ.forEach(function(q){
+      var key = state.answers[q.id];
+      if (!key) return;
+      var opt = q.options.filter(function(o){ return o[0] === key; })[0];
+      if (opt) answers[q.id] = opt[1];
+    });
+    console.log('[lead] ' + event, {
+      event: event,
+      answers: answers,
+      lead: state.lead || null,
+      pageUrl: location.href,
+      referrer: document.referrer || ''
+    });
   }
 
   backBtn.addEventListener('click', function(){ if (state.qi > 0) { state.qi--; renderQuestion(); } });
@@ -520,6 +542,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       phone: declined ? '' : document.getElementById('phone').value,
       declined: declined
     };
+    trackLead('details_submitted');
 
     // ---- step 3: book a call ----
     var first = state.lead.fullName.split(' ')[0];

@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { trackLead } from '@/lib/lead-tracking';
+
 import { BookACall } from './book-a-call';
 import { CountdownTimer } from './countdown-timer';
 import { OptInForm } from './opt-in-form';
@@ -25,6 +27,7 @@ export function WorkshopOptIn() {
     focusOptIn();
 
     window.whop?.track('quiz_completed', completed);
+    trackLead('quiz_completed', { answers: completed });
   };
 
   const handleDetails = (details: LeadDetails) => {
@@ -34,6 +37,9 @@ export function WorkshopOptIn() {
 
     window.fbq?.('track', 'Lead');
     window.whop?.track('lead');
+    // Sent with the answers again so the row is complete even if the visitor
+    // reloaded between the two steps and lost their lead id.
+    trackLead('details_submitted', { answers: answers ?? undefined, lead: details });
   };
 
   return (
