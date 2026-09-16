@@ -10,6 +10,8 @@ import { readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { promisify } from 'node:util';
 import path from 'node:path';
 
+import sharp from 'sharp';
+
 
 const execFileAsync = promisify(execFile);
 
@@ -204,9 +206,16 @@ const QUIZ = [
 
 async function main() {
   const avatars = await Promise.all(
-    ['1.png', '2.webp', '3.png'].map((f) =>
-      dataUri(`images/social-proof/${f}`, `image/${f.split('.').pop()}`),
-    ),
+    // Resized before inlining. The real photos are up to 1900px square, and
+    // the page renders them at 28 — inlining them whole put 1MB of data URI
+    // into a file whose whole point is being quick to open.
+    ['1.png', '2.webp', '3.png'].map(async (f) => {
+      const webp = await sharp(path.join(PUBLIC, 'images', 'social-proof', f))
+        .resize(64, 64, { fit: 'cover' })
+        .webp({ quality: 82 })
+        .toBuffer();
+      return `data:image/webp;base64,${webp.toString('base64')}`;
+    }),
   );
 
   const stepper = ['Snabbtest', 'Dina uppgifter', 'Boka samtal']
