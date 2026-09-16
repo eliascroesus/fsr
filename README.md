@@ -1,26 +1,26 @@
-# FSR — `/workshop-v-test` lander
+# FSR — high-ticket-sales lander
 
-A 1:1 rebuild of the `www.aiacquisitionmethod.com/workshop-v-test` opt-in funnel
+A high-ticket-sales opt-in funnel, served at the site root
 page as a fresh Next.js 15 App Router project, reconstructed from the page's
 rendered DOM.
 
 ```bash
 npm install
 npm run assets:placeholders   # only needed if public/images is empty
-npm run dev                   # http://localhost:3000/workshop-v-test
+npm run dev                   # http://localhost:3000
 ```
 
 ### Just want to look at it?
 
-`preview/workshop-v-test.html` is a single self-contained file — open it in any
+`preview/lander.html` is a single self-contained file — open it in any
 browser, no server, no network. All three funnel steps, the live countdown and
 the animated backdrop work; images, CSS and the Inter font are inlined.
 Regenerate it after changing the app with:
 
 ```bash
 npm run build      # needed once, the preview lifts Inter from .next
-npm run preview             # -> preview/workshop-v-test.html (open from disk)
-npm run preview -- --artifact   # -> preview/workshop-v-test.artifact.html
+npm run preview             # -> preview/lander.html (open from disk)
+npm run preview -- --artifact   # -> preview/lander.artifact.html
 ```
 
 The `--artifact` variant is the same page shaped for publishing as a Claude
@@ -33,7 +33,7 @@ shared link is never mistaken for the live site).
 | --- | --- |
 | Root layout, fonts, all third-party tags | `src/app/layout.tsx` |
 | Funnel chrome (`main` + footer) | `src/app/(webinars)/layout.tsx` |
-| The page | `src/app/(webinars)/workshop-v-test/page.tsx` |
+| The page | `src/app/page.tsx` |
 | Animated grid backdrop | `src/components/magicui/animated-grid-pattern.tsx` |
 | 3-step opt-in flow | `src/components/workshop/` |
 | Footer | `src/components/site-footer.tsx` |

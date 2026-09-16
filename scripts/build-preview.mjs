@@ -204,8 +204,8 @@ const QUIZ = [
 
 async function main() {
   const avatars = await Promise.all(
-    ['avatar9.avif', 'avatar10.avif', 'avatar11.avif'].map((f) =>
-      dataUri(`images/${f}`, 'image/avif'),
+    ['1.jpg', '2.jpg', '3.jpg'].map((f) =>
+      dataUri(`images/social-proof/${f}`, 'image/jpeg'),
     ),
   );
 
@@ -292,7 +292,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 
         <div class="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-[#2f343a]/70 bg-[#0f1113]/95 px-3 py-1.5 shadow-sm sm:px-4 sm:py-2">
           <div class="flex shrink-0 -space-x-1.5">
-            ${avatars.map((src, i) => `<div class="relative h-7 w-7 overflow-hidden rounded-full ring-2 ring-black sm:h-8 sm:w-8" style="z-index:${3 - i}"><img alt="" width="32" height="32" class="h-full w-full object-cover" src="${src}"></div>`).join('')}
+            ${avatars.map((src, i) => `<div class="relative h-7 w-7 overflow-hidden rounded-full ring-2 ring-black sm:h-8 sm:w-8" style="z-index:${3 - i}"><img alt="" width="64" height="64" class="h-full w-full object-cover" src="${src}"></div>`).join('')}
           </div>
           <p class="text-left text-xs font-bold text-[#a8f76b] sm:text-sm">178 nybörjare anmälde sig den här veckan</p>
         </div>
@@ -572,7 +572,7 @@ ${ARTIFACT ? PREVIEW_BADGE : `<script src="${CINEMA8_PLAYER_SRC}" async></script
 ${ARTIFACT ? '' : ''}
 ${ARTIFACT ? '' : '</body>\n</html>'}`;
 
-  const out = path.join(ROOT, 'preview', ARTIFACT ? 'workshop-v-test.artifact.html' : 'workshop-v-test.html');
+  const out = path.join(ROOT, 'preview', ARTIFACT ? 'lander.artifact.html' : 'lander.html');
   await writeFile(out, html);
 
   // Compile only the utilities this file actually uses, then inline them, so

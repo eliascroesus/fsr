@@ -103,17 +103,24 @@ function winSvg(index, slug) {
 async function main() {
   await ensureDir(IMAGES);
   await ensureDir(path.join(IMAGES, 'aia-assets'));
+  await ensureDir(path.join(IMAGES, 'social-proof'));
   await ensureDir(path.join(IMAGES, 'success-wins'));
 
-  // Social-proof avatars (rendered at 32x32, sourced at 128 for 2x).
+  /*
+   * Social-proof faces, rendered at 32x32 and sourced at 256 so they stay sharp
+   * on a 2x screen. Drop real square photos over these three paths — same
+   * names, same folder — and the pill picks them up with no code change.
+   */
   const avatars = [
-    { file: 'avatar9.avif', label: 'JR', hue: 196 },
-    { file: 'avatar10.avif', label: 'MK', hue: 210 },
-    { file: 'avatar11.avif', label: 'TS', hue: 184 },
+    { file: '1.jpg', label: 'JR', hue: 196 },
+    { file: '2.jpg', label: 'MK', hue: 210 },
+    { file: '3.jpg', label: 'TS', hue: 184 },
   ];
 
   for (const { file, label, hue } of avatars) {
-    await sharp(avatarSvg(128, label, hue)).avif({ quality: 60 }).toFile(path.join(IMAGES, file));
+    await sharp(avatarSvg(256, label, hue))
+      .jpeg({ quality: 82 })
+      .toFile(path.join(IMAGES, 'social-proof', file));
   }
 
   await sharp(charityBadgeSvg())

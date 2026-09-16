@@ -124,26 +124,22 @@ context too if you want to go live dark first.
 
 Things in the repo that are still placeholders or unresolved:
 
-- [ ] **Images are generated placeholders.** The three hero avatars and the
-      footer logo are stand-ins. Replace the files in `public/images/` — keep
-      the same names and the layout is unchanged.
-- [ ] **Check the VSL actually plays.** The Cinema8 host is unreachable from
-      the environment this was built in, so playback was never exercised. Load
-      the deployed URL and confirm the player renders and the
-      "Klicka för att lyssna" overlay hands off to it.
+- [ ] **The three social-proof faces are generated placeholders.** Drop square
+      photos over `public/images/social-proof/1.jpg`, `2.jpg` and `3.jpg` —
+      same names, same folder — and the pill picks them up.
+- [ ] **Check the two videos actually play.** The Cinema8 host is unreachable
+      from the environment this was built in, so playback was never exercised.
+      Load the deployed URL and confirm both the hero VSL and the vertical
+      closing video render.
 - [ ] **Check the booking calendar renders** on the real domain. Some Google
       Calendar schedules restrict which origins may embed them.
-- [ ] **The footer legal text is in English** while the page is Swedish.
-- [ ] **Form submissions go nowhere.** Submitting advances the step and fires
-      the `Lead` pixel event, but no data is sent anywhere. Wire
-      `onSubmit` in `src/components/workshop/workshop-opt-in.tsx` to your CRM
-      or a webhook before running ads.
-- [ ] **The lander lives at `/workshop-v-test`**, and `/` redirects to it. If
-      you want it at the root, move
-      `src/app/(webinars)/workshop-v-test/page.tsx` to
-      `src/app/(webinars)/page.tsx` and delete `src/app/page.tsx`.
-- [ ] **Quiz answers are not persisted** — they live in component state and are
-      lost on reload.
+- [ ] **Connect the sheet.** Without `SHEETS_WEBHOOK_URL` and
+      `SHEETS_WEBHOOK_TOKEN` the funnel runs and records nothing. Set both
+      before spending on ads — see `docs/SHEETS.md`.
+- [ ] **Nothing sends the promised course.** The CTA promises a free 1-hour
+      course; no mail is sent. Hook that up to whatever reads the sheet.
+- [ ] **The legal pages do not exist.** The footer links `/integritetspolicy`
+      and `/anvandarvillkor`, and `support@fsr.se` is a placeholder address.
 
 ---
 

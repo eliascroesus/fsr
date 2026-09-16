@@ -7,7 +7,7 @@ transcribed by hand.
 - **Language:** Swedish (`<html lang="sv">`)
 - **Offer:** high ticket closing. Visitor takes a 4-question test, leaves their
   details, then books a call. A free 1-hour course is the incentive.
-- **Route:** `/workshop-v-test` · **Page title:** `FSR - Learn High Ticket Sales`
+- **Route:** `/` (the site root) · **Page title:** `FSR - Learn High Ticket Sales`
 - **Favicon:** `FSR` in the page's near-black on a rounded tile filled with the
   brand gradient (`#a8f76b` → `#4fd12f`, on the diagonal)
 - **Layout:** single column, everything centred, max content width 1024px
