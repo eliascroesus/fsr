@@ -7,7 +7,9 @@ transcribed by hand.
 - **Language:** Swedish (`<html lang="sv">`)
 - **Offer:** high ticket closing. Visitor takes a 4-question test, leaves their
   details, then books a call. A free 1-hour course is the incentive.
-- **Route:** `/workshop-v-test` · **Page title:** `FSR`
+- **Route:** `/workshop-v-test` · **Page title:** `FSR - Learn High Ticket Sales`
+- **Favicon:** `FSR` in the page's near-black on a rounded tile filled with the
+  brand gradient (`#a8f76b` → `#4fd12f`, on the diagonal)
 - **Layout:** single column, everything centred, max content width 1024px
   (`max-w-5xl`), 24px top padding at every width.
 
@@ -40,19 +42,19 @@ via `clamp()`. Sizes below are given as **desktop (1200px) / mobile (390px)**.
 First element on the page, 24px from the top. Centred, balanced wrapping. **52.4 / 27.3px**, weight **800**, line-height
 **1.06** (55.5px at desktop), letter-spacing **0**.
 
-> Bli placerad på ett **$10,000 offer** på 90 dagar och lär dig
+> Bli placerad på ett **$10,000 offer på 90 dagar** och lär dig
 > **online sales**… *annars får du full återbetalning*
 
 Three emphasis treatments inside one heading:
 
 | Fragment | Treatment |
 | --- | --- |
-| `online sales` | white text, `#4fd12f` underline — 0.072em thick, 0.16em below baseline |
-| `$10,000 offer` | vertical gradient `#a8f76b` (top) → `#4fd12f` (bottom), clipped to the glyphs; glow: `drop-shadow(0 0 8px rgba(79,209,47,.32)) drop-shadow(0 0 24px rgba(79,209,47,.18))` |
+| `$10,000 offer på 90 dagar` | vertical gradient `#a8f76b` (top) → `#4fd12f` (bottom), clipped to the glyphs; glow: `drop-shadow(0 0 8px rgba(79,209,47,.32)) drop-shadow(0 0 24px rgba(79,209,47,.18))` |
+| `online sales` and `full återbetalning` | white text, `#4fd12f` underline — 0.072em thick, 0.16em below baseline |
 | `annars får du full återbetalning` | italic (synthesised oblique — Geist has no italic axis) |
 
 `$10,000` is written in the English form deliberately; the sums inside the test
-use Swedish formatting (`2 000–5 000 $`).
+are in kronor (`5 000–10 000 kr`).
 
 ---
 

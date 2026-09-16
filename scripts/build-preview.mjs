@@ -45,6 +45,8 @@ async function dataUri(rel, mime) {
   return `data:${mime};base64,${buf.toString('base64')}`;
 }
 
+const PAGE_TITLE = 'FSR - Learn High Ticket Sales';
+
 const DISQUALIFIERS = ['Ingen egen produkt.', 'Inga annonser.', 'Jobba hemifrån.'];
 
 
@@ -218,14 +220,19 @@ async function main() {
     .join('');
 
 
+  // Inlined, like every other asset here, so the file stands alone.
+  const favicon = await dataUri('favicon.svg', 'image/svg+xml');
+
   const head = ARTIFACT
-    ? `<title>FSR</title>`
+    ? `<title>${PAGE_TITLE}</title>
+<link rel="icon" type="image/svg+xml" href="${favicon}">`
     : `<!doctype html>
 <html lang="sv">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FSR — lokal förhandsvisning</title>`;
+<title>${PAGE_TITLE}</title>
+<link rel="icon" type="image/svg+xml" href="${favicon}">`;
 
   const html = `${head}
 <style>/*__TAILWIND__*/</style>
@@ -279,7 +286,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
       <div class="hero-backdrop" aria-hidden="true"></div>
 
       <div class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-6 pt-6 sm:px-8 sm:pb-16 lg:px-12">
-        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Bli placerad på ett <span class="headline-accent">$10,000 offer</span> på <span class="headline-mark"><span class="headline-accent">90 dagar</span></span> och lär dig <span class="headline-mark">online sales</span>… <em class="italic">annars får du full återbetalning</em></h1>
+        <h1 class="hero-headline mb-3 text-balance text-center font-extrabold text-white">Bli placerad på ett <span class="headline-accent">$10,000 offer på 90 dagar</span> och lär dig <span class="headline-mark">online sales</span>… <em class="italic">annars får du <span class="headline-mark">full återbetalning</span></em></h1>
 
         <p class="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">${DISQUALIFIERS.map((d) => `<span class="font-bold text-white/75">${d} </span>`).join('')}<span class="font-medium italic text-white/60">Ingen säljerfarenhet krävs.</span> På samtalet visar vi exakt var just du ska börja.</p>
 

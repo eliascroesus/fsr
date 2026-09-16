@@ -23,13 +23,12 @@ export default function WorkshopVTestPage() {
         <div className="contents">
           <h1 className="hero-headline mb-3 text-balance text-center font-extrabold text-white">
             Bli placerad på ett{' '}
-            <span className="headline-accent">$10,000 offer</span> på{' '}
-            <Mark>
-              <span className="headline-accent">90 dagar</span>
-            </Mark>{' '}
+            <span className="headline-accent">$10,000 offer på 90 dagar</span>{' '}
             och lär dig{' '}
             <Mark>online sales</Mark>…{' '}
-            <em className="italic">annars får du full återbetalning</em>
+            <em className="italic">
+              annars får du <Mark>full återbetalning</Mark>
+            </em>
           </h1>
 
           <p className="hero-sub mb-4 max-w-xl text-balance text-center text-white/45">

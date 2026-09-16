@@ -6,7 +6,7 @@
  * srcSet identical. Drop the production files over the top — same paths, same
  * dimensions — and nothing else has to change.
  */
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 
@@ -100,26 +100,6 @@ function winSvg(index, slug) {
 </svg>`);
 }
 
-/** ICO wrapper around a single embedded PNG frame. */
-function icoFromPng(png, size) {
-  const header = Buffer.alloc(6);
-  header.writeUInt16LE(0, 0); // reserved
-  header.writeUInt16LE(1, 2); // type: icon
-  header.writeUInt16LE(1, 4); // one image
-
-  const entry = Buffer.alloc(16);
-  entry.writeUInt8(size === 256 ? 0 : size, 0);
-  entry.writeUInt8(size === 256 ? 0 : size, 1);
-  entry.writeUInt8(0, 2); // palette
-  entry.writeUInt8(0, 3); // reserved
-  entry.writeUInt16LE(1, 4); // colour planes
-  entry.writeUInt16LE(32, 6); // bits per pixel
-  entry.writeUInt32LE(png.length, 8);
-  entry.writeUInt32LE(header.length + entry.length, 12);
-
-  return Buffer.concat([header, entry, png]);
-}
-
 async function main() {
   await ensureDir(IMAGES);
   await ensureDir(path.join(IMAGES, 'aia-assets'));
@@ -148,11 +128,9 @@ async function main() {
       .toFile(path.join(IMAGES, 'success-wins', `${slug}.png`));
   }
 
-  const faviconPng = await sharp(logoSvg(64)).resize(64, 64).png().toBuffer();
-  await writeFile(path.join(ROOT, 'public', 'favicon.ico'), icoFromPng(faviconPng, 64));
-
   console.log(
-    `Generated ${avatars.length} avatars, charity badge, logo, favicon and ${SUCCESS_WIN_SLUGS.length} success wins.`,
+    `Generated ${avatars.length} avatars, charity badge, logo and ${SUCCESS_WIN_SLUGS.length} success wins.\n` +
+      'The favicon is real art, not a placeholder — see npm run assets:favicon.',
   );
 }
 

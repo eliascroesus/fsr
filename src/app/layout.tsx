@@ -43,10 +43,18 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'FSR',
+  title: 'FSR - Learn High Ticket Sales',
   description: 'Officiell webbplats för FSR',
+  // Declared here rather than through src/app/icon.*, so one source of truth
+  // emits the tags instead of the file convention adding a second set.
   icons: {
-    icon: [{ url: '/favicon.ico', type: 'image/x-icon', sizes: '16x16' }],
+    icon: [
+      { url: '/favicon.ico', type: 'image/x-icon', sizes: '16x16 32x32 48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
   },
 };
 

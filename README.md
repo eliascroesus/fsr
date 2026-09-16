@@ -84,8 +84,14 @@ byte-for-byte copy.
    top — same paths, same names — and nothing else changes:
    - `public/images/avatar9.avif`, `avatar10.avif`, `avatar11.avif`
    - `public/images/aia-assets/charity-badge.avif`
-   - `public/images/new-logo.png`, `public/favicon.ico`
+   - `public/images/new-logo.png` (no longer rendered — the footer has no mark)
    - `public/images/success-wins/win-001-…` through `win-060-…` (`.png`)
+
+   The favicon is not a placeholder: `npm run assets:favicon` draws the FSR
+   wordmark on the brand gradient and writes `favicon.ico` (16/32/48),
+   `favicon.svg`, `icon-192.png`, `icon-512.png` and `apple-touch-icon.png`.
+   The letters are vector paths, not `<text>`, so the output does not depend on
+   which fonts the machine running it happens to have.
 
 2. **Question copy is placeholder.** Question 1's options came from the
    reference form; questions 2-4 were written to brief and live in
