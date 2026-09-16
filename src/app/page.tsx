@@ -6,9 +6,9 @@ import { WorkshopOptIn } from '@/components/workshop/workshop-opt-in';
 
 /** Drop square photos over these three paths to change the faces. */
 const SOCIAL_PROOF_AVATARS = [
-  '/images/social-proof/1.jpg',
-  '/images/social-proof/2.jpg',
-  '/images/social-proof/3.jpg',
+  '/images/social-proof/1.png',
+  '/images/social-proof/2.webp',
+  '/images/social-proof/3.png',
 ];
 
 /** Korta avfärdanden i fetstil före den förklarande raden. */

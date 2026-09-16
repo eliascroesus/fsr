@@ -112,15 +112,15 @@ async function main() {
    * names, same folder — and the pill picks them up with no code change.
    */
   const avatars = [
-    { file: '1.jpg', label: 'JR', hue: 196 },
-    { file: '2.jpg', label: 'MK', hue: 210 },
-    { file: '3.jpg', label: 'TS', hue: 184 },
+    { file: '1.png', label: 'JR', hue: 196 },
+    { file: '2.webp', label: 'MK', hue: 210 },
+    { file: '3.png', label: 'TS', hue: 184 },
   ];
 
+  // Extensions match the real photos exactly, so uploading them over these
+  // names is the whole job — sharp picks the encoder off the extension.
   for (const { file, label, hue } of avatars) {
-    await sharp(avatarSvg(256, label, hue))
-      .jpeg({ quality: 82 })
-      .toFile(path.join(IMAGES, 'social-proof', file));
+    await sharp(avatarSvg(256, label, hue)).toFile(path.join(IMAGES, 'social-proof', file));
   }
 
   await sharp(charityBadgeSvg())

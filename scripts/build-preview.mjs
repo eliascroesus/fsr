@@ -204,8 +204,8 @@ const QUIZ = [
 
 async function main() {
   const avatars = await Promise.all(
-    ['1.jpg', '2.jpg', '3.jpg'].map((f) =>
-      dataUri(`images/social-proof/${f}`, 'image/jpeg'),
+    ['1.png', '2.webp', '3.png'].map((f) =>
+      dataUri(`images/social-proof/${f}`, `image/${f.split('.').pop()}`),
     ),
   );
 
