@@ -61,9 +61,9 @@ browser:
 | `SHEETS_WEBHOOK_URL` | the `/exec` URL from step 2 |
 | `SHEETS_WEBHOOK_TOKEN` | the same random string you put in the script |
 
-In Netlify: **Site configuration ▸ Environment variables ▸ Add a variable**,
-then **trigger a redeploy** — environment changes do not apply to the build
-that is already live. Locally, put them in `.env.local`.
+In Vercel: **Settings ▸ Environment Variables**, scoped to **Production**,
+then **redeploy** — environment changes do not apply to a build that already
+exists. Locally, put them in `.env.local`.
 
 With `SHEETS_WEBHOOK_URL` unset the route accepts the request and does nothing,
 so the funnel works untouched in development and in preview deploys.
@@ -77,9 +77,9 @@ and press the button. One row should appear. If it does not:
   `{"ok":true,"service":"fsr-lead-sink"}`. Anything else means the deployment is
   not live, or you edited without re-deploying.
 - Apps Script ▸ **Executions** lists every call and its error.
-- Netlify ▸ **Logs ▸ Functions** shows what `/api/lead` logged. It prints
-  `[lead] could not reach the sheet` or `[lead] sheet rejected the row` with the
-  response body.
+- Vercel ▸ **Logs**, filtered to `/api/lead`, shows what the route logged. It
+  prints `[lead] could not reach the sheet` or `[lead] sheet rejected the row`
+  with the response body.
 - A `forbidden` response means the two token values do not match.
 
 ## Columns
@@ -114,4 +114,4 @@ matched to columns by header text.
 - **Anyone who does not finish the details form**, by design.
 - **Rate limiting.** `/api/lead` is public, like any public form. Field lengths
   and body size are capped, but a determined script could still add junk rows.
-  Put Netlify rate limiting in front of it if that happens.
+  Put Vercel's firewall rate limiting in front of it if that happens.
