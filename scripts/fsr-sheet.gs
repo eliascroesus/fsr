@@ -1,23 +1,23 @@
 /**
- * FSR lead sink — paste into Extensions ▸ Apps Script on the target sheet,
- * then deploy as a Web app (see docs/SHEETS.md).
+ * FSR lead sink — see docs/SHEETS.md.
  *
- * One row per lead. The first event creates the row, later events fill in the
- * columns they know about, so a visitor who answers the test and then drops out
- * at the form stays visible as a partial row instead of vanishing.
+ * One row per lead, written when the details form is submitted. The test
+ * answers travel with that submit, so nothing is recorded for a visitor who
+ * answers the questions and then leaves without giving their details.
  */
+
+/** The sheet this writes to — the id out of its URL. */
+var SPREADSHEET_ID = '1-T-TZ3XOQotxS8TdDGdvzxDCh8tumDgNEX--kozsXEE';
+
+/** Blank uses the first tab. Set a name to write to a different one. */
+var SHEET_NAME = '';
 
 /** Must match SHEETS_WEBHOOK_TOKEN in the site's environment. */
 var TOKEN = 'PASTE_THE_SAME_TOKEN_HERE';
 
-var SHEET_NAME = 'Leads';
-
-/** Column order for a fresh sheet. Unknown keys are appended as new columns. */
+/** Column order for an empty sheet. Unknown keys are appended as new columns. */
 var HEADERS = [
-  'Lead-ID',
-  'Först sedd',
-  'Senast uppdaterad',
-  'Status',
+  'Tidsstämpel',
   'Namn',
   'E-post',
   'Telefon',
@@ -34,6 +34,7 @@ var HEADERS = [
   'Landningssida',
   'Hänvisning',
   'Enhet',
+  'Lead-ID',
 ];
 
 function doPost(e) {
@@ -47,8 +48,7 @@ function doPost(e) {
       return json({ ok: false, error: 'missing leadId' });
     }
 
-    // Two events can land at once; without the lock they race and write two
-    // rows for the same lead.
+    // Guards against a double submit racing itself into two rows.
     var lock = LockService.getScriptLock();
     lock.waitLock(20000);
     try {
@@ -63,41 +63,54 @@ function doPost(e) {
   }
 }
 
-/** Lets you confirm the deployment is live by opening the URL in a browser. */
+/** Open the /exec URL in a browser to confirm the deployment is live. */
 function doGet() {
   return json({ ok: true, service: 'fsr-lead-sink' });
+}
+
+/**
+ * Writes one test row. Run it from the Apps Script editor to check the sheet
+ * is reachable and the headers land before pointing the site at it.
+ */
+function testWrite() {
+  upsert('test-' + Date.now(), {
+    Tidsstämpel: new Date().toISOString(),
+    Namn: 'Testperson',
+    'E-post': 'test@example.com',
+    Telefon: '+46701234567',
+    'SMS-påminnelser': 'Ja',
+    Sysselsättning: 'Jag har ett jobb',
+    'Inkomst i dag': '0–5 000 kr',
+    'Mål om 6 månader': 'Passera 50 000 kr i månaden',
+    Investeringsnivå: '15 000–30 000 kr',
+    utm_source: 'test',
+  });
 }
 
 function upsert(leadId, fields) {
   var sheet = getSheet();
   var headers = getHeaders(sheet, fields);
-  var now = new Date();
-
-  var ids = sheet.getLastRow() > 1
-    ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 1).getValues()
-    : [];
+  var idColumn = headers.indexOf('Lead-ID');
 
   var rowIndex = 0;
-  for (var i = 0; i < ids.length; i++) {
-    if (ids[i][0] === leadId) {
-      rowIndex = i + 2;
-      break;
+  if (idColumn !== -1 && sheet.getLastRow() > 1) {
+    var ids = sheet.getRange(2, idColumn + 1, sheet.getLastRow() - 1, 1).getValues();
+    for (var i = 0; i < ids.length; i++) {
+      if (ids[i][0] === leadId) {
+        rowIndex = i + 2;
+        break;
+      }
     }
   }
 
   if (!rowIndex) {
     rowIndex = sheet.getLastRow() + 1;
-    var fresh = new Array(headers.length).fill('');
-    fresh[headers.indexOf('Lead-ID')] = leadId;
-    fresh[headers.indexOf('Först sedd')] = now;
-    sheet.getRange(rowIndex, 1, 1, headers.length).setValues([fresh]);
+    sheet.getRange(rowIndex, 1, 1, headers.length).setValues([new Array(headers.length).fill('')]);
   }
 
   var row = sheet.getRange(rowIndex, 1, 1, headers.length).getValues()[0];
-  row[headers.indexOf('Senast uppdaterad')] = now;
+  if (idColumn !== -1) row[idColumn] = leadId;
 
-  // Only overwrite with something; an event that does not know a value must
-  // not blank out what an earlier one wrote.
   Object.keys(fields).forEach(function (key) {
     var column = headers.indexOf(key);
     if (column !== -1 && fields[key] !== '' && fields[key] != null) {
@@ -109,11 +122,12 @@ function upsert(leadId, fields) {
 }
 
 function getSheet() {
-  var book = SpreadsheetApp.getActiveSpreadsheet();
+  var book = SpreadsheetApp.openById(SPREADSHEET_ID);
+  if (!SHEET_NAME) return book.getSheets()[0];
   return book.getSheetByName(SHEET_NAME) || book.insertSheet(SHEET_NAME);
 }
 
-/** Writes the header row on a fresh sheet and adds columns for unseen keys. */
+/** Writes the header row into an empty sheet, and adds columns for new keys. */
 function getHeaders(sheet, fields) {
   if (sheet.getLastRow() === 0) {
     sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
@@ -123,9 +137,11 @@ function getHeaders(sheet, fields) {
   }
 
   var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-  var added = Object.keys(fields).filter(function (key) {
-    return headers.indexOf(key) === -1;
-  });
+  var added = Object.keys(fields)
+    .concat(['Lead-ID'])
+    .filter(function (key, i, all) {
+      return headers.indexOf(key) === -1 && all.indexOf(key) === i;
+    });
 
   if (added.length) {
     sheet.getRange(1, headers.length + 1, 1, added.length).setValues([added]);

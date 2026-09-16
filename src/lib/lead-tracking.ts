@@ -1,11 +1,11 @@
 /**
  * Client half of the lead pipeline.
  *
- * Every visitor gets one id for the whole funnel, so both events they can fire
- * land on a single spreadsheet row that fills in as they progress rather than
- * on two rows that have to be stitched back together.
+ * One write per lead, when the details form is submitted — the test answers
+ * ride along with it. The id is stable for the tab so a double submit updates
+ * the row it already wrote instead of adding a second one.
  */
-export type LeadEvent = 'quiz_completed' | 'details_submitted';
+export type LeadEvent = 'details_submitted';
 
 const LEAD_ID_KEY = 'fsr.leadId';
 

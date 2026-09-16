@@ -14,13 +14,22 @@ const CONSENT_LABEL =
   '🎁 Ja tack! Skicka min gratis VIP-gåva och en påminnelse om mitt samtal';
 
 /**
- * react-phone-input-2 reports the digits without a leading `+`, so the stored
- * number is not dialable as-is. Put it back into E.164 before it leaves the
- * form and reaches the sheet, the SMS tooling or the booking summary.
+ * Turns what the phone field holds into a dialable E.164 number.
+ *
+ * Two things have to be undone. react-phone-input-2 reports the digits with no
+ * leading `+`. And people type their number the way they say it — a Swede
+ * enters `070 123 45 67` into a field already showing `+46`, which lands as
+ * `46 070…`; that trunk `0` is exactly what the country code replaces, so it
+ * has to come off or the number is not callable.
  */
-function toE164(value: string): string {
+function toE164(value: string, dialCode: string): string {
   const digits = value.replace(/\D/g, '');
-  return digits ? `+${digits}` : '';
+  if (!digits) return '';
+
+  if (dialCode && digits.startsWith(`${dialCode}0`)) {
+    return `+${dialCode}${digits.slice(dialCode.length + 1)}`;
+  }
+  return `+${digits}`;
 }
 
 const INPUT_CLASS =
@@ -30,6 +39,8 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('+46');
+  // Kept alongside the number so toE164 knows where the country code ends.
+  const [dialCode, setDialCode] = useState('46');
   // Opt-in: checking it means "yes, text me". LeadDetails still records the
   // decline, so downstream consumers keep reading a single flag.
   const [wantsReminders, setWantsReminders] = useState(true);
@@ -39,7 +50,7 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
     onSubmit({
       fullName: fullName.trim(),
       email: email.trim(),
-      phone: wantsReminders ? toE164(phone) : '',
+      phone: wantsReminders ? toE164(phone, dialCode) : '',
       declinedPhone: !wantsReminders,
     });
   };
@@ -84,8 +95,14 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
             <PhoneInput
               country="se"
               value={phone}
-              onChange={setPhone}
+              onChange={(value, country) => {
+                setPhone(value);
+                if (country && 'dialCode' in country) setDialCode(country.dialCode);
+              }}
               disabled={!wantsReminders}
+              /* The Swedish mask is a digit short of a real mobile number and
+                 silently truncates the last one. */
+              enableLongNumbers
               specialLabel="Telefon"
               placeholder="Telefonnummer"
               inputProps={{

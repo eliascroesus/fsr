@@ -484,7 +484,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
 
     setTimeout(function(){
       state.advancing = false;
-      if (state.qi === QUIZ.length - 1) { trackLead('quiz_completed'); goto(2); return; }
+      if (state.qi === QUIZ.length - 1) { goto(2); return; }
       state.qi++; renderQuestion();
     }, ADVANCE_DELAY_MS);
   }

@@ -27,7 +27,6 @@ export function WorkshopOptIn() {
     focusOptIn();
 
     window.whop?.track('quiz_completed', completed);
-    trackLead('quiz_completed', { answers: completed });
   };
 
   const handleDetails = (details: LeadDetails) => {
@@ -37,8 +36,9 @@ export function WorkshopOptIn() {
 
     window.fbq?.('track', 'Lead');
     window.whop?.track('lead');
-    // Sent with the answers again so the row is complete even if the visitor
-    // reloaded between the two steps and lost their lead id.
+    // The only write. Nothing is recorded until the details form is
+    // submitted, so the sheet holds contactable leads rather than anonymous
+    // half-finished tests.
     trackLead('details_submitted', { answers: answers ?? undefined, lead: details });
   };
 

@@ -12,13 +12,8 @@ const WEBHOOK_TOKEN = process.env.SHEETS_WEBHOOK_TOKEN;
 const MAX_BODY_BYTES = 8_000;
 const MAX_FIELD_LENGTH = 300;
 
-const EVENTS = ['quiz_completed', 'details_submitted'] as const;
+const EVENTS = ['details_submitted'] as const;
 type Event = (typeof EVENTS)[number];
-
-const STATUS: Record<Event, string> = {
-  quiz_completed: 'Snabbtest klart',
-  details_submitted: 'Uppgifter ifyllda — bokning visad',
-};
 
 /** Question id -> the column its answer belongs in. */
 const ANSWER_COLUMNS: Record<string, string> = {
@@ -76,7 +71,7 @@ export async function POST(request: Request) {
    * sent, so a later event never blanks out what an earlier one wrote.
    */
   const fields: Record<string, string> = {
-    Status: STATUS[event],
+    Tidsstämpel: clean(body.occurredAt),
     Namn: clean(lead.fullName),
     'E-post': clean(lead.email),
     Telefon: clean(lead.phone),
