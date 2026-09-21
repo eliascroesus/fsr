@@ -344,13 +344,13 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
             <div class="w-full rounded-2xl border border-[#2f343a]/70 bg-[#0f1113]/85 p-6 sm:p-8 shadow-md">
               <h2 class="mb-6 text-center text-sm font-bold tracking-[0.12em] text-white sm:text-lg sm:tracking-[0.2em]">VART SKICKAR VI DIN TILLGÅNG?</h2>
               <form id="optin" class="flex w-full flex-col gap-3">
-                <input id="fullName" required type="text" placeholder="Ditt fullständiga namn här..." class="w-full px-3 py-3 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]">
+                <input id="fullName" required pattern=".*\\S.*" title="Fyll i ditt namn." type="text" placeholder="Ditt fullständiga namn här..." class="w-full px-3 py-3 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]">
                 <div class="relative">
                   <input id="email" required type="email" placeholder="Din e-postadress här...*" class="w-full py-3 pl-3 pr-11 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]">${MAIL_ICON}
                 </div>
                 <div class="relative">
                   <span class="pointer-events-none absolute left-0 top-0 bottom-0 flex w-10 items-center justify-center rounded-l-md border border-r-0 border-[#2f343a] bg-[#0a0c0d]">${SE_FLAG}</span>
-                  <input id="phone" required type="tel" value="+46" placeholder="Telefonnummer" class="w-full px-4 py-3 pl-12 rounded-md border border-[#2f343a] bg-[#0a0c0d] text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]">
+                  <input id="phone" required type="tel" value="+46" pattern="[^0-9]*([0-9][^0-9]*){8,}" title="Fyll i ett fullständigt telefonnummer." placeholder="Telefonnummer" class="w-full px-4 py-3 pl-12 rounded-md border border-[#2f343a] bg-[#0a0c0d] text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]">
                 </div>
                 <div class="flex items-start gap-3 py-1">
                   <input id="receiveGiftTop" type="checkbox" checked class="mt-0.5 h-5 w-5 shrink-0 rounded border-2 border-[#4fd12f] bg-[#0a0c0d] focus:ring-[#4fd12f] focus:ring-2">
@@ -536,20 +536,13 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
   renderQuestion();
 
   // ---- step 2: details ----------------------------------------------------
-  document.getElementById('receiveGiftTop').addEventListener('change', function(e){
-    var phone = document.getElementById('phone');
-    phone.required = e.target.checked;
-    phone.disabled = !e.target.checked;
-    phone.classList.toggle('opacity-40', !e.target.checked);
-  });
-
   document.getElementById('optin').addEventListener('submit', function(e){
     e.preventDefault();
     var declined = !document.getElementById('receiveGiftTop').checked;
     state.lead = {
       fullName: document.getElementById('fullName').value.trim(),
       email: document.getElementById('email').value.trim(),
-      phone: declined ? '' : document.getElementById('phone').value,
+      phone: document.getElementById('phone').value,
       declined: declined
     };
     trackLead('details_submitted');
@@ -563,7 +556,7 @@ ${ARTIFACT ? '' : '</head>\n<body class="min-h-screen font-sans antialiased">'}
     var rows = [];
     if (goal) rows.push(['Mål', goal[1]]);
     rows.push(['E-post', state.lead.email]);
-    if (!state.lead.declined) rows.push(['Telefon', state.lead.phone]);
+    rows.push(['Telefon', state.lead.phone]);
         document.getElementById('summary').innerHTML = rows.map(function(r){
       return '<div class="flex items-start justify-between gap-3">' +
         '<dt class="text-[10px] font-black uppercase tracking-[0.18em] text-[#a8f76b] sm:text-xs">' + r[0] + '</dt>' +

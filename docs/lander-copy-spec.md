@@ -176,6 +176,11 @@ Progress bar (2px, `#98dd29`) sits flush along the card's top edge.
 | Field 1 placeholder | `Ditt fullständiga namn här...` | 16px | 400 | grey 500 |
 | Field 2 placeholder | `Din e-postadress här...*` | 16px | 400 | grey 500 — trailing mail icon |
 | Field 3 | `Telefonnummer`, prefilled `+46` | 16px | 500 | Swedish flag in the country slot |
+
+All three fields are required. The phone needs at least eight digits — a
+bare `+46` is rejected with `Fyll i ett fullständigt telefonnummer.` The
+checkbox below only governs the SMS reminder; the number is collected either
+way.
 | Checkbox label | `🎁 Ja tack! Skicka min gratis VIP-gåva och en påminnelse om mitt samtal` — checked by default | 14 / 12px | 500 | white 75% |
 | Consent | `Genom att ange ditt telefonnummer godkänner du att vi skickar sms om ditt samtal. Svara STOP när som helst för att avsluta.` | 10 / 9px | 400 | grey 500, centred |
 | CTA line 1 | `BOKA ETT SAMTAL` | 20 / 16px | 800 | **black** on the green gradient |

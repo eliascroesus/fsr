@@ -81,14 +81,12 @@ export function BookACall({ lead, answers, children }: BookACallProps) {
             </dt>
             <dd className="break-all text-xs font-semibold text-white sm:text-sm">{lead.email}</dd>
           </div>
-          {lead.declinedPhone ? null : (
-            <div className="flex items-start justify-between gap-3">
-              <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#a8f76b] sm:text-xs">
-                Telefon
-              </dt>
-              <dd className="text-xs font-semibold text-white sm:text-sm">{lead.phone}</dd>
-            </div>
-          )}
+          <div className="flex items-start justify-between gap-3">
+            <dt className="text-[10px] font-black uppercase tracking-[0.18em] text-[#a8f76b] sm:text-xs">
+              Telefon
+            </dt>
+            <dd className="text-xs font-semibold text-white sm:text-sm">{lead.phone}</dd>
+          </div>
         </dl>
 
         <ul className="mb-5 flex flex-col gap-2.5">

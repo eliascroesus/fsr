@@ -32,6 +32,18 @@ function toE164(value: string, dialCode: string): string {
   return `+${digits}`;
 }
 
+/**
+ * `required` alone does not cover the phone: the field ships pre-filled with
+ * the country code, so an untouched one is non-empty and passes. Demand some
+ * actual subscriber digits on top of the dial code.
+ */
+const MIN_SUBSCRIBER_DIGITS = 6;
+
+function phoneIsComplete(value: string, dialCode: string): boolean {
+  const digits = value.replace(/\D/g, '');
+  return digits.length >= dialCode.length + MIN_SUBSCRIBER_DIGITS;
+}
+
 const INPUT_CLASS =
   'w-full px-3 py-3 rounded-xl border-2 border-[#2f343a]/30 bg-[#0a0c0d] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]';
 
@@ -41,16 +53,24 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
   const [phone, setPhone] = useState('+46');
   // Kept alongside the number so toE164 knows where the country code ends.
   const [dialCode, setDialCode] = useState('46');
-  // Opt-in: checking it means "yes, text me". LeadDetails still records the
-  // decline, so downstream consumers keep reading a single flag.
+  // The number is always collected now; this only records whether they want
+  // an SMS reminder on top of it.
   const [wantsReminders, setWantsReminders] = useState(true);
+  const [phoneError, setPhoneError] = useState('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!phoneIsComplete(phone, dialCode)) {
+      setPhoneError('Fyll i ett fullständigt telefonnummer.');
+      return;
+    }
+    setPhoneError('');
+
     onSubmit({
       fullName: fullName.trim(),
       email: email.trim(),
-      phone: wantsReminders ? toE164(phone, dialCode) : '',
+      phone: toE164(phone, dialCode),
       declinedPhone: !wantsReminders,
     });
   };
@@ -65,6 +85,9 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
           <input
             type="text"
             required
+            /* Stops a row of spaces from passing as a name. */
+            pattern=".*\S.*"
+            title="Fyll i ditt namn."
             placeholder="Ditt fullständiga namn här..."
             className={INPUT_CLASS}
             value={fullName}
@@ -87,19 +110,15 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
             />
           </div>
 
-          {/* Greyed out rather than hidden when they opt out, so the layout
-              doesn't jump and the field is one click from coming back. */}
-          <div
-            className={`phone-input-container${wantsReminders ? '' : ' opacity-40'}`}
-          >
+          <div className="phone-input-container">
             <PhoneInput
               country="se"
               value={phone}
               onChange={(value, country) => {
                 setPhone(value);
                 if (country && 'dialCode' in country) setDialCode(country.dialCode);
+                if (phoneError) setPhoneError('');
               }}
-              disabled={!wantsReminders}
               /* The Swedish mask is a digit short of a real mobile number and
                  silently truncates the last one. */
               enableLongNumbers
@@ -107,7 +126,8 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
               placeholder="Telefonnummer"
               inputProps={{
                 type: 'tel',
-                required: wantsReminders,
+                required: true,
+                'aria-invalid': phoneError ? true : undefined,
                 'data-whop-tracked': 'phone',
               }}
               inputClass="w-full px-4 py-3 rounded-md border border-[#2f343a] bg-[#0a0c0d] pl-12 text-white font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4fd12f] focus:border-[#4fd12f]"
@@ -118,6 +138,12 @@ export function OptInForm({ onSubmit }: { onSubmit: (lead: LeadDetails) => void 
               }}
             />
           </div>
+
+          {phoneError ? (
+            <p role="alert" className="-mt-1 text-xs font-medium text-red-400">
+              {phoneError}
+            </p>
+          ) : null}
 
           <div className="flex items-start gap-3 py-1">
             <input
